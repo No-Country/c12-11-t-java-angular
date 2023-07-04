@@ -4,19 +4,16 @@
     <a class="navbar-brand" href="#">
       <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isCollapsed }">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Menú</a>
+        <li class="nav-item ms-lg-3" *ngFor="let item of menuItems()" [routerLink]="[item.route]" routerLinkActive="active">
+          {{item.title}}
         </li>
       </ul>
-      <button class="btn btn-secondary ms-4" type="button">Iniciar sesión</button>
+      <button class="btn btn-secondary ms-lg-4" type="button">Iniciar sesión</button>
     </div>
   </div>
 </nav>

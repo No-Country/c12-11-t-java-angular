@@ -13,6 +13,9 @@ const routes: Routes = [
         path: 'home', component: HomeComponent
       },
       {
+        path: 'menu', component: HomeComponent
+      },
+      {
         path: '**', redirectTo: 'home'
       }
     ]
