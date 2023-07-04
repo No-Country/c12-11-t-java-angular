@@ -1,0 +1,22 @@
+<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+
+  <div class="input-group mb-3">
+      <span class="input-group-text">
+        <fa-icon [icon]="faUser"></fa-icon>
+      </span>
+      <input type="text" id="username" formControlName="username" class="form-control" placeholder="usuario">
+  </div>
+
+  <div class="input-group mb-3">
+      <span class="input-group-text">
+        <fa-icon [icon]="faKey"></fa-icon>
+      </span>
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password">
+  </div>
+
+  <div class="form-group">
+    <button [disabled]="loginForm.invalid"
+    type="submit" class="btn btn-primary">Ingresar</button>
+  </div>
+</form>
