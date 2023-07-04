@@ -3,10 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '@shared/pages/not-found/not-found.component';
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-  },
+
   {
     path: 'container',
     loadChildren: () => import('./modules/container/container.module').then(m => m.ContainerModule),
@@ -17,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'container',
     pathMatch: 'full'
   },
   {
