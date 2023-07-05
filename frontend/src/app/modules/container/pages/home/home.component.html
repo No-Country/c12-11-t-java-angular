@@ -1,1 +1,40 @@
-<p>home works!</p>
+<div class="container-fluid p-0 d-none d-sm-block">
+  <div class="row">
+    <div class="col bg-image">
+      <div class="bg-color d-flex justify-content-center align-items-center flex-column">
+
+
+        <h1>Delicias veganas y vegetarianas</h1>
+        <h4>Tu opción saludable y sabrosa a domicilio</h4>
+
+        <div class="mt-5 mb-3 input-search">
+          <h5>Que te gustaría comer?</h5>
+          <div class="input-group mt-2 mb-4">
+            <input type="text" [formControl]="homeSearch" class="form-control" placeholder="Descubre los mejores platos">
+            <span class="input-group-text group-text-destop">
+              <fa-icon [icon]="faMagnifyingGlass" class="me-2"></fa-icon> Buscar
+            </span>
+          </div>
+        </div>
+
+        <h6>
+          o conoce nuestro <span class="router-menu" routerLink="menu">menú completo</span>
+        </h6>
+
+        <div class="col-12 freepik-creditos mb-1 me-2">
+          <a target="_blank" href="https://www.freepik.es/foto-gratis/plato-tazon-fuente-buda-verduras-legumbres-vista-superior_13807905.htm#query=comida%20vegana&position=0&from_view=search&track=ais">Imagen de jcomp</a> en Freepik
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="d-sm-none input-group mt-4">
+    <input type="text" [formControl]="homeSearch" class="form-control input-text-mobile" placeholder="¿Qué estas buscando?">
+    <span class="input-group-text group-text-mobile">
+      <fa-icon [icon]="faMagnifyingGlass" class="me-2"></fa-icon>
+    </span>
+  </div>
+</div>
+
