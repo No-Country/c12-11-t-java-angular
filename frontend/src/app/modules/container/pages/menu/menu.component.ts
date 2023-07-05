@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-menu',
@@ -6,7 +7,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-
+  faChevronLeft = faChevronLeft
   //Data de api
   data = {
     menu: [
@@ -110,18 +111,18 @@ export class MenuComponent {
   //Filtros de api?
   filters = [
     {
-    id: 1,
-    name: "filter 1"
-  }, {
-    id: 2,
-    name: "filter 2"
-  }, {
-    id: 3,
-    name: "filter 3"
-  }, {
-    id: 4,
-    name: "filter 4"
-  },
+      id: 1,
+      name: "filter 1"
+    }, {
+      id: 2,
+      name: "filter 2"
+    }, {
+      id: 3,
+      name: "filter 3"
+    }, {
+      id: 4,
+      name: "filter 4"
+    },
     {
       id: 1,
       name: "filter 1"
@@ -135,8 +136,8 @@ export class MenuComponent {
       id: 4,
       name: "filter 4"
     }]
-  //Tiene algo en el carrito? -> NGX -> Getter a Store + Mutations | Consultar Store
-  cart = true
+  //Tiene algo en el carrito? -> NgRX -> Getter a Store + Mutations(Reducer) | Consultar Store
+  isButtonSuccessDisabled = false
 
 
 }
