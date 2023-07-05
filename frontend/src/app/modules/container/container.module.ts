@@ -5,19 +5,23 @@ import { LayoutContainerComponent } from './layout/layout-container/layout-conta
 import { HomeComponent } from './pages/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginModalComponent } from '@modules/auth/components/login-modal/login-modal.component';
+import { AuthModule } from '@modules/auth/auth.module';
 
 
 
 @NgModule({
   declarations: [
     LayoutContainerComponent,
-    HomeComponent
+    HomeComponent,
+    //LoginModalComponent
   ],
   imports: [
     CommonModule,
     ContainerRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    AuthModule
   ]
 })
 export class ContainerModule { }

@@ -1,0 +1,35 @@
+
+  <ng-template #content let-modal>
+    <div class="modal-header text-center">
+      <h4 class="modal-title ms-auto" id="modal-basic-title">Iniciar Sesión</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="loginForm">
+        <div class="input-group mt-2 mb-4">
+          <span class="input-group-text">
+            <fa-icon [icon]="faUser"></fa-icon>
+          </span>
+          <input type="text" id="username" formControlName="username" class="form-control" placeholder="usuario">
+        </div>
+
+        <div class="input-group mb-2">
+          <span class="input-group-text">
+            <fa-icon [icon]="faLock"></fa-icon>
+          </span>
+          <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button [disabled]="loginForm.invalid" type="button"
+        (click)="modal.close('Save click')" class="btn btn-primary">
+        Iniciar sesión
+      </button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-secondary ms-lg-4" type="button" (click)="open(content)">
+    Iniciar sesión
+  </button>
+
