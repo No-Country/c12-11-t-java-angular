@@ -6,6 +6,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+
+  //Data de api
   data = {
     menu: [
       {
@@ -105,7 +107,9 @@ export class MenuComponent {
       }
     ]
   }
-  filters = [{
+  //Filtros de api?
+  filters = [
+    {
     id: 1,
     name: "filter 1"
   }, {
@@ -131,5 +135,8 @@ export class MenuComponent {
       id: 4,
       name: "filter 4"
     }]
+  //Tiene algo en el carrito? -> NGX -> Getter a Store + Mutations | Consultar Store
+  cart = true
+
 
 }
