@@ -1,0 +1,17 @@
+<div class="card rounded border-black">
+  <div class="row g-0">
+    <div class="col-4 bg-dark rounded-start">
+      <img [src]="imageUrl" class="img-fluid rounded-start " alt="{{imageUrl}}">
+    </div>
+    <div class="col-8">
+      <div class="card-body justify-content-center align-content-center">
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text">
+          <app-star-menu [filled]="i < stars" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"></app-star-menu>
+          <small class="text-body-secondary"> - {{timeMin}}-{{timeMax}} min | ${{price}}
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

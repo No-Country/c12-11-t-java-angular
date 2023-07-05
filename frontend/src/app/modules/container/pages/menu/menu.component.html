@@ -1,0 +1,19 @@
+<main class="container">
+
+
+  <app-group-button-filter-menu [filters]="filters"/>
+
+
+  <app-deck-menu
+    [title]="menu.title"
+    [food]="menu.food"
+    *ngFor="let menu of data.menu; let i = index"
+  />
+
+
+</main>
+
+
+<footer>
+  soy el futer amigo
+</footer>

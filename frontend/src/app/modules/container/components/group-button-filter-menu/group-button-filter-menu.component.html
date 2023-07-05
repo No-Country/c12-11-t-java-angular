@@ -1,0 +1,9 @@
+<div class="button-group-container">
+  <div class="button-group d-flex ">
+    <app-button-filter-menu
+      [name]="filter.name"
+      [id]="filter.id"
+      *ngFor="let filter of filters; let i = index"
+    />
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<button
+  type="button"
+  class="btn border-black"
+  [class]="isActive? 'btn-dark':'btn-light'"
+  (click)="toggleActive()"
+>{{name}}</button>
