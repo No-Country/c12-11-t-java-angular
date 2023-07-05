@@ -7,25 +7,40 @@
       </a>
     </div>
     <div class="col-10">
-      <h1 class="menu-title m-0 text-center d-inline-block w-100">Almuerzo y Cena</h1>
+      <h1 class="menu-title m-0 text-center d-inline-block w-100">{{data.typeMenu}}</h1>
     </div>
   </div>
 
+  <div class="row">
+    <div class="d-block d-md-flex justify-content-between align-content-center">
+      <div class="flex-grow-1 m-r-3">
+        <app-input-search-menu/>
+      </div>
+      <div class="d-none d-md-flex justify-content-center align-items-center">
+        <a href="#" class="btn btn-dark mx-3">
+          <span class="mx-2"><fa-icon [icon]="faCart"></fa-icon></span>
+          Ver mi pedido</a>
+      </div>
+    </div>
+  </div>
 
-  <app-input-search-menu/>
-
-  <app-group-button-filter-menu [filters]="filters"/>
-
-  <app-deck-menu
-    [title]="menu.title"
-    [food]="menu.food"
-    *ngFor="let menu of data.menu; let i = index"
-  />
-
+  <div class="row">
+    <div class="col-12 col-md-4 ">
+      <app-group-button-filter-menu [filters]="filters"/>
+    </div>
+    <div class="col-12 col-md-8">
+      <app-deck-menu
+        [title]="menu.title"
+        [food]="menu.food"
+        *ngFor="let menu of data.menu; let i = index"
+      />
+    </div>
+  </div>
 </main>
 
 
-<footer class="menu-footer sticky-bottom bg-light align-content-center " [class.d-none]="isButtonSuccessDisabled">
+<footer class="menu-footer sticky-bottom bg-light align-content-center d-md-none"
+        [class.d-none]="isButtonSuccessDisabled">
   <div class="d-flex justify-content-center align-items-center h-100">
     <a href="#" class="btn btn-dark">Ver mi pedido</a>
   </div>

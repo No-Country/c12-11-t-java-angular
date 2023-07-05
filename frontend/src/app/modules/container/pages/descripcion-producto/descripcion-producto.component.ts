@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./descripcion-producto.component.scss']
 })
 export class DescripcionProductoComponent {
+  //Simulando entrada de api o NgRx con store del producto seleccionado
+  data={
 
+  }
 }

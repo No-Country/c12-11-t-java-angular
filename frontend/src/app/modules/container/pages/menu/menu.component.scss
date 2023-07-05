@@ -1,9 +1,9 @@
 .container {
   padding: 0 17px;
 }
-
-.menu-title .btn {
-  font-size: 20px;
+.btn{
+  padding: 14px 20px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -19,3 +19,9 @@ footer .btn {
   font-weight: bolder;
 }
 
+@media (min-width: 768px) {
+  .container {
+    margin: 0 auto;
+
+  }
+}

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+import {faChevronLeft,faCartShopping} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-menu',
@@ -8,8 +8,10 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 })
 export class MenuComponent {
   faChevronLeft = faChevronLeft
+  faCart=faCartShopping
   //Data de api
   data = {
+    typeMenu: "Almuerzo y cena",
     menu: [
       {
         title: "Hamburguesa",
@@ -18,6 +20,7 @@ export class MenuComponent {
           title: 'Hamburguesa 1',
           stars: 3,
           imageUrl: 'https://placehold.co/600x400?text=Imagen',
+          description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
           timeMin: 20,
           timeMax: 30,
           price: 200
@@ -27,6 +30,7 @@ export class MenuComponent {
             title: 'Hamburguesa 2',
             stars: 1,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
+            description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
             timeMin: 20,
             timeMax: 30,
             price: 200
@@ -36,6 +40,7 @@ export class MenuComponent {
             title: 'Hamburguesa 3',
             stars: 4,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
+            description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
             timeMin: 20,
             timeMax: 30,
             price: 200
@@ -49,6 +54,7 @@ export class MenuComponent {
           title: 'Wraps 1',
           stars: 3,
           imageUrl: 'https://placehold.co/600x400?text=Imagen',
+          description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
           timeMin: 20,
           timeMax: 30,
           price: 900
@@ -58,6 +64,7 @@ export class MenuComponent {
             title: 'Wraps 2',
             stars: 1,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
+            description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
             timeMin: 20,
             timeMax: 30,
             price: 2000
@@ -67,6 +74,7 @@ export class MenuComponent {
             title: 'Wraps 3',
             stars: 4,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
+            description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
             timeMin: 20,
             timeMax: 30,
             price: 2200
@@ -81,6 +89,7 @@ export class MenuComponent {
           title: 'Panini 1',
           stars: 3,
           imageUrl: 'https://placehold.co/600x400?text=Imagen',
+          description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
           timeMin: 20,
           timeMax: 30,
           price: 200
@@ -90,6 +99,7 @@ export class MenuComponent {
             title: 'Panini 2',
             stars: 1,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
+            description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
             timeMin: 20,
             timeMax: 30,
             price: 200
@@ -99,6 +109,7 @@ export class MenuComponent {
             title: 'Panini 3',
             stars: 4,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
+            description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
             timeMin: 20,
             timeMax: 30,
             price: 200

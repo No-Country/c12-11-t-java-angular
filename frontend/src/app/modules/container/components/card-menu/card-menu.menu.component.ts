@@ -10,6 +10,7 @@ export class CardMenuMenuComponent {
   @Input() title!: string;
   @Input() stars!: number;
   @Input() imageUrl!: string;
+  @Input() description!: string;
   @Input() timeMin!: number;
   @Input() timeMax!: number;
   @Input() price!: number;
@@ -20,6 +21,7 @@ export interface Card {
   title: string;
   stars: number;
   imageUrl: string;
+  description: string;
   timeMin: number;
   timeMax: number;
   price: number;
