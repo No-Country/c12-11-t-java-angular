@@ -36,5 +36,22 @@
       <fa-icon [icon]="faMagnifyingGlass" class="me-2"></fa-icon>
     </span>
   </div>
+
+  <h4 class="mt-5 mb-4">Deliciosas opciones vegetarianas para ti</h4>
+
+  <div class="row">
+    <div *ngFor="let plate of getPlateList()" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card">
+        <img [src]="plate.imageUrl" alt="plato" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ plate.name }}</h5>
+          <p class="card-text">
+            {{ plate.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
