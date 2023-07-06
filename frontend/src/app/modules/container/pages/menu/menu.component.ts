@@ -15,68 +15,50 @@ export class MenuComponent {
     menu: [
       {
         title: "Patys",
-        food: [{
+        products: [{
           id: 1,
           title: 'Hamburguesa 1',
-          stars: 3,
           imageUrl: 'https://placehold.co/600x400?text=Imagen',
           description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-          timeMin: 20,
-          timeMax: 30,
           price: 200
         },
           {
             id: 1,
             title: 'Hamburguesa 2',
-            stars: 1,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
             description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-            timeMin: 20,
-            timeMax: 30,
             price: 200
           },
           {
             id: 1,
             title: 'Hamburguesa 3',
-            stars: 4,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
             description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-            timeMin: 20,
-            timeMax: 30,
             price: 200
           }
         ]
       },
       {
         title: "Wraps",
-        food: [{
+        products: [{
           id: 1,
           title: 'Wraps 1',
-          stars: 3,
           imageUrl: 'https://placehold.co/600x400?text=Imagen',
           description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-          timeMin: 20,
-          timeMax: 30,
           price: 900
         },
           {
             id: 1,
             title: 'Wraps 2',
-            stars: 1,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
             description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-            timeMin: 20,
-            timeMax: 30,
             price: 2000
           },
           {
             id: 1,
             title: 'Wraps 3',
-            stars: 4,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
             description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-            timeMin: 20,
-            timeMax: 30,
             price: 2200
           }
         ]
@@ -84,34 +66,25 @@ export class MenuComponent {
       },
       {
         title: "Panini",
-        food: [{
+        products: [{
           id: 1,
           title: 'Panini 1',
-          stars: 3,
           imageUrl: 'https://placehold.co/600x400?text=Imagen',
           description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-          timeMin: 20,
-          timeMax: 30,
           price: 200
         },
           {
             id: 1,
             title: 'Panini 2',
-            stars: 1,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
             description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-            timeMin: 20,
-            timeMax: 30,
             price: 200
           },
           {
             id: 1,
             title: 'Panini 3',
-            stars: 4,
             imageUrl: 'https://placehold.co/600x400?text=Imagen',
             description:'Texto de maximo de 2 renglones para el detalle del plato donde se puede visualizar sus ingredientes...........',
-            timeMin: 20,
-            timeMax: 30,
             price: 200
           }
         ]

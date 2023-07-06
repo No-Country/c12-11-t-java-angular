@@ -1,12 +1,8 @@
-<h2 class="deck-title d-block d-md-none">{{title}}</h2>
+<h2 class="deck-title d-block d-md-none">{{productType.title}}</h2>
 
 <app-card-menu
-  [id]=oneFood.id
-  [title]=oneFood.title
-  [imageUrl]=oneFood.imageUrl
-  [description]=oneFood.description
-  [price]=oneFood.price
-  *ngFor="let oneFood of food; let i = index"/>
+  [product]="product"
+  *ngFor="let product of productType.products; let i = index"/>
 
 
 

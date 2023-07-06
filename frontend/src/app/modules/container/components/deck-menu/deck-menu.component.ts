@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Card} from "@modules/container/components/card-menu/card-menu.menu.component";
+import {Product} from "@modules/container/components/card-menu/card-menu.menu.component";
 
 @Component({
   selector: 'app-deck-menu',
@@ -7,11 +7,10 @@ import {Card} from "@modules/container/components/card-menu/card-menu.menu.compo
   styleUrls: ['./deck-menu.component.scss']
 })
 export class DeckMenuComponent {
-  @Input() title!: string;
-  @Input() food!: Array<Card>;
+  @Input() productType!: ProductType;
 }
 
-export interface Deck {
+export interface ProductType {
   title: string;
-  food: Array<Card>;
+  products: Array<Product>;
 }

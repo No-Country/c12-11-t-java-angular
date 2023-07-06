@@ -6,28 +6,31 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./card-menu.component.scss']
 })
 export class CardMenuMenuComponent {
+  /*
   @Input() id!: number;
   @Input() title!: string;
   @Input() imageUrl!: string;
   @Input() description!: string;
   @Input() price!: number;
+*/
+  @Input() product!: Product;
 
   truncateTextMobile() {
-    if (this.description.length <= 60) {
-      return this.description
+    if (this.product.description.length <= 60) {
+      return this.product.description
     }
-    return this.description.substring(0, 60) + '...'
+    return this.product.description.substring(0, 60) + '...'
   }
 
   truncateTextDektop() {
-    if (this.description.length <= 200) {
-      return this.description
+    if (this.product.description.length <= 200) {
+      return this.product.description
     }
-    return this.description.substring(0, 200) + '...'
+    return this.product.description.substring(0, 200) + '...'
   }
 }
 
-export interface Card {
+export interface Product {
   id: number;
   title: string;
   imageUrl: string;
