@@ -15,7 +15,7 @@ export class PaymentMethodComponent {
   verificarRadio(){
     return this.valueMethod=='0'?this.textButtom='Agregar Tarjeta':this.valueMethod=='1'?this.textButtom='Confirmar Pedido':'';
   }
-  regresar(){
+  goBack(){
     this.router.navigateByUrl('/container/shopping');
 
   }
