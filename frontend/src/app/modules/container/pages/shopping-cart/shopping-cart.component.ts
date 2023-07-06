@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { faAngleLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,6 +8,8 @@ import { faAngleLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent {
+  private router= inject( Router );
+
   faAngleLeft = faAngleLeft;
   faPlus=faPlus;
   faMinus=faMinus;
@@ -22,5 +25,9 @@ export class ShoppingCartComponent {
       this.valueDefaul--;
       this.price=this.price-this.priceCurrent;
     }
+  }
+
+  regresar(){
+    this.router.navigateByUrl('/container/menu');
   }
 }

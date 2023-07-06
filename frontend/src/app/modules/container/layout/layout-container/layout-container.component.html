@@ -7,7 +7,7 @@
     <button class="navbar-toggler" type="button" (click)="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isCollapsed }">
+    <div *ngIf="mostrarElementos" class="collapse navbar-collapse" [ngClass]="{ 'show': isCollapsed }">
       <ul class="navbar-nav ms-auto mb-2 mb-md-0 justify-content-end">
         <li class="nav-item ms-md-3" *ngFor="let item of menuItems()" [routerLink]="[item.route]" routerLinkActive="active">
           {{item.title}}
