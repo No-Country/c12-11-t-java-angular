@@ -20,6 +20,7 @@ import { DescripcionProductoComponent } from './modules/container/pages/descripc
 import { ButtonCounterComponent } from './modules/container/components/button-counter/button-counter.component';
 import { ButtonCounterProductOptionalComponent } from './modules/container/components/button-counter-product-optional/button-counter-product-optional.component';
 import { ProductOptionalComponent } from './modules/container/components/product-optional/product-optional.component';
+import { ProductDetailsModalComponent } from './product-details-modal/product-details-modal.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ProductOptionalComponent } from './modules/container/components/product
     DescripcionProductoComponent,
     ButtonCounterComponent,
     ButtonCounterProductOptionalComponent,
-    ProductOptionalComponent
+    ProductOptionalComponent,
+    ProductDetailsModalComponent
   ],
   imports: [
     BrowserModule,
