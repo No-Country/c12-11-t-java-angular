@@ -11,7 +11,7 @@ export class CardMenuMenuComponent {
   @Input() imageUrl!: string;
   @Input() description!: string;
   @Input() price!: number;
-  
+
   truncateTextMobile() {
     if (this.description.length <= 60) {
       return this.description
