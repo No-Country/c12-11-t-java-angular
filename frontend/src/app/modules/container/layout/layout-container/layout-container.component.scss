@@ -1,0 +1,10 @@
+.nav-item {
+  color: rgb(177, 177, 177);
+  cursor: pointer;
+  transition: 0.3s;
+
+  &.active {
+    color: white;
+    //font-weight: 700;
+  }
+}

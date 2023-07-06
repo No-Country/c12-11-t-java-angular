@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary bg-dark border-bottom border-bottom-dark"
+  data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isCollapsed }">
+      <ul class="navbar-nav ms-auto mb-2 mb-md-0 justify-content-end">
+        <li class="nav-item ms-md-3" *ngFor="let item of menuItems()" [routerLink]="[item.route]" routerLinkActive="active">
+          {{item.title}}
+        </li>
+      </ul>
+      <!--button class="btn btn-secondary ms-lg-4" type="button">Iniciar sesión</button-->
+      <app-login-modal></app-login-modal>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+
+
