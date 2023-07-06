@@ -1,24 +1,26 @@
 package com.proyecto.entidades;
 
-import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table(name="pedidoDetalle")
 public class PedidoDetalle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pedidoDetalleId")
-	private String pedidoDetalleId;
+	private int pedidoDetalleId;
 	@Column(name = "pedidoId")
 	private int pedidoId;
 	@Column(name = "platoId")

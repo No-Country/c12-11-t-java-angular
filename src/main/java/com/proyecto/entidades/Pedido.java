@@ -11,14 +11,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table(name="pedido")
-public class Pedido {
-	@Id
+public class Pedido{
+	
+	@jakarta.persistence.Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pedidoId")
 	private int pedidoId;
