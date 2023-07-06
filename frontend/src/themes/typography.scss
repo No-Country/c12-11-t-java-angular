@@ -1,0 +1,27 @@
+@mixin typographyBase{
+color: #000!important;
+font-family: Roboto!important;
+font-style: normal!important;
+line-height: normal!important;
+}
+.title-page{
+
+font-size: 20px!important;
+font-weight: 400!important;
+@include typographyBase;
+
+}
+.subtitle-page{
+
+font-size: 16px!important;
+font-weight: 400!important;
+@include typographyBase;
+}
+.subtitle-page-bold{
+
+  font-size: 16px!important;
+  font-weight: 600!important;
+  @include typographyBase;
+  }
+
+

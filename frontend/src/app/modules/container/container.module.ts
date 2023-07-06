@@ -7,6 +7,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginModalComponent } from '@modules/auth/components/login-modal/login-modal.component';
 import { AuthModule } from '@modules/auth/auth.module';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { FooterMobileComponent } from './components/footer-mobile/footer-mobile.component';
 
 
 
@@ -14,6 +16,8 @@ import { AuthModule } from '@modules/auth/auth.module';
   declarations: [
     LayoutContainerComponent,
     HomeComponent,
+    ShoppingCartComponent,
+    FooterMobileComponent
     //LoginModalComponent
   ],
   imports: [
