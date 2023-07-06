@@ -1,0 +1,20 @@
+.btn {
+  padding: 2px 20px 2px 20px;
+  border-radius: 12px;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 14px;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 12px 20px;
+    text-align: left;
+    border-radius: 0;
+    width: 100%;
+    border: 1px solid black;
+  }
+}
+
+

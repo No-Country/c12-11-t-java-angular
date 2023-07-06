@@ -5,6 +5,10 @@ import { LayoutContainerComponent } from './layout/layout-container/layout-conta
 import { HomeComponent } from './pages/home/home.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { PaymentMethodComponent } from './pages/payment-method/payment-method.component';
+import {MenuComponent} from "@modules/container/pages/menu/menu.component";
+import {
+  DescripcionProductoComponent
+} from "@modules/container/pages/descripcion-producto/descripcion-producto.component";
 
 const routes: Routes = [
   {
@@ -15,7 +19,11 @@ const routes: Routes = [
         path: 'home', component: HomeComponent
       },
       {
-        path: 'menu', component: HomeComponent
+        path: 'menu', component: MenuComponent
+      },
+
+      {
+        path: 'descripcion', component: DescripcionProductoComponent
       },
       {
         path: 'shopping', component: ShoppingCartComponent

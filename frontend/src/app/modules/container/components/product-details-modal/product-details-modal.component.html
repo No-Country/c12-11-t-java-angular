@@ -1,0 +1,28 @@
+<ng-template #content let-modal>
+  <div class="modal-header justify-content-start">
+    <button type="button" class="btn-close mx-0" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <h4 class="modal-title mx-3" id="modal-basic-title">{{product.title}}</h4>
+  </div>
+  <div class="modal-body ">
+    <div class="d-flex justify-content-center img-container">
+      <img class="img-fluid" src="{{product.imageUrl}}" alt="{{product.title}}">
+    </div>
+    <h5 class="my-2">${{product.price}}</h5>
+    <p class="my-3 ">{{product.description}}</p>
+    <app-product-optional/>
+
+  </div>
+  <div class="modal-footer justify-content-sm-between">
+    <app-button-counter [maxValue]="5" [minValue]="1" [value]="1"/>
+
+    <div>
+      <button type="button" (click)="modal.close('Save click')" class="btn btn-primary mx-2">
+        Cerrar
+      </button>
+      <a id="button" href="#" class="btn btn-dark">Agregar carrito</a>
+    </div>
+  </div>
+</ng-template>
+
+<app-card-menu [product]="product" (click)="open(content)"/>
+

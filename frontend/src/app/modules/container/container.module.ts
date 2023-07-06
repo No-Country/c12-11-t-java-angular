@@ -10,8 +10,27 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { FooterMobileComponent } from './components/footer-mobile/footer-mobile.component';
 import { PaymentMethodComponent } from './pages/payment-method/payment-method.component';
-
-
+import {CardMenuMenuComponent} from '@modules/container/components/card-menu/card-menu.menu.component';
+import {DeckMenuComponent} from '@modules/container/components/deck-menu/deck-menu.component';
+import {MenuComponent} from '@modules/container/pages/menu/menu.component';
+import {
+  ButtonFilterMenuComponent
+} from '@modules/container/components/button-filter-menu/button-filter-menu.component';
+import {
+  GroupButtonFilterMenuComponent
+} from '@modules/container/components/group-button-filter-menu/group-button-filter-menu.component';
+import {InputSearchMenuComponent} from '@modules/container/components/input-search-menu/input-search-menu.component';
+import {
+  DescripcionProductoComponent
+} from '@modules/container/pages/descripcion-producto/descripcion-producto.component';
+import {ButtonCounterComponent} from '@modules/container/components/button-counter/button-counter.component';
+import {
+  ButtonCounterProductOptionalComponent
+} from '@modules/container/components/button-counter-product-optional/button-counter-product-optional.component';
+import {ProductOptionalComponent} from '@modules/container/components/product-optional/product-optional.component';
+import {
+  ProductDetailsModalComponent
+} from '@modules/container/components/product-details-modal/product-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +38,19 @@ import { PaymentMethodComponent } from './pages/payment-method/payment-method.co
     HomeComponent,
     ShoppingCartComponent,
     FooterMobileComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
     //LoginModalComponent
+    CardMenuMenuComponent,
+    DeckMenuComponent,
+    MenuComponent,
+    ButtonFilterMenuComponent,
+    GroupButtonFilterMenuComponent,
+    InputSearchMenuComponent,
+    DescripcionProductoComponent,
+    ButtonCounterComponent,
+    ButtonCounterProductOptionalComponent,
+    ProductOptionalComponent,
+    ProductDetailsModalComponent
   ],
   imports: [
     CommonModule,

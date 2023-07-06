@@ -1,0 +1,10 @@
+<div class="btn-group align-items-center " role="group"
+     aria-label="Basic mixed styles example">
+  <button type="button" class="btn btn-light border-1 border-black " (click)="decrementValue()">
+    <fa-icon [icon]="faMinus"></fa-icon>
+  </button>
+  <p class="align-self-center m-0 btn border-0 border-top border-bottom border-black fw-semibold ">{{value}}</p>
+  <button type="button" class="btn btn-light border-1 border-black" (click)="incrementValue()">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </button>
+</div>

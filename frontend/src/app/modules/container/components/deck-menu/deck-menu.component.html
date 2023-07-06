@@ -1,0 +1,15 @@
+<h2 class="deck-title d-block d-md-none">{{productType.title}}</h2>
+
+<div class="d-block d-md-none">
+  <app-card-menu
+    [product]="product"
+    *ngFor="let product of productType.products; let i = index"/>
+</div>
+<div class="d-none d-md-block">
+  <app-product-details-modal [product]="product" *ngFor="let product of productType.products; let i = index"/>
+</div>
+
+
+
+
+

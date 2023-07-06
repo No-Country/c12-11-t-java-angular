@@ -1,0 +1,24 @@
+<main class="min-vh-100">
+  <div class="hero"></div>
+
+  <div class="container">
+
+    <h1 class="text-title">Nombre producto</h1>
+    <h2 class="text-title">$4000</h2>
+    <p class="text-break text-truncate text-muted">Descripcion del producto que llega maximo a dos lineas, sino se corta
+      y empiezan los puntos suspen......</p>
+
+    <app-product-optional/>
+
+  </div>
+</main>
+
+<footer class="descripcion-footer sticky-bottom bg-light  ">
+
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- TODO Hacerlo componente-->
+    <app-button-counter [maxValue]="5" [minValue]="1" [value]="1"/>
+    <a id="button" href="#" class="btn btn-dark">Button</a>
+  </div>
+</footer>
+
