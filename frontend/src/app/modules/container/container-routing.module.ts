@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutContainerComponent } from './layout/layout-container/layout-container.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { PaymentMethodComponent } from './pages/payment-method/payment-method.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
       },
       {
         path: 'shopping', component: ShoppingCartComponent
+      },
+      {
+        path: 'pay', component: PaymentMethodComponent
       },
       {
         path: '**', redirectTo: 'home'
