@@ -8,22 +8,30 @@ import {Component, Input} from '@angular/core';
 export class CardMenuMenuComponent {
   @Input() id!: number;
   @Input() title!: string;
-  @Input() stars!: number;
   @Input() imageUrl!: string;
   @Input() description!: string;
-  @Input() timeMin!: number;
-  @Input() timeMax!: number;
   @Input() price!: number;
+  
+  truncateTextMobile() {
+    if (this.description.length <= 60) {
+      return this.description
+    }
+    return this.description.substring(0, 60) + '...'
+  }
+
+  truncateTextDektop() {
+    if (this.description.length <= 200) {
+      return this.description
+    }
+    return this.description.substring(0, 200) + '...'
+  }
 }
 
 export interface Card {
   id: number;
   title: string;
-  stars: number;
   imageUrl: string;
   description: string;
-  timeMin: number;
-  timeMax: number;
   price: number;
 }
 
