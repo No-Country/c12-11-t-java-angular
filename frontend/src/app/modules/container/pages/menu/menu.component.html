@@ -12,23 +12,26 @@
   </div>
 
   <div class="row">
-    <div class="d-block d-md-flex justify-content-between align-content-center">
-      <div class="flex-grow-1 m-r-3">
-        <app-input-search-menu/>
-      </div>
-      <div class="d-none d-md-flex justify-content-center align-items-center">
-        <a href="#" class="btn btn-dark mx-3">
-          <span class="mx-2"><fa-icon [icon]="faCart"></fa-icon></span>
-          Ver mi pedido</a>
+    <div class="d-none d-md-block col-md-3"></div>
+    <div class="col-12 col-md-9">
+      <div class="d-block d-md-flex justify-content-between align-content-center">
+        <div class="flex-grow-1">
+          <app-input-search-menu/>
+        </div>
+        <div class="d-none d-md-flex justify-content-center align-items-center">
+          <a href="#" class="btn btn-dark">
+            <span class="mx-2"><fa-icon [icon]="faCart"></fa-icon></span>
+            Ver mi pedido</a>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-12 col-md-4 ">
+    <div class="col-12 col-md-3 ">
       <app-group-button-filter-menu [filters]="filters"/>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-9">
       <app-deck-menu
         [title]="menu.title"
         [food]="menu.food"

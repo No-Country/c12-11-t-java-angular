@@ -14,7 +14,7 @@ export class MenuComponent {
     typeMenu: "Almuerzo y cena",
     menu: [
       {
-        title: "Hamburguesa",
+        title: "Patys",
         food: [{
           id: 1,
           title: 'Hamburguesa 1',
