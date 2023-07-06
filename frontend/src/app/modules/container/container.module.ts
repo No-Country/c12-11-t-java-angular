@@ -4,11 +4,12 @@ import { ContainerRoutingModule } from './container-routing.module';
 import { LayoutContainerComponent } from './layout/layout-container/layout-container.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginModalComponent } from '@modules/auth/components/login-modal/login-modal.component';
 import { AuthModule } from '@modules/auth/auth.module';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { FooterMobileComponent } from './components/footer-mobile/footer-mobile.component';
+import { PaymentMethodComponent } from './pages/payment-method/payment-method.component';
 
 
 
@@ -17,7 +18,8 @@ import { FooterMobileComponent } from './components/footer-mobile/footer-mobile.
     LayoutContainerComponent,
     HomeComponent,
     ShoppingCartComponent,
-    FooterMobileComponent
+    FooterMobileComponent,
+    PaymentMethodComponent
     //LoginModalComponent
   ],
   imports: [
@@ -25,6 +27,7 @@ import { FooterMobileComponent } from './components/footer-mobile/footer-mobile.
     ContainerRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
     AuthModule
   ]
 })
