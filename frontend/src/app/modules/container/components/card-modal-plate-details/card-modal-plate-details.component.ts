@@ -1,6 +1,6 @@
 import {Component, inject, Input} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Product} from "@modules/container/components/card-plate/card-plate.menu.component";
+import {Plate} from "@shared/interfaces/plate.interface";
 
 @Component({
   selector: 'app-card-modal-plate-details',
@@ -8,7 +8,7 @@ import {Product} from "@modules/container/components/card-plate/card-plate.menu.
   styleUrls: ['./card-modal-plate-details.component.scss']
 })
 export class CardModalPlateDetailsComponent {
-  @Input() product!: Product
+  @Input() plate!: Plate
   private modalService = inject(NgbModal);
 
   open(content: any) {
