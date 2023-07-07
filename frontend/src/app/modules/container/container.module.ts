@@ -10,7 +10,7 @@ import {AuthModule} from '@modules/auth/auth.module';
 import {ShoppingCartComponent} from './pages/shopping-cart/shopping-cart.component';
 import {FooterMobileComponent} from './components/footer-mobile/footer-mobile.component';
 import {PaymentMethodComponent} from './pages/payment-method/payment-method.component';
-import {CardMenuMenuComponent} from '@modules/container/components/card-menu/card-menu.menu.component';
+import {CardPlateMenuComponent} from '@modules/container/components/card-plate/card-plate.menu.component';
 import {DeckMenuComponent} from '@modules/container/components/deck-menu/deck-menu.component';
 import {MenuComponent} from '@modules/container/pages/menu/menu.component';
 import {
@@ -29,6 +29,8 @@ import {
 } from '@modules/container/components/button-counter-product-optional/button-counter-product-optional.component';
 import {ProductOptionalComponent} from '@modules/container/components/product-optional/product-optional.component';
 import {
+  CardModalPlateDetailsComponent
+} from '@modules/container/components/card-modal-plate-details/card-modal-plate-details.component';
   ProductDetailsModalComponent
 } from '@modules/container/components/product-details-modal/product-details-modal.component';
 import { TabsComponent } from './components/tabs/tabs.component';
@@ -45,7 +47,7 @@ import { SharedModule } from '@shared/shared.module';
     FooterMobileComponent,
     PaymentMethodComponent,
     //LoginModalComponent
-    CardMenuMenuComponent,
+    CardPlateMenuComponent,
     DeckMenuComponent,
     MenuComponent,
     ButtonFilterMenuComponent,
@@ -55,6 +57,7 @@ import { SharedModule } from '@shared/shared.module';
     ButtonCounterComponent,
     ButtonCounterProductOptionalComponent,
     ProductOptionalComponent,
+    CardModalPlateDetailsComponent
     ProductDetailsModalComponent,
     TabsComponent,
     ConfirmOrderComponent,

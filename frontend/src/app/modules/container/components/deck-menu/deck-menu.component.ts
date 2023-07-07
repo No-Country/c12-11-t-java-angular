@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Product} from "@modules/container/components/card-menu/card-menu.menu.component";
+import {Product} from "@modules/container/components/card-plate/card-plate.menu.component";
 
 @Component({
   selector: 'app-deck-menu',

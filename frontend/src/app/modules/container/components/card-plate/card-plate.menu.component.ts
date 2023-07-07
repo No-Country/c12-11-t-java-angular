@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-card-menu',
-  templateUrl: './card-menu.component.html',
-  styleUrls: ['./card-menu.component.scss']
+  selector: 'app-card-plate',
+  templateUrl: './card-plate.component.html',
+  styleUrls: ['./card-plate.component.scss']
 })
-export class CardMenuMenuComponent {
+export class CardPlateMenuComponent {
   @Input() product!: Product;
   @Input() truncate: boolean = true;
 
