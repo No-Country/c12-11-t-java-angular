@@ -10,8 +10,10 @@
           <h6 class="card-title">${{product.price}}</h6>
         </div>
         <div class="d-flex justify-content-between flex-row flex-md-column h-100  mt-1">
-          <p class=" d-block d-md-none card-text "> {{truncateTextMobile()}}</p>
-          <p class=" d-none d-md-block card-text">{{truncateTextDektop()}}</p>
+          <p
+            class=" d-block d-md-none card-text "> {{ product.description| slice:0:45 }}{{ product.description.length > 45 ? '...' : '' }}</p>
+          <p
+            class=" d-none d-md-block card-text">{{ product.description| slice:0:150 }}{{ product.description.length > 150 ? '...' : '' }}</p>
           <div class="align-self-end">
             <button class="btn btn-dark " (click)="addCart()">+</button>
           </div>
