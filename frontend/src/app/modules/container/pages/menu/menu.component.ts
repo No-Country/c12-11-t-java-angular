@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {faChevronLeft, faCartShopping} from '@fortawesome/free-solid-svg-icons'
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-menu',
@@ -122,6 +123,8 @@ export class MenuComponent {
     }]
   //Tiene algo en el carrito? -> NgRX -> Getter a Store + Mutations(Reducer) | Consultar Store
   isButtonSuccessDisabled = false
+
+  constructor(private location: Location) { }
 
 
 }
