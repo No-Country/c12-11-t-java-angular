@@ -10,11 +10,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
 @ToString
 @Entity
@@ -27,8 +27,6 @@ public class Plato {
 	private int platoId;
 	@Column(name = "nombre")
 	private String nombre;
-	@Column(name= "apellido")
-	private String apellido;
 	@Column(name= "precio")
 	private float precio;
 	@Column(name= "descripcion")
