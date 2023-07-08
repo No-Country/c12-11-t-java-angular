@@ -1,7 +1,9 @@
 package com.proyecto.controlador;
 
 import com.proyecto.entidades.Direccion;
+import com.proyecto.entidades.Pago;
 import com.proyecto.entidades.Plato;
+import com.proyecto.servicio.PagoServicioIMPL.PGSIMPL;
 import com.proyecto.servicio.direccionServIMPL.DSIMPL;
 import com.proyecto.servicio.platoServicioIMPL.PSIMPL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class Controlador {
     private PSIMPL psimpl;
     @Autowired
     private DSIMPL dsimpl;
+
+    @Autowired
+    private PGSIMPL pgsimpl;
 
 
     /* Entidad plato */
@@ -123,6 +128,54 @@ public class Controlador {
 
     }
 
+    /* Entidad Pago */
 
+    @GetMapping
+    @RequestMapping(value = "listaDePagos", method = RequestMethod.GET)
+    public ResponseEntity<?> listaPagos(){
+        List<Pago> listaDePagos = this.pgsimpl.listaDePagos();
+
+        return ResponseEntity.ok(listaDePagos);
+    }
+
+    @PostMapping
+    @RequestMapping(value = "crearPago", method = RequestMethod.POST)
+    public ResponseEntity<?> crearPago(@RequestBody Pago pago){
+
+        Pago pagoCreado = this.pgsimpl.crearPago(pago);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pagoCreado);
+
+    }
+
+    @PutMapping
+    @RequestMapping(value = "modificarPago", method = RequestMethod.PUT)
+    public ResponseEntity<?> modificarPago(@RequestBody Pago pago){
+
+        Pago pagoModificado = this.pgsimpl.modificarPago(pago);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pagoModificado);
+
+    }
+
+    @GetMapping
+    @RequestMapping (value = "consultarPago/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> consultarPago(@PathVariable int id){
+
+        Pago pago = this.pgsimpl.consultarPago(id);
+
+        return ResponseEntity.ok(pago);
+
+    }
+
+    @DeleteMapping
+    @RequestMapping(value = "eliminarPago/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> eliminarPago(@PathVariable int id){
+
+        this.pgsimpl.eliminarPago(id);
+
+        return ResponseEntity.ok().build();
+
+    }
 
 }
