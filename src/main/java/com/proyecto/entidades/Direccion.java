@@ -1,13 +1,13 @@
 package com.proyecto.entidades;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "direccion")
 public class Direccion {
