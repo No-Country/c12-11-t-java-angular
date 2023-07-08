@@ -1,13 +1,13 @@
 package com.proyecto.entidades;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "pago")
 public class Pago {
