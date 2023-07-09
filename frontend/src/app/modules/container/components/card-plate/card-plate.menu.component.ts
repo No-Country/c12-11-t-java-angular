@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Plate} from "@shared/interfaces/plate.interface";
+import {Plato} from "@shared/interfaces/plato.interface";
 
 @Component({
   selector: 'app-card-plate',
@@ -7,7 +7,7 @@ import {Plate} from "@shared/interfaces/plate.interface";
   styleUrls: ['./card-plate.component.scss']
 })
 export class CardPlateMenuComponent {
-  @Input() plate!: Plate;
+  @Input() plate!: Plato;
   @Input() truncate: boolean = true;
 
   addCart() {

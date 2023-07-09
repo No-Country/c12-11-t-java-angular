@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {ButtonFilter} from "@modules/container/components/button-filter-menu/button-filter-menu.component";
 
 @Component({
   selector: 'app-group-button-filter-menu',
@@ -7,5 +6,5 @@ import {ButtonFilter} from "@modules/container/components/button-filter-menu/but
   styleUrls: ['./group-button-filter-menu.component.scss']
 })
 export class GroupButtonFilterMenuComponent {
-  @Input() filters: Array<ButtonFilter> = [];
+  @Input() filters?: string[];
 }

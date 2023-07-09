@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
@@ -8,4 +8,11 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 })
 export class InputSearchMenuComponent {
   faMagnifyingGlass = faMagnifyingGlass;
+  @Output() inputValueChanged = new EventEmitter<string>();
+
+  onInputChange(event: Event): void {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.inputValueChanged.emit(inputValue);
+  }
+
 }

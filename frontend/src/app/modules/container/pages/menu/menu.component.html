@@ -7,7 +7,7 @@
       </a>
     </div>
     <div class="col-10">
-      <h1 class="menu-title m-0 text-center d-inline-block w-100">{{data.typeMenu}}</h1>
+      <h1 class="m-0 text-center d-inline-block w-100">{{menuService.tipoPlato}}</h1>
     </div>
   </div>
 
@@ -16,7 +16,7 @@
     <div class="col-12 col-md-9">
       <div class="d-block d-md-flex justify-content-between align-content-center">
         <div class="flex-grow-1">
-          <app-input-search-menu/>
+          <app-input-search-menu (inputValueChanged)="updateMenuFilterService($event)"/>
         </div>
         <div class="d-none d-md-flex justify-content-center align-items-center">
           <a id="btn-md-shopping" routerLink="/container/shopping" class="btn btn-dark">
@@ -28,16 +28,16 @@
   </div>
 
   <div class="row">
-    <div class="col-12 col-md-3 ">
-      <app-group-button-filter-menu [filters]="filters"/>
+    <div class="col-12 col-md-3">
+      <app-group-button-filter-menu [filters]="menuService.getPlatoNamesByTipoPlato()"></app-group-button-filter-menu>
     </div>
     <div class="col-12 col-md-9">
-      <app-deck-menu
-        [plateType]="menu"
-        *ngFor="let menu of filteredItems; let i = index"
-      />
+      <ng-container *ngFor="let menu of menuService.createMenu()">
+        <app-deck-menu [menu]="menu" [searchTerm]="searchTerm"></app-deck-menu>
+      </ng-container>
     </div>
   </div>
+
 </main>
 
 

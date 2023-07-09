@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {faChevronLeft, faCartShopping} from '@fortawesome/free-solid-svg-icons'
+import {faCartShopping, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {Location} from "@angular/common";
-import {PlateType} from "@modules/container/components/deck-menu/deck-menu.component";
+import {MenuService} from "@shared/services/menu-service/menu.service";
+import {PlatoFilterService} from "@shared/services/filter-plato-service/plato-filter.service";
 
 @Component({
   selector: 'app-menu',
@@ -9,126 +10,20 @@ import {PlateType} from "@modules/container/components/deck-menu/deck-menu.compo
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+
   faChevronLeft = faChevronLeft
   faCart = faCartShopping
-  //Data de api
-  data = {
-    typeMenu: "Almuerzo y cena",
-    menu: [
-      {
-        name: "Patys",
-        plates: [{
-          id: 1,
-          name: 'Hamburguesa 1',
-          imageUrl: 'assets/img/plates/gourmet.jpg',
-          description: 'Steak tastes best with ginger sauce and lots of chocolate. Try warming shrimps curry flavored with BBQ sauce',
-          price: 200
-        },
-          {
-            id: 1,
-            name: 'Hamburguesa 2',
-            imageUrl: 'https://placehold.co/600x400?text=Imagen',
-            description: 'For a minced thin porridge, add some cocktail sauce and dill.',
-            price: 200
-          },
-          {
-            id: 1,
-            name: 'Hamburguesa 3',
-            imageUrl: 'assets/img/plates/gourmet.jpg',
-            description: 'To the sour chocolate add ginger, ramen, lime and ground lentils.',
-            price: 200
-          }
-        ]
-      },
-      {
-        name: "Wraps",
-        plates: [{
-          id: 1,
-          name: 'Wraps 1',
-          imageUrl: '/assets/img/plates/gourmet.jpg',
-          description: 'Instead of rinsing diced lime with cauliflower, use twenty and a half teaspoons iced tea and one container woodruff grinder.',
-          price: 900
-        },
-          {
-            id: 1,
-            name: 'Wraps 2',
-            imageUrl: '/assets/img/plates/gourmet.jpg',
-            description: 'Chop two oysters, avocado, and rum in a large plastic bag over medium heat, grill for seven minutes and mix with some doughnut.',
-            price: 2000
-          },
-          {
-            id: 1,
-            name: 'Wraps 3',
-            imageUrl: '/assets/img/plates/gourmet.jpg',
-            description: 'Whisk eight pounds of peanuts in a dozen peaces of gold tequila. Marshmellow combines greatly with warm chicken',
-            price: 2200
-          }
-        ]
 
-      },
-      {
-        name: "Panini",
-        plates: [{
-          id: 1,
-          name: 'Panini 1',
-          imageUrl: '/assets/img/plates/gourmet.jpg',
-          description: 'Everyone loves the aroma of raspberries punch mash upd with delicious butterscotch.',
-          price: 200
-        },
-          {
-            id: 1,
-            name: 'Panini 2',
-            imageUrl: '/assets/img/plates/gourmet.jpg',
-            description: 'For a tender soaked ricotta, add some iced tea and szechuan pepper.',
-            price: 200
-          },
-          {
-            id: 1,
-            name: 'Panini 3',
-            imageUrl: 'https://placehold.co/600x400?text=Imagen',
-            description: 'Instead of soaking dried crême fraîche with blueberries, use four and a half teaspoons red wine and twenty peaces basil wok.',
-            price: 200
-          }
-        ]
-
-      }
-    ]
-  }
-  //Filtros de api?
-  filters = [
-    {
-      id: 1,
-      name: "filter 1"
-    }, {
-      id: 2,
-      name: "filter 2"
-    }, {
-      id: 3,
-      name: "filter 3"
-    }, {
-      id: 4,
-      name: "filter 4"
-    },
-    {
-      id: 1,
-      name: "filter 1"
-    }, {
-      id: 2,
-      name: "filter 2"
-    }, {
-      id: 3,
-      name: "filter 3"
-    }, {
-      id: 4,
-      name: "filter 4"
-    }]
   //Tiene algo en el carrito? -> NgRX -> Getter a Store + Mutations(Reducer) | Consultar Store
   isButtonSuccessDisabled = false
 
-  //Filtrados
-  filteredItems: PlateType[] = this.data.menu;
+  searchTerm = ''
 
-  constructor(private location: Location) {
+  constructor(private location: Location, public menuService: MenuService, private filterService: PlatoFilterService) {
+  }
+
+  updateMenuFilterService(newValue: string): void {
+    this.searchTerm = newValue
   }
 
 

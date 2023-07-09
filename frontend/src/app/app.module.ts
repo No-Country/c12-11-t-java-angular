@@ -9,6 +9,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { HttpClientModule } from '@angular/common/http';
+import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from '@abacritt/angularx-social-login';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [

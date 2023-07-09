@@ -1,8 +1,7 @@
 <div class="carousel d-block d-md-none">
   <div class="button-group ">
     <app-button-filter-menu
-      [name]="filter.name"
-      [id]="filter.id"
+      [name]="filter"
       *ngFor="let filter of filters; let i = index"
     />
   </div>
@@ -11,8 +10,7 @@
 <div class="d-none d-md-block my-4">
   <div class="d-flex flex-column border-black">
     <app-button-filter-menu
-      [name]="filter.name"
-      [id]="filter.id"
+      [name]="filter"
       *ngFor="let filter of filters; let i = index"
     />
   </div>

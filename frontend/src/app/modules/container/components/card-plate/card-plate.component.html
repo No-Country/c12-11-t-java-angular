@@ -1,24 +1,23 @@
 <div class="card  rounded border-black">
   <div class="row g-0">
     <div class="col-4 bg-dark rounded-start  d-flex align-items-center">
-      <img [src]="plate.imageUrl" class="img-fluid rounded-start" alt="{{plate.imageUrl}}">
+      <img [src]="plate.urlImagen" class="img-fluid rounded-start" alt="{{plate.apellido}}">
     </div>
     <div class="col-8">
       <div class="card-body h-100 d-flex flex-column  flex-grow-1">
         <div class="d-flex justify-content-between  d-md-block flex-wrap">
-          <h6 class="card-title">{{plate.name| titlecase}}</h6>
-          <h6 class="card-title">{{plate.price|currency}}</h6>
+          <h6 class="card-title">{{plate.apellido| titlecase}}</h6>
+          <h6 class="card-title">{{plate.precio|currency}}</h6>
         </div>
         <div class="d-flex justify-content-between flex-row flex-md-column my-1">
           <p
-            class=" d-block d-md-none card-text "> {{ plate.description| slice:0:50 }}{{ plate.description.length > 50 ? '...' : '' }}</p>
+            class=" d-block d-md-none card-text "> {{ plate.descripcion| slice:0:50 }}{{ plate.descripcion.length > 50 ? '...' : '' }}</p>
           <p
-            class=" d-none d-md-block card-text">{{ plate.description| slice:0:150 }}{{ plate.description.length > 150 ? '...' : '' }}</p>
+            class=" d-none d-md-block card-text">{{ plate.descripcion| slice:0:150 }}{{ plate.descripcion.length > 150 ? '...' : '' }}</p>
           <div class="align-self-end">
             <button class="btn btn-dark " (click)="addCart()">+</button>
           </div>
         </div>
-
       </div>
     </div>
   </div>

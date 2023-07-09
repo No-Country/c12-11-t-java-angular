@@ -5,7 +5,6 @@ import {LayoutContainerComponent} from './layout/layout-container/layout-contain
 import {HomeComponent} from './pages/home/home.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LoginModalComponent} from '@modules/auth/components/login-modal/login-modal.component';
 import {AuthModule} from '@modules/auth/auth.module';
 import {ShoppingCartComponent} from './pages/shopping-cart/shopping-cart.component';
 import {FooterMobileComponent} from './components/footer-mobile/footer-mobile.component';
@@ -13,9 +12,7 @@ import {PaymentMethodComponent} from './pages/payment-method/payment-method.comp
 import {CardPlateMenuComponent} from '@modules/container/components/card-plate/card-plate.menu.component';
 import {DeckMenuComponent} from '@modules/container/components/deck-menu/deck-menu.component';
 import {MenuComponent} from '@modules/container/pages/menu/menu.component';
-import {
-  ButtonFilterMenuComponent
-} from '@modules/container/components/button-filter-menu/button-filter-menu.component';
+import {ButtonFilterMenuComponent} from '@modules/container/components/button-filter-menu/button-filter-menu.component';
 import {
   GroupButtonFilterMenuComponent
 } from '@modules/container/components/group-button-filter-menu/group-button-filter-menu.component';
@@ -37,6 +34,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
 import { SharedModule } from '@shared/shared.module';
+
 
 
 @NgModule({

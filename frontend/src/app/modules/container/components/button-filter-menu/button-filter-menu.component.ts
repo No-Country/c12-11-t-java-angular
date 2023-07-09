@@ -6,15 +6,10 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./button-filter-menu.component.scss']
 })
 export class ButtonFilterMenuComponent {
-  @Input() name!: String;
+  @Input() name!: string;
   @Input() isActive: boolean = false;
 
   toggleActive() {
     this.isActive = !this.isActive;
   }
-}
-
-export interface ButtonFilter {
-  id: Number;
-  name: String;
 }
