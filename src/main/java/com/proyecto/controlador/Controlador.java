@@ -2,9 +2,11 @@ package com.proyecto.controlador;
 
 import com.proyecto.entidades.Direccion;
 import com.proyecto.entidades.Pago;
+import com.proyecto.entidades.Pedido;
 import com.proyecto.entidades.Plato;
 import com.proyecto.servicio.PagoServicioIMPL.PGSIMPL;
 import com.proyecto.servicio.direccionServIMPL.DSIMPL;
+import com.proyecto.servicio.pedidoServIMPL.PDIMPL;
 import com.proyecto.servicio.platoServicioIMPL.PSIMPL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,9 @@ public class Controlador {
 
     @Autowired
     private PGSIMPL pgsimpl;
+
+    @Autowired
+    private PDIMPL pdimpl;
 
 
     /* Entidad plato */
@@ -178,4 +183,58 @@ public class Controlador {
 
     }
 
+    /*Entidad Pedido*/
+
+    @GetMapping
+    @RequestMapping(value = "listaDePedidos", method = RequestMethod.GET)
+    public ResponseEntity<?> listaPedidos(){
+
+        List<Pedido> listaDePedidos = this.pdimpl.listaDePedidos();
+
+        return ResponseEntity.ok(listaDePedidos);
+
+    }
+
+    @PostMapping
+    @RequestMapping(value = "crearPedido", method = RequestMethod.POST)
+    public ResponseEntity<?> crearPedido(@RequestBody Pedido pedido){
+
+        Pedido pedidoCreado = this.pdimpl.crearPedido(pedido);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoCreado);
+
+    }
+
+    @PutMapping
+    @RequestMapping(value = "modificarPedido", method = RequestMethod.PUT)
+    public ResponseEntity<?> modificarPedido(@RequestBody Pedido pedido){
+
+        Pedido pedidoModificado = this.pdimpl.modificarPedido(pedido);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoModificado);
+    }
+
+    @GetMapping
+    @RequestMapping(value = "consultarPedido/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> consultarPedido(@PathVariable int id){
+
+        Pedido pedido = this.pdimpl.consultarPedido(id);
+
+        return ResponseEntity.ok(pedido);
+
+    }
+
+    @DeleteMapping
+    @RequestMapping(value = "eliminarPedido/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> eliminarPedido(@PathVariable int id){
+
+        this.pdimpl.eliminarPedido(id);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+
 }
+
+
