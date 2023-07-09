@@ -18,12 +18,24 @@ export class MenuComponent {
   isButtonSuccessDisabled = false
 
   searchTerm = ''
+  activeFilterSinTacc = false
+  activeFilterVegano = false
 
   constructor(private location: Location, public menuService: MenuService, private filterService: PlatoFilterService) {
   }
 
   updateMenuFilterService(newValue: string): void {
     this.searchTerm = newValue
+  }
+
+  updateActiveFilterSinTacc(value: boolean) {
+    console.log("sin tacc" + value)
+    this.activeFilterSinTacc = value
+  }
+
+  updateActiveFilterVegano(value: boolean) {
+    console.log("vegano" + value)
+    this.activeFilterVegano = value
   }
 
 

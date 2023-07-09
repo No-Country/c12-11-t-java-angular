@@ -9,7 +9,9 @@ export class PlatoFilterService {
   platos: Plato[] = [];
 
   isNoTACC: boolean = false
-  isVegano: boolean = true
+  isVegano: boolean = false
+
+  /*TODO: Vegana y sint acc no coinciden en render*/
 
   constructor() {
   }

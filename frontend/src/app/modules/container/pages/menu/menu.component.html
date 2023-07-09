@@ -29,11 +29,18 @@
 
   <div class="row">
     <div class="col-12 col-md-3">
-      <app-group-button-filter-menu [filters]="menuService.getPlatoNamesByTipoPlato()"></app-group-button-filter-menu>
+      <app-group-button-filter-menu [filters]="menuService.getPlatoNamesByTipoPlato()"
+                                    (toggleSinTaccChanged)="  updateActiveFilterSinTacc($event)"
+                                    (toggleVeganoChanged)="  updateActiveFilterVegano($event)"
+
+      ></app-group-button-filter-menu>
     </div>
     <div class="col-12 col-md-9">
       <ng-container *ngFor="let menu of menuService.createMenu()">
-        <app-deck-menu [menu]="menu" [searchTerm]="searchTerm"></app-deck-menu>
+        <app-deck-menu [menu]="menu" [searchTerm]="searchTerm"
+                       [activeFilterSinTacc] = "activeFilterSinTacc"
+                       [activeFilterVegano] = "activeFilterVegano"
+        ></app-deck-menu>
       </ng-container>
     </div>
   </div>

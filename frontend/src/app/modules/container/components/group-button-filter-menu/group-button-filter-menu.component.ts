@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-group-button-filter-menu',
@@ -7,4 +7,21 @@ import {Component, Input} from '@angular/core';
 })
 export class GroupButtonFilterMenuComponent {
   @Input() filters?: string[];
+
+  @Output() toggleSinTaccChanged = new EventEmitter<boolean>();
+  @Output() toggleVeganoChanged = new EventEmitter<boolean>();
+
+  activateSinTacc = false
+  activateVegano = false
+
+
+  toggleVegano(event: Event): void {
+    this.activateVegano = !this.activateVegano;
+    this.toggleVeganoChanged.emit(this.activateVegano);
+  }
+
+  toggleSinTacc(event: Event): void {
+    this.activateSinTacc = !this.activateSinTacc;
+    this.toggleSinTaccChanged.emit(this.activateSinTacc);
+  }
 }
