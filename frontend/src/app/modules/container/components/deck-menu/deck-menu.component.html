@@ -1,21 +1,16 @@
-<ng-container *ngIf="renderDeck">
+<ng-container *ngIf="hasPlatosFiltrados">
   <h2 class="deck-title d-block d-md-none">{{ menu.name }}</h2>
 
-  <!-- mobile-->
   <div class="d-block d-md-none">
     <app-card-plate
-      (click)="selectedPlate(plate)"
-      *ngFor="let plate of plates; let i = index"
+      *ngFor="let plate of platosFiltered; let i = index"
       [plate]="plate"
     ></app-card-plate>
   </div>
-  <!-- desktop-->
   <div class="d-none d-md-block">
     <app-card-modal-plate-details
-      *ngFor="let plate of plates; let i = index"
+      *ngFor="let plate of platosFiltered; let i = index"
       [plate]="plate"
     ></app-card-modal-plate-details>
   </div>
 </ng-container>
-
-

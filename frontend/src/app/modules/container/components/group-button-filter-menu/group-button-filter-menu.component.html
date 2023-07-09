@@ -1,74 +1,18 @@
 <div class="carousel d-block d-md-none">
   <div class="button-group ">
     <app-button-filter-menu
-      (click)="toggleMenu(name)"
-      *ngFor="let name of filtersMenu; let i = index"
-      [isActive]="isMenuSelected(name)"
-      [name]="name"
+      [name]="filter"
+      *ngFor="let filter of filters; let i = index"
     />
-    <!-- TODO: consultar
-    <app-button-filter-menu
-      (click)="toggleSinTacc($event)"
-      [isActive]="filter.activateFilterSinTacc"
-      [name]="'Sin Tacc'"
-    />
-    <app-button-filter-menu
-      (click)="toggleVegano($event)"
-      [isActive]="filter.activateFilterVegano"
-      [name]="'Vegano'"
-    />
--->
   </div>
 </div>
 
 <div class="d-none d-md-block my-4">
   <div class="d-flex flex-column border-black">
-
-    <!-- TODO:  Consultar
-
-    <div class="my-2">
-      <p class="m-0 px-1">Menu</p>
-      <hr class="border border-dark border-2 my-2 opacity-75 w-50">
-      <app-button-filter-menu
-        (click)="toggleMenu(name)"
-        *ngFor="let name of filtersMenu; let i = index"
-        [isActive]="isMenuSelected(name)"
-        [name]="name"
-      />
-    </div>
--->
-
-
     <app-button-filter-menu
-      (click)="toggleCategory(name)"
-      *ngFor="let name of filtersCategories; let i = index"
-      [isActive]="filter.activateFilterByCategory.includes(name)"
-      [name]="name"
+      [name]="filter"
+      *ngFor="let filter of filters; let i = index"
     />
-    <!--
-      <app-button-filter-menu
-        (click)="toggleViewAll($event)"
-        [isActive]="!filter.activateFilters"
-        [name]="'Ver todos'"
-      />
--->
-
-    <!-- TODO: Consultar
-    <div class="my-2">
-      <p class="m-0 px-1">Contenido</p>
-      <hr class="border border-dark border-2 my-2 opacity-75 w-50">
-      <app-button-filter-menu
-        (click)="toggleSinTacc($event)"
-        [isActive]="filter.activateFilterSinTacc"
-        [name]="'Sin Tacc'"
-      />
-      <app-button-filter-menu
-        (click)="toggleVegano($event)"
-        [isActive]="filter.activateFilterVegano"
-        [name]="'Vegano'"
-      />
-    </div>
--->
   </div>
 </div>
 

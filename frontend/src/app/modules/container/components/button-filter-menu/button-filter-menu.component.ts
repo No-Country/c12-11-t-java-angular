@@ -9,4 +9,9 @@ export class ButtonFilterMenuComponent {
   @Input() name!: string;
   @Input() isActive: boolean = false;
 
+  toggleActive() {
+    this.isActive = !this.isActive;
+  }
+}
+
 }

@@ -15,6 +15,11 @@ import {appReducer} from "./store/reducers/app.reducer";
 
 //import {menuReducer} from "./store/reducers/feature1.reducer";
 
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { HttpClientModule } from '@angular/common/http';
+import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from '@abacritt/angularx-social-login';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
