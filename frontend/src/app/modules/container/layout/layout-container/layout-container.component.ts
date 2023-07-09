@@ -1,7 +1,10 @@
+import { FacebookLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { ChangeDetectorRef, Component, OnInit, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { faBars} from '@fortawesome/free-solid-svg-icons';
+import { LoginModalComponent } from '@modules/auth/components/login-modal/login-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MenuItem } from '@shared/interfaces/menu-item.interface';
 
 @Component({
@@ -10,6 +13,10 @@ import { MenuItem } from '@shared/interfaces/menu-item.interface';
   styleUrls: ['./layout-container.component.scss']
 })
 export class LayoutContainerComponent implements OnInit {
+
+  private modalService = inject(NgbModal);
+
+  private authService = inject(SocialAuthService);
 
   mostrarElementos: boolean = true;
 
@@ -44,5 +51,37 @@ export class LayoutContainerComponent implements OnInit {
     this.mostrarElementos = this.router.url !== '/container/shopping'
         && this.router.url !== '/container/pay';
   }
+
+  login() {
+    console.log("holaaaaaaaa")
+    const modalAgregarRef = this.modalService.open(LoginModalComponent,
+      { size: 'md', backdrop: 'static', fullscreen: 'xs', scrollable: true });
+
+      modalAgregarRef.result.then(
+        (result) => {
+
+          console.log("result => ", result)
+
+          /*
+          this.servicePedido.crearPedido(result).subscribe(rpta => {
+            this.actualizarTabla();
+          })
+          */
+        } ,
+        (reason) => {
+          console.log("reason =>", reason)
+        }
+      );
+  }
+
+  /*
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
+  */
 
 }

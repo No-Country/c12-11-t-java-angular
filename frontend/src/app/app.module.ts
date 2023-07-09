@@ -8,6 +8,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {NotFoundComponent} from './shared/pages/not-found/not-found.component';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +21,27 @@ import {NotFoundComponent} from './shared/pages/not-found/not-found.component';
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SocialLoginModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('2222756371259035')
+          }
+        ],
+        onError: (err) => {
+          //console.error(err);
+          console.log("err =>", err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
