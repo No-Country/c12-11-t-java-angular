@@ -1,10 +1,8 @@
 package com.proyecto.controlador;
 
-import com.proyecto.entidades.Direccion;
-import com.proyecto.entidades.Pago;
-import com.proyecto.entidades.Pedido;
-import com.proyecto.entidades.Plato;
+import com.proyecto.entidades.*;
 import com.proyecto.servicio.PagoServicioIMPL.PGSIMPL;
+import com.proyecto.servicio.PedidoDetIMPL.PDTIMPL;
 import com.proyecto.servicio.direccionServIMPL.DSIMPL;
 import com.proyecto.servicio.pedidoServIMPL.PDIMPL;
 import com.proyecto.servicio.platoServicioIMPL.PSIMPL;
@@ -29,6 +27,9 @@ public class Controlador {
 
     @Autowired
     private PDIMPL pdimpl;
+
+    @Autowired
+    private PDTIMPL pdtimpl;
 
 
     /* Entidad plato */
@@ -229,6 +230,58 @@ public class Controlador {
     public ResponseEntity<?> eliminarPedido(@PathVariable int id){
 
         this.pdimpl.eliminarPedido(id);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+    /* Entidad PedidoDetalle */
+
+    @GetMapping
+    @RequestMapping(value = "listaDePedidoDetalle", method = RequestMethod.GET)
+    public ResponseEntity<?> listaPedidoDetalle(){
+
+        List<PedidoDetalle> listaDePedidoDet = this.pdtimpl.listaDePedidoD();
+
+        return ResponseEntity.ok(listaDePedidoDet);
+
+    }
+
+    @PostMapping
+    @RequestMapping(value = "crearPedidoDetalle", method = RequestMethod.POST)
+    public ResponseEntity<?> crearPedidoDetalle(@RequestBody PedidoDetalle pedidoDetalle){
+
+        PedidoDetalle pedidoDCreado = this.pdtimpl.crearPedidoDetalle(pedidoDetalle);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoDCreado);
+
+    }
+
+    @PutMapping
+    @RequestMapping(value = "modificarPedidoDetalle", method = RequestMethod.PUT)
+    public ResponseEntity<?> modificarPedidoDetalle(@RequestBody PedidoDetalle pedidoDetalle) {
+
+        PedidoDetalle pedidoDetModificado = this.pdtimpl.modificarPedidoDetalle(pedidoDetalle);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoDetModificado);
+
+    }
+
+    @GetMapping
+    @RequestMapping(value = "consultarPedidoDetalle/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> consultarPedidoDetalle(@PathVariable int id) {
+
+        PedidoDetalle pedido = this.pdtimpl.consultarPedidoDetalle(id);
+
+        return ResponseEntity.ok(pedido);
+
+    }
+
+    @DeleteMapping
+    @RequestMapping(value = "eliminarPedidoDetalle/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> eliminarPedidoDetalle(@PathVariable int id){
+
+        this.pdtimpl.eliminarPedidoDetalle(id);
 
         return ResponseEntity.ok().build();
 
