@@ -1,11 +1,20 @@
 <div class="carousel d-block d-md-none">
   <div class="button-group ">
+
+    <app-button-filter-menu
+      [name]="'Ver todos'"
+      [isActive]="activeViewAll"
+      (click)="toggleViewAll($event)"
+    />
+
     <app-button-filter-menu
       [name]="'Sin Tacc'"
+      [isActive]="activateSinTacc"
       (click)="toggleSinTacc($event)"
     />
     <app-button-filter-menu
       [name]="'Vegano'"
+      [isActive]="activateVegano"
       (click)="toggleVegano($event)"
     />
     <app-button-filter-menu
@@ -18,11 +27,18 @@
 <div class="d-none d-md-block my-4">
   <div class="d-flex flex-column border-black">
     <app-button-filter-menu
+      [name]="'Ver todos'"
+      [isActive]="activeViewAll"
+      (click)="toggleViewAll($event)"
+    />
+    <app-button-filter-menu
       [name]="'Sin Tacc'"
+      [isActive]="activateSinTacc"
       (click)="toggleSinTacc($event)"
     />
     <app-button-filter-menu
       [name]="'Vegano'"
+      [isActive]="activateVegano"
       (click)="toggleVegano($event)"
     />
     <app-button-filter-menu

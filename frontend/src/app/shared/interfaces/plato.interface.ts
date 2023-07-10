@@ -1,7 +1,7 @@
 export interface Plato {
   platoId: number;
   nombre: string;
-  apellido: string;
+  subTipoPlato: string;
   precio: number;
   descripcion: string;
   vegano: boolean;

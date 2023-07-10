@@ -5,9 +5,7 @@ import {MenuService} from "@shared/services/menu-service/menu.service";
 import {PlatoFilterService} from "@shared/services/filter-plato-service/plato-filter.service";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-menu', templateUrl: './menu.component.html', styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
 
@@ -20,23 +18,28 @@ export class MenuComponent {
   searchTerm = ''
   activeFilterSinTacc = false
   activeFilterVegano = false
+  activeFilterSearchTerm = false
+  viewAll = true
+
 
   constructor(private location: Location, public menuService: MenuService, private filterService: PlatoFilterService) {
   }
 
-  updateMenuFilterService(newValue: string): void {
+  updateSearchTermFilter(newValue: string): void {
     this.searchTerm = newValue
+    this.activeFilterSearchTerm = this.searchTerm.trim() !== ''
   }
 
-  updateActiveFilterSinTacc(value: boolean) {
-    console.log("sin tacc" + value)
+  updateActiveFilterSinTacc(value: boolean): void {
     this.activeFilterSinTacc = value
   }
 
-  updateActiveFilterVegano(value: boolean) {
-    console.log("vegano" + value)
+  updateActiveFilterVegano(value: boolean): void {
     this.activeFilterVegano = value
   }
 
+  updateViewAll(value: boolean): void {
+    this.viewAll = value
+  }
 
 }
