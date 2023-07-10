@@ -9,7 +9,6 @@ import {PlatoFilterService} from "@shared/services/filter-plato-service/plato-fi
 })
 export class MenuService {
   private apiUrl = ''; // URL
-  private _tipoPlato = 'Almuerzo y Cena'
   private plates: Plato[] = [
     {
       platoId: 1,
@@ -19,7 +18,7 @@ export class MenuService {
       descripcion: 'Minced oysters can be made melted by whisking with gold tequila.',
       vegano: true,
       sinTACC: false,
-      calificacion: 10,
+      calificacion: 1,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 10,
       tipoPlato: 'Almuerzo y Cena',
@@ -32,7 +31,7 @@ export class MenuService {
       descripcion: 'To the small oysters add watermelon, chickpeas, champaign and bitter rice.',
       vegano: false,
       sinTACC: true,
-      calificacion: 10,
+      calificacion: 2,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 10,
       tipoPlato: 'Almuerzo y Cena',
@@ -45,7 +44,7 @@ export class MenuService {
       descripcion: 'Per guest prepare twelve peaces of worcestershire sauce with shreded butter for dessert.',
       vegano: true,
       sinTACC: true,
-      calificacion: 10,
+      calificacion: 3,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 10,
       tipoPlato: 'Almuerzo y Cena',
@@ -58,7 +57,7 @@ export class MenuService {
       descripcion: 'Per guest prepare one package of kefir with sliced chicory for dessert.',
       vegano: true,
       sinTACC: false,
-      calificacion: 5,
+      calificacion: 4,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 5,
       tipoPlato: 'Almuerzo y Cena',
@@ -84,7 +83,7 @@ export class MenuService {
       descripcion: 'To the springy chicken add white bread, chicken breasts, joghurt and cold raspberries.',
       vegano: false,
       sinTACC: false,
-      calificacion: 5,
+      calificacion: 6,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 5,
       tipoPlato: 'Almuerzo y Cena',
@@ -97,7 +96,7 @@ export class MenuService {
       descripcion: 'Toss each side of the cracker crumps with six and a half teaspoons of garlic.',
       vegano: false,
       sinTACC: true,
-      calificacion: 5,
+      calificacion: 7,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 5,
       tipoPlato: 'Almuerzo y Cena',
@@ -110,7 +109,7 @@ export class MenuService {
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
       sinTACC: false,
-      calificacion: 5,
+      calificacion: 8,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 5,
       tipoPlato: 'Almuerzo y Cena',
@@ -123,7 +122,7 @@ export class MenuService {
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
       sinTACC: false,
-      calificacion: 5,
+      calificacion: 9,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 5,
       tipoPlato: 'Almuerzo y Cena',
@@ -136,7 +135,7 @@ export class MenuService {
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
       sinTACC: false,
-      calificacion: 5,
+      calificacion: 10,
       urlImagen: '/assets/img/plates/gourmet.jpg',
       stock: 5,
       tipoPlato: 'Almuerzo y Cena',
@@ -223,6 +222,8 @@ export class MenuService {
 
   constructor(private http: HttpClient, private platoFilterService: PlatoFilterService) {
   }
+
+  private _tipoPlato = 'Almuerzo y Cena'
 
   get tipoPlato(): string {
     return this._tipoPlato;

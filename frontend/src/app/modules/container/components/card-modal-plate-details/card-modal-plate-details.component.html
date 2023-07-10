@@ -1,18 +1,18 @@
 <ng-template #content let-modal>
   <div class="modal-header justify-content-start">
-    <button type="button" class="btn-close mx-0" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close mx-0" type="button"></button>
     <h4 class="modal-title mx-3" id="modal-basic-title">{{plate.subTipoPlato}}</h4>
   </div>
   <div class="modal-body ">
     <div class="d-flex justify-content-center img-container">
-      <img class="img-fluid" src="{{plate.urlImagen}}" alt="{{plate.subTipoPlato}}">
+      <img alt="{{plate.subTipoPlato}}" class="img-fluid" src="{{plate.urlImagen}}">
     </div>
-    <h5 class="my-2">${{plate.precio|currency}}</h5>
+    <h5 class="my-2">{{plate.precio|currency}}</h5>
     <p class="my-3 ">{{plate.descripcion}}</p>
-    <p class="my-3 ">{{plate.calificacion}}</p>
-    <p class="my-3 ">{{plate.sinTACC}}</p>
-    <p class="my-3 ">{{plate.vegano}}</p>
-    <p class="my-3 ">{{plate.stock}}</p>
+    <app-star-rating [rating]="plate.calificacion"/>
+    <app-sin-tacc-info [isSinTacc]="plate.sinTACC"/>
+    <app-vegan-info [isVegan]="plate.vegano"/>
+    <p class="my-3 ">Stock:{{plate.stock}}</p>
     <app-product-optional/>
 
   </div>
@@ -20,13 +20,13 @@
     <app-button-counter [maxValue]="5" [minValue]="1" [value]="1"/>
 
     <div>
-      <button type="button" (click)="modal.close('Save click')" class="btn btn-primary mx-2">
+      <button (click)="modal.close('Save click')" class="btn btn-primary mx-2" type="button">
         Cerrar
       </button>
-      <a id="button" href="#" class="btn btn-dark">Agregar carrito</a>
+      <a class="btn btn-dark" href="#" id="button">Agregar carrito</a>
     </div>
   </div>
 </ng-template>
 
-<app-card-plate [plate]="plate" (click)="open(content)"/>
+<app-card-plate (click)="open(content)" [plate]="plate"/>
 
