@@ -48,11 +48,40 @@
   }
 }
 
+.plate-name {
+  font-size: 16px;
+}
+
+.plate-description {
+  font-size: 14px;
+}
+
+.home-slide {
+  height: 300px;
+}
+
 @media (min-width: 576px) {
   .input-search{
     width: 450px;
   }
+
+  .plate-name {
+    font-size: 20px;
+  }
+
+  .plate-description {
+    font-size: 16px;
+  }
 }
+
+.home-carousel {
+
+  img {
+    height: 300px;
+  }
+}
+
+
 
 
 @media (min-width: 960px) {

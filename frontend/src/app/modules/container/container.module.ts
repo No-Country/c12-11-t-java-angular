@@ -32,6 +32,7 @@ import {
   ProductDetailsModalComponent
 } from '@modules/container/components/product-details-modal/product-details-modal.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    AuthModule
+    AuthModule,
+    NgbCarouselModule
   ]
 })
 export class ContainerModule { }

@@ -30,22 +30,36 @@
 </div>
 
 <div class="container">
-  <div class="d-sm-none input-group mt-4">
+  <div class="d-sm-none input-group mt-4 mb-4">
     <input type="text" [formControl]="homeSearch" class="form-control input-text-mobile" placeholder="¿Qué estas buscando?">
     <span class="input-group-text group-text-mobile">
       <fa-icon [icon]="faMagnifyingGlass" class="me-2"></fa-icon>
     </span>
   </div>
 
-  <h4 class="mt-5 mb-4">Deliciosas opciones vegetarianas para ti</h4>
+  <ngb-carousel *ngIf="slides.length > 0" class="d-sm-none home-carousel">
+    <ng-template ngbSlide class="home-slide" *ngFor="let slide of slides" >
+      <div class="picsum-img-wrapper">
+        <img [src]="slide.imageUrl" alt="Random first slide" />
+      </div>
+      <div class="carousel-caption">
+        <h3>{{ slide.title }}</h3>
+        <p>{{ slide.description }}</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+  <h4 class="d-none d-sm-block mt-5 mb-4">Deliciosas opciones vegetarianas para ti</h4>
+
+  <h5 class="d-sm-none mt-4 mb-4">Las mejores opciones para ti</h5>
 
   <div class="row">
-    <div *ngFor="let plate of getPlateList()" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+    <div *ngFor="let plate of plateList" class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="card">
         <img [src]="plate.imageUrl" alt="plato" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">{{ plate.name }}</h5>
-          <p class="card-text">
+          <h5 class="card-title plate-name">{{ plate.name }}</h5>
+          <p class="card-text plate-description">
             {{ plate.description }}
           </p>
         </div>
