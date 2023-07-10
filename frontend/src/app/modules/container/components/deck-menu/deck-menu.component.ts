@@ -16,6 +16,8 @@ export class DeckMenuComponent {
   @Input() activeFilterSinTacc!: boolean;
   @Input() activeFiltersTerm!: boolean;
   @Input() activeFilters!: boolean;
+  @Input() activeFiltersNames!: string[];
+
 
   platosFiltered: Plato[] = [];
   hasPlatosFiltrados = true;
@@ -26,17 +28,21 @@ export class DeckMenuComponent {
   ngOnInit(): void {
 
     this.platosFiltered = this.menu.plates;
+    if (this.activeFilters) {
+      if (this.activeFiltersTerm) {
+        this.platosFiltered = this.platoFilterService.filterPlatesByTerm(this.platosFiltered, this.searchTerm);
+      }
+      if (this.activeFilterVegano) {
+        this.platosFiltered = this.platoFilterService.filterPlatesByVegan(this.platosFiltered, this.activeFilterVegano);
+      }
+      if (this.activeFilterSinTacc) {
+        this.platosFiltered = this.platoFilterService.filterPlatesBySinTACC(this.platosFiltered, this.activeFilterSinTacc);
+      }
 
-    if (this.activeFilters && this.activeFiltersTerm) {
-      this.platosFiltered = this.platoFilterService.filterPlatesByTerm(this.platosFiltered, this.searchTerm);
+      if (this.activeFiltersNames.length > 0) {
+        this.platosFiltered = this.platoFilterService.filterPlatesByNames(this.platosFiltered, this.activeFiltersNames);
+      }
     }
-    if (this.activeFilters && this.activeFilterVegano) {
-      this.platosFiltered = this.platoFilterService.filterPlatesByVegan(this.platosFiltered, this.activeFilterVegano);
-    }
-    if (this.activeFilters && this.activeFilterSinTacc) {
-      this.platosFiltered = this.platoFilterService.filterPlatesBySinTACC(this.platosFiltered, this.activeFilterSinTacc);
-    }
-
     this.hasPlatosFiltrados = this.platosFiltered.length > 0;
 
   }

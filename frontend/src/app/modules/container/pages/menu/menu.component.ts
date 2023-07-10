@@ -19,6 +19,7 @@ export class MenuComponent {
   activeFilterSinTacc = false
   activeFilterVegano = false
   activeFilterSearchTerm = false
+  filterType: string[] = []
   viewAll = true
 
 
@@ -40,6 +41,10 @@ export class MenuComponent {
 
   updateViewAll(value: boolean): void {
     this.viewAll = value
+  }
+
+  updateActiveFilterName(value: string[]) {
+    this.filterType = value
   }
 
 }

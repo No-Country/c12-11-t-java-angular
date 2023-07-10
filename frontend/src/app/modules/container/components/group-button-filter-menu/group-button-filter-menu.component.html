@@ -19,6 +19,8 @@
     />
     <app-button-filter-menu
       [name]="filter"
+      [isActive]="activateNames.includes(filter)"
+      (click)="toggleNames(filter)"
       *ngFor="let filter of filters; let i = index"
     />
   </div>
@@ -43,6 +45,8 @@
     />
     <app-button-filter-menu
       [name]="filter"
+      [isActive]="activateNames.includes(filter)"
+      (click)="toggleNames(filter)"
       *ngFor="let filter of filters; let i = index"
     />
   </div>

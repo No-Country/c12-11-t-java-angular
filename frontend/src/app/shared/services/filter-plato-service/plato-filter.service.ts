@@ -21,6 +21,14 @@ export class PlatoFilterService {
     return plates.filter(menu => menu.nombre === nombre);
   }
 
+  filterPlatesByNames(plates: Plato[], names: string[]) {
+    if (names.length>0) {
+      return plates.filter(menu => names.includes(menu.nombre));
+    }
+    return plates
+
+  }
+
   /**
    * Filtra los platos según el tipo de plato especificado y devuelve un array de objetos Plato.
    * @param plates El array de platos a filtrar.

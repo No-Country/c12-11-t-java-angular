@@ -2,7 +2,7 @@
 
   <section class="row align-items-center mt-3">
     <div class="col-1">
-      <a routerLink="''" class="btn m-0 border-0">
+      <a class="btn m-0 border-0" routerLink="''">
         <fa-icon [icon]="faChevronLeft"/>
       </a>
     </div>
@@ -19,7 +19,7 @@
           <app-input-search-menu (inputValueChanged)="updateSearchTermFilter($event)"/>
         </div>
         <div class="d-none d-md-flex justify-content-center align-items-center">
-          <a id="btn-md-shopping" routerLink="/container/shopping" class="btn btn-dark">
+          <a class="btn btn-dark" id="btn-md-shopping" routerLink="/container/shopping">
             <span class="mx-2"><fa-icon [icon]="faCart"></fa-icon></span>
             Ver mi pedido</a>
         </div>
@@ -29,22 +29,24 @@
 
   <section class="row">
     <div class="col-12 col-md-3">
-      <app-group-button-filter-menu [filters]="menuService.getPlateNamesByTipoPlato()"
+      <app-group-button-filter-menu (toggleNameChanged)="updateActiveFilterName($event)"
                                     (toggleSinTaccChanged)="  updateActiveFilterSinTacc($event)"
                                     (toggleVeganoChanged)="  updateActiveFilterVegano($event)"
                                     (toggleViewAllFilter)="updateViewAll($event)"
+                                    [filters]="menuService.getPlateNamesByTipoPlato()"
 
       />
     </div>
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-9 container-menu overflow-hidden overflow-y-scroll">
       <ng-container *ngFor="let menu of menuService.createMenu()">
         <app-deck-menu
-          [menu]="menu"
-          [searchTerm]="searchTerm"
           [activeFilterSinTacc]="activeFilterSinTacc"
           [activeFilterVegano]="activeFilterVegano"
+          [activeFiltersNames]="filterType"
           [activeFiltersTerm]="activeFilterSearchTerm"
           [activeFilters]="!viewAll"
+          [menu]="menu"
+          [searchTerm]="searchTerm"
         />
       </ng-container>
 
@@ -54,9 +56,9 @@
 </main>
 
 
-<footer class="menu-footer sticky-bottom bg-light align-content-center d-md-none"
-        [class.d-none]="isButtonSuccessDisabled">
+<footer [class.d-none]="isButtonSuccessDisabled"
+        class="menu-footer sticky-bottom bg-light align-content-center d-md-none">
   <div class="d-flex justify-content-center align-items-center h-100">
-    <a routerLink="/container/shopping" class="btn btn-dark">Ver mi pedido</a>
+    <a class="btn btn-dark" routerLink="/container/shopping">Ver mi pedido</a>
   </div>
 </footer>
