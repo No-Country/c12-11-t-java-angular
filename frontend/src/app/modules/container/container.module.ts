@@ -31,6 +31,7 @@ import {ProductOptionalComponent} from '@modules/container/components/product-op
 import {
   ProductDetailsModalComponent
 } from '@modules/container/components/product-details-modal/product-details-modal.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {
     ButtonCounterComponent,
     ButtonCounterProductOptionalComponent,
     ProductOptionalComponent,
-    ProductDetailsModalComponent
+    ProductDetailsModalComponent,
+    TabsComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,14 @@
 .payment-method-container{
   width: 100%;
-  height: 100%;
-  min-height: 80vh;
+  height: 100vh;
+
   padding: 28px 2px 28px 1px;
+  .fa-lg {
+    font-size: 24px;
+  }
   .icon-back{
     cursor: pointer;
+
   }
   .form-check{
     margin-top:12px;
@@ -16,4 +20,22 @@
 line-height: 28px;
   }
 
+}
+@media (min-width: 768px){
+  .payment-method-container{
+    padding-top: 10px;}
+}
+@media (min-width: 768px) and (max-width:1199px){
+
+
+  .Method-container{
+    padding: 0 100px;
+  }
+}
+
+
+@media (min-width: 1200px){
+  .Method-container{
+    padding: 0 300px;
+  }
 }

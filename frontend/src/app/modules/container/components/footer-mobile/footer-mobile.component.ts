@@ -10,6 +10,7 @@ export class FooterMobileComponent {
 @Input()public text:string="text";
 @Input() path:string="";
 private router= inject( Router );
+isButtonSuccessDisabled = false
 sgtePage(){
 
   this.router.navigateByUrl(`/container/${this.path}`);

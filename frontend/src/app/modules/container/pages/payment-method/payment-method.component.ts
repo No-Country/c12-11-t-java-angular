@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-payment-method',
@@ -9,6 +9,8 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class PaymentMethodComponent {
   faAngleLeft = faAngleLeft;
+  faArrowLeft=faArrowLeft;
+
   public valueMethod:string="0";
   public textButtom:string="";
   private router= inject( Router );

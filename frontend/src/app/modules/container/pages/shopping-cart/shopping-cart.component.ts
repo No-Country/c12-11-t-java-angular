@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { faAngleLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faArrowLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,6 +9,7 @@ import { faAngleLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 })
 export class ShoppingCartComponent {
   faAngleLeft = faAngleLeft;
+  faArrowLeft=faArrowLeft;
   faPlus=faPlus;
   faMinus=faMinus;
   public valueDefaul:number=1;

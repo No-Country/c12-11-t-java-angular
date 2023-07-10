@@ -1,69 +1,107 @@
 <div class="container">
   <div class="payment-method-container">
     <div class="row mb-3">
-      <div class="col-4 icon-back" (click)="goBack()">
-        <fa-icon [icon]="faAngleLeft" class="fa-lg"></fa-icon>
+      <div class="col-4 icon-back">
+        <button type="button" class="btn btn-light d-md-none d-block">
+          <fa-icon
+            [icon]="faAngleLeft"
+            (click)="goBack()"
+            class="fa-lg"
+          ></fa-icon>
+        </button>
+        <button
+          type="button"
+          class="btn btn-light d-none d-md-block"
+          (click)="goBack()"
+        >
+          <fa-icon [icon]="faArrowLeft"></fa-icon> Regresar
+        </button>
       </div>
-      <div class="col">
-        <h1 class="title-page">Metodo de pago</h1>
-      </div>
-    </div>
-    <div class="select-Method-container">
-      <h2 class="subtitle-page-bold-lg">Selecciona el metodo</h2>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" [(ngModel)]="valueMethod"  value="0" name="flexRadioDefault" id="flexRadioDefault1" checked>
-        <label class="form-check-label" for="flexRadioDefault1">
-          Tarjeta debito/credito
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" [(ngModel)]="valueMethod"  value="1" name="flexRadioDefault" id="flexRadioDefault2" >
-        <label class="form-check-label" for="flexRadioDefault2">
-          Efectivo
-        </label>
+      <div class="col d-md-none">
+        <h1 class="title-page">Tu Pedido</h1>
       </div>
     </div>
+    <app-tabs></app-tabs>
+    <div class="Method-container">
+      <div class="select-Method-container">
+        <h2 class="subtitle-page-bold-lg">Selecciona el metodo</h2>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            [(ngModel)]="valueMethod"
+            value="0"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+            checked
+          />
+          <label class="form-check-label" for="flexRadioDefault1">
+            Tarjeta debito/credito
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            [(ngModel)]="valueMethod"
+            value="1"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+          />
+          <label class="form-check-label" for="flexRadioDefault2">
+            Efectivo
+          </label>
+        </div>
+      </div>
 
-    <div class="add-card-container" *ngIf="valueMethod=='0'" >
-      <h1 class="subtitle-page mt-3">Numero</h1>
-  <input
-    class="form-control form-control-sm"
-    type="text"
-    placeholder="example"
-    aria-label=".form-control-sm example"
-  />
-  <h1 class="subtitle-page mt-3">Vencimiento</h1>
-  <input
-    class="form-control form-control-sm"
-    type="text"
-    placeholder="example"
-    aria-label=".form-control-sm example"
-  />
-  <h1 class="subtitle-page mt-3">Nombre en la Tarjeta</h1>
-  <input
-    class="form-control form-control-sm"
-    type="text"
-    placeholder="example"
-    aria-label=".form-control-sm example"
-  />
-  <h1 class="subtitle-page mt-3">CCV</h1>
-  <input
-    class="form-control form-control-sm"
-    type="text"
-    placeholder="example"
-    aria-label=".form-control-sm example"
-  />
-
+      <div class="add-card-container" *ngIf="valueMethod == '0'">
+        <h1 class="subtitle-page mt-3">Numero</h1>
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="example"
+          aria-label=".form-control-sm example"
+        />
+        <h1 class="subtitle-page mt-3">Vencimiento</h1>
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="example"
+          aria-label=".form-control-sm example"
+        />
+        <h1 class="subtitle-page mt-3">Nombre en la Tarjeta</h1>
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="example"
+          aria-label=".form-control-sm example"
+        />
+        <h1 class="subtitle-page mt-3">CCV</h1>
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="example"
+          aria-label=".form-control-sm example"
+        />
+      </div>
+      <div class="effective-method-container" *ngIf="valueMethod == '1'">
+        <h1 class="subtitle-page mt-3">Con cuantos vas a pagar (opcional)</h1>
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="$monto"
+          aria-label=".form-control-sm example"
+        />
+      </div>
     </div>
-    <div class="effective-method-container" *ngIf="valueMethod=='1'">
-      <h1 class="subtitle-page mt-3">Con cuantos vas a pagar (opcional)</h1>
-      <input
-        class="form-control form-control-sm"
-        type="text"
-        placeholder="$monto"
-        aria-label=".form-control-sm example"
-      />
+    <div class="row text-center d-none d-md-block mt-5">
+      <div class="col"><button class="btn btn-dark btn-lg  " routerLink="/container">Confirmar Pedido</button></div>
     </div>
 
   </div>
-  <app-footer-mobile *ngIf="verificarRadio()" text="{{textButtom}}"></app-footer-mobile>
+  </div>
+  <app-footer-mobile
+    *ngIf="verificarRadio()"
+    text="{{ textButtom }}"
+  ></app-footer-mobile>
+
