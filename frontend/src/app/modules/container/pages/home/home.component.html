@@ -56,11 +56,11 @@
   <div class="row">
     <div *ngFor="let plate of plateList" class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="card">
-        <img [src]="plate.imageUrl" alt="plato" class="card-img-top">
+        <img [src]="plate.urlImagen" alt="plato" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title plate-name">{{ plate.name }}</h5>
+          <h5 class="card-title plate-name">{{ plate.nombre }}</h5>
           <p class="card-text plate-description">
-            {{ plate.description }}
+            {{ plate.descripcion }}
           </p>
         </div>
       </div>

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Plate } from '@shared/interfaces/plate.interface';
 import { SliderItem } from '@shared/interfaces/slider-item.interface';
+import { PlateService } from '@shared/services/plate.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,8 @@ import { SliderItem } from '@shared/interfaces/slider-item.interface';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  private plateService = inject(PlateService);
 
   homeSearch = new FormControl('');
 
@@ -26,43 +29,58 @@ export class HomeComponent implements OnInit {
   }
 
   getPlateList() {
+
+    this.plateService.listarPlatos()
+      .subscribe({
+        next: (rpta) => {
+          this.plateList = rpta
+          console.log("rpta =>", rpta)
+        },
+        error: (message) => {
+          console.log("error =>", message);
+        }
+      })
+
+
+    /*
     this.plateList = [
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       },
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       },
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       },
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       },
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       },
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       },
       {
-        name: "Nombre del plato",
-        description: "Descripción rápida del plato y sus ingredientes.",
-        imageUrl: "assets/img/plates/gourmet.jpg"
+        nombre: "Nombre del plato",
+        descripcion: "Descripción rápida del plato y sus ingredientes.",
+        urlImagen: "assets/img/plates/gourmet.jpg"
       }
     ]
+    */
   }
 
   getHomeSlides() {

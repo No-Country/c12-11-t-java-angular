@@ -10,6 +10,7 @@ import {NotFoundComponent} from './shared/pages/not-found/not-found.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
     NgbModule,
     FontAwesomeModule,
     SocialLoginModule,
+    HttpClientModule
   ],
   providers: [
     {

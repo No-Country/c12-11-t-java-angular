@@ -1,5 +1,12 @@
 export interface Plate {
-  name: string;
-  description: string;
-  imageUrl: string;
+  platoId?: number
+  nombre: string
+  precio: number
+  descripcion: string
+  vegano: boolean
+  sinTACC: boolean
+  calificacion: number
+  urlImagen: string
+  stock: number
+  tipoPlato: string
 }
