@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {faCartShopping, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
@@ -7,7 +7,7 @@ import {PlatoFilterService} from "@shared/services/filter-plato-service/plato-fi
 @Component({
   selector: 'app-menu', templateUrl: './menu.component.html', styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent {
+export class MenuComponent{
 
   faChevronLeft = faChevronLeft
   faCart = faCartShopping
@@ -29,6 +29,7 @@ export class MenuComponent {
   updateSearchTermFilter(newValue: string): void {
     this.searchTerm = newValue
     this.activeFilterSearchTerm = this.searchTerm.trim() !== ''
+    this.viewAll = !this.activeFilterSearchTerm
   }
 
   updateActiveFilterSinTacc(value: boolean): void {

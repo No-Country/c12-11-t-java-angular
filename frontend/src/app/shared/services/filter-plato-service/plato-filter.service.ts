@@ -14,18 +14,25 @@ export class PlatoFilterService {
    * @param nombre El nombre del plato utilizado para filtrar.
    * @returns Un array de objetos Plato filtrados por el nombre especificado.
    */
-  filterPlatesByNombre(plates: Plato[], nombre: string) {
+  filterPlatesByName(plates: Plato[], nombre: string) {
     if (nombre === '') {
       return plates
     }
     return plates.filter(menu => menu.nombre === nombre);
   }
 
+  /**
+   Filtra los platos según los nombres especificados y devuelve un array de objetos Plato.
+   @param plates El array de platos a filtrar.
+   @param names El array de nombres de platos utilizados para filtrar.
+   @returns Un array de objetos Plato filtrados por los nombres especificados.
+   */
   filterPlatesByNames(plates: Plato[], names: string[]) {
-    if (names.length>0) {
-      return plates.filter(menu => names.includes(menu.nombre));
+    if (names.length === 0) {
+      return plates;
     }
-    return plates
+
+    return plates.filter(menu => names.includes(menu.nombre));
 
   }
 
@@ -89,9 +96,10 @@ export class PlatoFilterService {
     return plato.nombre.toLowerCase().includes(searchTerm.toLowerCase());
   }
 
-  private hasPlatoSimilarSurname(plato: Plato, searchTerm: string) {
-    return plato.subTipoPlato.toLowerCase().includes(searchTerm.toLowerCase());
-  }
+
+    private hasPlatoSimilarSurname(plato: Plato, searchTerm: string) {
+      return plato.subTipoPlato.toLowerCase().includes(searchTerm.toLowerCase());
+    }
 
   private hasPlatoSimilarType(plato: Plato, searchTerm: string) {
     return plato.tipoPlato.toLowerCase().includes(searchTerm.toLowerCase());

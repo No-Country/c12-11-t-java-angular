@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Plato} from "@shared/interfaces/plato.interface";
 import {MenuPlate} from "@shared/interfaces/menu-plate.interface";
 import {PlatoFilterService} from "@shared/services/filter-plato-service/plato-filter.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class MenuService {
       sinTACC: false,
       calificacion: 1,
       urlImagen: '/assets/img/plates/gourmet.jpg',
-      stock: 10,
+      stock: 11,
       tipoPlato: 'Almuerzo y Cena',
     },
     {
@@ -33,7 +34,7 @@ export class MenuService {
       sinTACC: true,
       calificacion: 2,
       urlImagen: '/assets/img/plates/gourmet.jpg',
-      stock: 10,
+      stock: 5,
       tipoPlato: 'Almuerzo y Cena',
     },
     {
@@ -46,7 +47,7 @@ export class MenuService {
       sinTACC: true,
       calificacion: 3,
       urlImagen: '/assets/img/plates/gourmet.jpg',
-      stock: 10,
+      stock: 0,
       tipoPlato: 'Almuerzo y Cena',
     },
     {
@@ -59,7 +60,7 @@ export class MenuService {
       sinTACC: false,
       calificacion: 4,
       urlImagen: '/assets/img/plates/gourmet.jpg',
-      stock: 5,
+      stock: 0,
       tipoPlato: 'Almuerzo y Cena',
     },
     {
@@ -76,7 +77,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 3,
       nombre: 'Panini',
       subTipoPlato: 'Panini 3',
       precio: 2000,
@@ -89,7 +90,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 4,
       nombre: 'Panini',
       subTipoPlato: 'Panini 4',
       precio: 2000,
@@ -102,7 +103,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 5,
       nombre: 'Panini',
       subTipoPlato: 'Panini 5',
       precio: 2000,
@@ -115,7 +116,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 6,
       nombre: 'Panini',
       subTipoPlato: 'Panini 6',
       precio: 2000,
@@ -128,7 +129,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 7,
       nombre: 'Panini',
       subTipoPlato: 'Panini 7',
       precio: 2000,
@@ -141,7 +142,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 8,
       nombre: 'Panini',
       subTipoPlato: 'Panini 8',
       precio: 2000,
@@ -154,7 +155,7 @@ export class MenuService {
       tipoPlato: 'Almuerzo y Cena',
     },
     {
-      platoId: 2,
+      platoId: 9,
       nombre: 'Panini',
       subTipoPlato: 'Panini 9',
       precio: 2000,
@@ -171,7 +172,7 @@ export class MenuService {
       nombre: 'Cafe',
       subTipoPlato: 'Expreso',
       precio: 4000,
-      descripcion: 'To the bitter spinach add eggs, chicken, gold tequila and tender ramen.',
+      descripcion: 'To the melted white bread add pork shoulder, raspberries, beer and fluffy onion.',
       vegano: false,
       sinTACC: true,
       calificacion: 2,
@@ -184,7 +185,7 @@ export class MenuService {
       nombre: 'Cafe',
       subTipoPlato: 'Americano',
       precio: 4000,
-      descripcion: 'To the bitter spinach add eggs, chicken, gold tequila and tender ramen.',
+      descripcion: 'Per guest prepare nine oz of lemon juice with boilled blueberries for dessert. .',
       vegano: false,
       sinTACC: false,
       calificacion: 2,
@@ -270,7 +271,7 @@ export class MenuService {
   createMenuPlate(name: string): MenuPlate {
     return {
       name: name,
-      plates: this.platoFilterService.filterPlatesByNombre(this.plates, name)
+      plates: this.platoFilterService.filterPlatesByName(this.plates, name)
     };
   }
 

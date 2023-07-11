@@ -1,7 +1,7 @@
-<div class="card fade-animation rounded border-black">
+<div class="card rounded border-black">
   <div class="row g-0">
     <div class="col-4 bg-dark rounded-start  d-flex align-items-center">
-      <img [src]="plate.urlImagen" class="img-fluid rounded-start" alt="{{plate.subTipoPlato}}">
+      <img [src]="plate.urlImagen" alt="{{plate.subTipoPlato}}" class="img-fluid rounded-start">
     </div>
     <div class="col-8">
       <div class="card-body h-100 d-flex flex-column  flex-grow-1">
@@ -15,7 +15,7 @@
           <p
             class=" d-none d-md-block card-text">{{ plate.descripcion| slice:0:150 }}{{ plate.descripcion.length > 150 ? '...' : '' }}</p>
           <div class="align-self-end">
-            <button class="btn btn-dark " (click)="addCart()">+</button>
+            <button (click)="addCart()" class="btn btn-dark ">+</button>
           </div>
         </div>
       </div>

@@ -1,23 +1,36 @@
 <ng-template #content let-modal>
-  <div class="modal-header justify-content-start">
+  <header class="modal-header justify-content-start">
     <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close mx-0" type="button"></button>
     <h4 class="modal-title mx-3" id="modal-basic-title">{{plate.subTipoPlato}}</h4>
-  </div>
-  <div class="modal-body ">
-    <div class="d-flex justify-content-center img-container">
+  </header>
+  <main class="modal-body ">
+    <section class="d-flex justify-content-center img-container">
       <img alt="{{plate.subTipoPlato}}" class="img-fluid" src="{{plate.urlImagen}}">
-    </div>
+    </section>
     <h5 class="my-2">{{plate.precio|currency}}</h5>
-    <p class="my-3 ">{{plate.descripcion}}</p>
-    <app-star-rating [rating]="plate.calificacion"/>
-    <app-sin-tacc-info [isSinTacc]="plate.sinTACC"/>
-    <app-vegan-info [isVegan]="plate.vegano"/>
-    <p class="my-3 ">Stock:{{plate.stock}}</p>
-    <app-product-optional/>
 
-  </div>
+    <section class="d-flex justify-content-between align-items-center">
+      <div>
+        <app-badge [isSuccess]="true" [textSuccess]="'Vegetariano'" [textWarning]="''"/>
+        <app-badge [isSuccess]="plate.vegano" [textSuccess]="'Vegano'" [textWarning]="'No vegano'"/>
+        <app-badge [isSuccess]="plate.sinTACC" [textSuccess]="'Sin Tacc'" [textWarning]="'Contiene TACC'"/>
+        <app-badge [isDanger]="plate.stock===0" [isSuccess]="plate.stock>10"
+                   [textDanger]="'No stock'" [textSuccess]="'En stock'"
+                   [textWarning]="'Ultimos platos'"/>
+      </div>
+      <div>
+        <app-star-rating [rating]="plate.calificacion"/>
+      </div>
+    </section>
+    <p class="text-muted text-end"><small>En stock:{{plate.stock}}</small></p>
+    <p class="my-3 ">{{plate.descripcion}}</p>
+
+    <!--
+        <app-product-optional/>
+    -->
+  </main>
   <div class="modal-footer justify-content-sm-between">
-    <app-button-counter [maxValue]="5" [minValue]="1" [value]="1"/>
+    <app-button-counter [maxValue]="plate.stock" [minValue]="1" [value]="1"/>
 
     <div>
       <button (click)="modal.close('Save click')" class="btn btn-primary mx-2" type="button">

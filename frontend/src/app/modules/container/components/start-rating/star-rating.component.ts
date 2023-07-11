@@ -5,7 +5,7 @@ import {faStar as faNoFilled} from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.css']
+  styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit {
   @Input() rating!: number;

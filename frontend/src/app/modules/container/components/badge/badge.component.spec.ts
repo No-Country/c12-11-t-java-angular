@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VeganInfoComponent } from './vegan-info.component';
+import { BadgeComponent } from './badge.component';
 
 describe('VeganInfoComponent', () => {
-  let component: VeganInfoComponent;
-  let fixture: ComponentFixture<VeganInfoComponent>;
+  let component: BadgeComponent;
+  let fixture: ComponentFixture<BadgeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [VeganInfoComponent]
+      declarations: [BadgeComponent]
     });
-    fixture = TestBed.createComponent(VeganInfoComponent);
+    fixture = TestBed.createComponent(BadgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

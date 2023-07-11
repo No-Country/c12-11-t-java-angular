@@ -28,8 +28,7 @@ import {ProductOptionalComponent} from '@modules/container/components/product-op
 import {
   CardModalPlateDetailsComponent
 } from '@modules/container/components/card-modal-plate-details/card-modal-plate-details.component';
-import {SinTaccInfoComponent} from "@modules/container/components/sin-tacc-info/sin-tacc-info.component";
-import {VeganInfoComponent} from "@modules/container/components/vegan-info/vegan-info.component";
+import {BadgeComponent} from "@modules/container/components/badge/badge.component";
 import {StarRatingComponent} from "@modules/container/components/start-rating/star-rating.component";
   ProductDetailsModalComponent
 } from '@modules/container/components/product-details-modal/product-details-modal.component';
@@ -59,8 +58,7 @@ import { SharedModule } from '@shared/shared.module';
     ButtonCounterProductOptionalComponent,
     ProductOptionalComponent,
     CardModalPlateDetailsComponent,
-    SinTaccInfoComponent,
-    VeganInfoComponent,
+    BadgeComponent,
     StarRatingComponent
     CardModalPlateDetailsComponent
     ProductDetailsModalComponent,
