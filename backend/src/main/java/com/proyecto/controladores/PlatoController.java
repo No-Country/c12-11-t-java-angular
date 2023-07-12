@@ -1,9 +1,0 @@
-package com.proyecto.controladores;
-
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController("/")
-public class PlatoController {
-	
-	
-}
