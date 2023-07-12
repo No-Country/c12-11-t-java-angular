@@ -1,45 +1,50 @@
 package com.proyecto.security;
 
-import javax.sql.DataSource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
+import com.proyecto.servicio.UsuarioServIMPL.USIMPL;
 
-//@Configuration
-//public class WebSecurityConfig {
+
+@EnableWebSecurity
+@Configuration
+public class WebSecurityConfig {
 	
-//	@Bean
-//	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) {
-//		
-//		return http
-//				.cors(cors -> cors.disable()).csrf(csrf ->csrf.disable())
-//				.exceptionHandling(e->e.AuthenticationEntryPoint())
-//				.sessionManagments(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//				.authorizeHttpRequests(a->
-//				{a.requestMatchers("/auth/**").permitAll();			
-//				})
-//				.authenticationProvider(authenticationProvider())
-//				.addFilterBefore(JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-//				.apply(new JWTHTTPConfigurer(jwtUtils));
-//	}
+	@Autowired
+	private USIMPL usuarioServicio;
 	
-//	@Bean
-//	UserDetailService userDetailService() {
-//		
-//	}
-//	@Bean
-//	DataSource dataSource() {
-//		return new EmbeddedDatabaseBuilder()
-//			.setType()
-//			.addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-//			.build();
-//	}
-//}
+	  @Autowired
+	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+		  auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
+		  }
+
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	        http
+	            .authorizeHttpRequests(authorize -> authorize
+	                .requestMatchers("/**").permitAll() // Rutas públicas accesibles para todos
+	                .anyRequest().authenticated() // Todas las demás rutas requieren autenticación
+	            )
+	            .formLogin(form -> form
+	                .loginPage("/VeggieDelivery/listaDePlatos") // Ruta personalizada para la página de inicio de sesión
+	                .defaultSuccessUrl("/") // Ruta a la que se redirige después de un inicio de sesión exitoso
+	                .permitAll() // Permitir a todos los usuarios acceder a la página de inicio de sesión
+	            )
+	            .logout(logout -> logout
+	                .logoutUrl("/logout") // Ruta para el proceso de cierre de sesión
+	                .logoutSuccessUrl("/login?logout") // Ruta a la que se redirige después de un cierre de sesión exitoso
+	                .permitAll() // Permitir a todos los usuarios acceder a la página de cierre de sesión
+	            );
+
+	        return http.build();
+	    }
+	}
+
