@@ -43,7 +43,6 @@ public class Plato {
 	private int stock;
 	@Column(name= "tipoPlato")
 	private String tipoPlato;
-
-	 
-	
+	@Column(name = "categoria")
+	private String categoria;
 }
