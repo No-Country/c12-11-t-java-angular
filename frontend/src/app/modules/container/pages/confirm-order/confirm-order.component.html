@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="payment-method-container">
+    <div class="row mb-3">
+      <div class="col-4 icon-back">
+        <button type="button" class="btn btn-light d-md-none d-block">
+          <fa-icon
+            [icon]="faAngleLeft"
+            (click)="goBack()"
+            class="fa-lg"
+          ></fa-icon>
+        </button>
+        <button
+          type="button"
+          class="btn btn-light d-none d-md-block"
+          (click)="goBack()"
+        >
+          <fa-icon [icon]="faArrowLeft"></fa-icon> Metodo de pago
+        </button>
+      </div>
+      <div class="col d-md-none">
+        <h1 class="title-page">Confirmar Pedido</h1>
+      </div>
+    </div>
+    <app-tabs state="1"></app-tabs>
+    <div class="row">
+      <div class="col">
+
+        <div class="Method-container">
+
+
+          <ul class="list-group list-cards " *ngIf="cardsRegister.length > 0&&valueMethod == '0'" >
+            <li class="list-group-item" *ngFor="let card of cardsRegister ;let i =index" >
+                {{card.numero }}-{{card.name}}
+              <fa-icon [icon]="faPenToSquare" class="icon-end"></fa-icon>
+
+            </li>
+
+
+          </ul>
+
+
+        </div>
+      </div>
+
+        <div class="col-md-4 ">
+          <div class="order-summary-container">
+            <h1 class="title-page mt-3 mb-3">Resumen del Pedido</h1>
+            <hr />
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page">Producto</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page">{{ 2000 |currency }}</h2>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page">Envio</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page">{{2000 | currency }}</h2>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page">Propina</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page">{{  3500 | currency }}</h2>
+              </div>
+            </div>
+            <hr />
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page-bold">Total</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page-bold">
+                  {{ 10000 | currency }}
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block mb-3">
+      <button class="btn btn-primary btn-lgp" routerLink="/container/" type="button">
+      Realizar Pedido
+      </button>
+    </div>
+
+  </div>
+
+  <app-footer-mobile path=""
+
+    text="Realizar Pedido"
+  ></app-footer-mobile>
+

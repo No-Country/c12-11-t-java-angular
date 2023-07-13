@@ -49,7 +49,7 @@ export class LayoutContainerComponent implements OnInit {
 
   private checkRouter() {
     this.mostrarElementos = this.router.url !== '/container/shopping'
-        && this.router.url !== '/container/pay';
+        && this.router.url !== '/container/pay' && this.router.url !== '/container/confirm';
   }
 
   login() {

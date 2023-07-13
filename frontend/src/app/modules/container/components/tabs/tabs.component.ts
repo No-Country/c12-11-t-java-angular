@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent {
+  @Input() state:string="";
+  @Input() state2:string="";
 menu:any[]=[
   {
     title:"Tipo de Entrega",
@@ -16,7 +18,7 @@ menu:any[]=[
   }
   ,{
     title:'Todo Listo',
-    path:""
+    path:"confirm"
   }
 ]
 }

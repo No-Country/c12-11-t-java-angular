@@ -9,6 +9,7 @@ import {MenuComponent} from "@modules/container/pages/menu/menu.component";
 import {
   DescripcionProductoComponent
 } from "@modules/container/pages/descripcion-producto/descripcion-producto.component";
+import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
       },
       {
         path: 'pay', component: PaymentMethodComponent
+      },
+      {
+        path: 'confirm', component: ConfirmOrderComponent
       },
       {
         path: '**', redirectTo: 'home'

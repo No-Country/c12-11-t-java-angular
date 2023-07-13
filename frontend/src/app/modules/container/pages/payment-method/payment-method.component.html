@@ -14,93 +14,154 @@
           class="btn btn-light d-none d-md-block"
           (click)="goBack()"
         >
-          <fa-icon [icon]="faArrowLeft"></fa-icon> Regresar
+          <fa-icon [icon]="faArrowLeft"></fa-icon> Tipo de entrega
         </button>
       </div>
       <div class="col d-md-none">
-        <h1 class="title-page">Tu Pedido</h1>
+        <h1 class="title-page">Metodos de Pago</h1>
       </div>
     </div>
-    <app-tabs></app-tabs>
-    <div class="Method-container">
-      <div class="select-Method-container">
-        <h2 class="subtitle-page-bold-lg">Selecciona el metodo</h2>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            [(ngModel)]="valueMethod"
-            value="0"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-            checked
-          />
-          <label class="form-check-label" for="flexRadioDefault1">
-            Tarjeta debito/credito
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            [(ngModel)]="valueMethod"
-            value="1"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-          />
-          <label class="form-check-label" for="flexRadioDefault2">
-            Efectivo
-          </label>
+    <app-tabs state="1"></app-tabs>
+    <div class="row">
+      <div class="col">
+
+        <div class="Method-container">
+
+          <div class="select-Method-container" >
+            <h2 class="subtitle-page-bold-lg">Selecciona el metodo</h2>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                [(ngModel)]="valueMethod"
+                value="0"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                checked
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                Tarjeta debito/credito
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                [(ngModel)]="valueMethod"
+                value="1"
+                name="flexRadioDefault"
+                id="flexRadioDefault2"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                Efectivo
+              </label>
+            </div>
+          </div>
+          <ul class="list-group list-cards " *ngIf="cardsRegister.length > 0&&valueMethod == '0'" >
+            <li class="list-group-item" *ngFor="let card of cardsRegister ;let i =index" >
+              <input type="radio" name="radios" [value]="card.numero"  />  <img class="imgCard" src="assets/icons/image.svg" alt="">  {{card.numero }}-{{card.name}}
+              <fa-icon [icon]="faTrashCan" class="icon-end" (click)="deleteCard(i)"></fa-icon>
+            </li>
+
+            <button type="button" class="btn btn-secondary btn-sm mt-2 btn-add" (click)="isnewCard=true">
+              <img src="assets/icons/circlePlus.svg" alt="" /> Nueva tarjeta
+            </button>
+          </ul>
+          <div class="add-card-container  " *ngIf="(valueMethod == '0'&&cardsRegister.length==0)||isnewCard">
+            <h1 class="subtitle-page mt-3">Numero</h1>
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              placeholder="example"
+              aria-label=".form-control-sm example"
+            />
+            <h1 class="subtitle-page mt-3">Vencimiento</h1>
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              placeholder="example"
+              aria-label=".form-control-sm example"
+            />
+            <h1 class="subtitle-page mt-3">Nombre en la Tarjeta</h1>
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              placeholder="example"
+              aria-label=".form-control-sm example"
+            />
+            <h1 class="subtitle-page mt-3">CCV</h1>
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              placeholder="example"
+              aria-label=".form-control-sm example"
+            />
+          </div>
+          <div class="effective-method-container" *ngIf="valueMethod == '1'">
+            <h1 class="subtitle-page mt-3">Con cuantos vas a pagar (opcional)</h1>
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              placeholder="$monto"
+              aria-label=".form-control-sm example"
+            />
+          </div>
         </div>
       </div>
 
-      <div class="add-card-container" *ngIf="valueMethod == '0'">
-        <h1 class="subtitle-page mt-3">Numero</h1>
-        <input
-          class="form-control form-control-sm"
-          type="text"
-          placeholder="example"
-          aria-label=".form-control-sm example"
-        />
-        <h1 class="subtitle-page mt-3">Vencimiento</h1>
-        <input
-          class="form-control form-control-sm"
-          type="text"
-          placeholder="example"
-          aria-label=".form-control-sm example"
-        />
-        <h1 class="subtitle-page mt-3">Nombre en la Tarjeta</h1>
-        <input
-          class="form-control form-control-sm"
-          type="text"
-          placeholder="example"
-          aria-label=".form-control-sm example"
-        />
-        <h1 class="subtitle-page mt-3">CCV</h1>
-        <input
-          class="form-control form-control-sm"
-          type="text"
-          placeholder="example"
-          aria-label=".form-control-sm example"
-        />
-      </div>
-      <div class="effective-method-container" *ngIf="valueMethod == '1'">
-        <h1 class="subtitle-page mt-3">Con cuantos vas a pagar (opcional)</h1>
-        <input
-          class="form-control form-control-sm"
-          type="text"
-          placeholder="$monto"
-          aria-label=".form-control-sm example"
-        />
+        <div class="col-md-4 d-none d-md-block">
+          <div class="order-summary-container">
+            <h1 class="title-page mt-3 mb-3">Resumen del Pedido</h1>
+            <hr />
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page">Producto</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page">{{ 2000 |currency }}</h2>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page">Envio</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page">{{2000 | currency }}</h2>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page">Propina</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page">{{  3500 | currency }}</h2>
+              </div>
+            </div>
+            <hr />
+            <div class="row mb-2">
+              <div class="col">
+                <h2 class="subtitle-page-bold">Total</h2>
+              </div>
+              <div class="col text-end">
+                <h2 class="subtitle-page-bold">
+                  {{ 10000 | currency }}
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row text-center d-none d-md-block mt-5">
-      <div class="col"><button class="btn btn-dark btn-lg  " routerLink="/container">Confirmar Pedido</button></div>
+
+    <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block mb-3">
+      <button class="btn btn-primary btn-lgp" routerLink="/container/confirm" type="button">
+        Continuar
+      </button>
     </div>
 
   </div>
-  </div>
-  <app-footer-mobile
+
+  <app-footer-mobile path="confirm"
     *ngIf="verificarRadio()"
     text="{{ textButtom }}"
   ></app-footer-mobile>

@@ -33,6 +33,8 @@ import {
 } from '@modules/container/components/product-details-modal/product-details-modal.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     ButtonCounterProductOptionalComponent,
     ProductOptionalComponent,
     ProductDetailsModalComponent,
-    TabsComponent
+    TabsComponent,
+    ConfirmOrderComponent,
+
   ],
   imports: [
     CommonModule,

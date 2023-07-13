@@ -1,22 +1,53 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { faAngleLeft, faArrowLeft, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faArrowLeft, faCirclePlus, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
+
   faAngleLeft = faAngleLeft;
   faArrowLeft=faArrowLeft;
   faPlus=faPlus;
   faMinus=faMinus;
+
+
+  public state:string="";
+  public textAddress:string="";
+  public newAddress:any={
+  }
   public valueDefaul:number=1;
   public price:number=4000;
   public priceCurrent=4000;
-  private router=inject(Router);
+  public direcciones:any[]=[];
+  public hasDireccion:boolean=false;
+ngOnInit(): void {
 
+  this.direcciones=[
+
+  ];
+
+
+
+}
+  private router=inject(Router);
+  addAddress(){
+
+    this.newAddress={
+      title:this.textAddress
+    }
+    if(this.newAddress.title==''){
+      return
+    }
+    this.direcciones.push(this.newAddress);
+
+    this.textAddress='';
+
+
+  }
 
   public addproduct(){
     this.valueDefaul++;
@@ -30,6 +61,7 @@ export class ShoppingCartComponent {
   }
   public goBack(){
     this.router.navigateByUrl('/container/menu');
+
   }
 
 }
