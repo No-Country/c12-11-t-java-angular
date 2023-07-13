@@ -1,8 +1,17 @@
-import {Component, Input,  OnInit} from '@angular/core';
-
+import {Component, Input} from '@angular/core';
+import {PlatoFilterService} from '@shared/services/filter-plato-service/plato-filter.service';
+import {Plate} from "@shared/interfaces/plate.interface";
+import {select, Store} from "@ngrx/store";
+import {selectFilters} from "@modules/container/store/selectors/menu.selectors";
+import {MenuState} from "@modules/container/store/state/menu.state";
+import {Filters} from "@modules/container/components/group-button-filter-menu/group-button-filter-menu.component";
+import {
+  filterPlatesByNames,
+  filterPlatesBySinTACC,
+  filterPlatesByTerm,
+  filterPlatesByVegan
+} from "@modules/container/store/reducers/helpers/filters.helpers";
 import {MenuPlate} from "@shared/interfaces/menu-plate.interface";
-import {PlatoFilterService} from "@shared/services/filter-plato-service/plato-filter.service";
-import {Plato} from "@shared/interfaces/plato.interface";
 
 @Component({
   selector: 'app-deck-menu',
@@ -10,27 +19,56 @@ import {Plato} from "@shared/interfaces/plato.interface";
   styleUrls: ['./deck-menu.component.scss'],
   providers: [PlatoFilterService]
 })
-export class DeckMenuComponent implements OnInit {
+export class DeckMenuComponent {
+
   @Input() menu!: MenuPlate;
-  @Input() searchTerm!: string;
 
-  platosFiltered: Plato[] = [];
-  hasPlatosFiltrados = false;
+  filters: Filters = {
+    activateFilterSinTacc: false,
+    activateFilterVegano: false,
+    activateFilterByNames: [],
+    activateFilters: true,
+    activateFilterSearchTerm: ''
+  }
+  plates: Plate[] = []
+  renderDeck: boolean = true
+  name = 'Almuerzo y cena'
 
-  constructor(public platoFilterService: PlatoFilterService) {
+
+  constructor(private menuStore: Store<MenuState>) {
 
   }
+
 
   ngOnInit(): void {
-    //Inicializo platos en el service
-    this.platoFilterService.platos = this.menu.plates;
-    //updateo la busqueda
-    this.platoFilterService.updateSearchTerm(this.searchTerm)
-    //Asigno los platos filtrados
-    this.platosFiltered = this.platoFilterService.getPlatesFiltered()
-    //Si tiene platos se rende
-    this.hasPlatosFiltrados = this.platosFiltered.length > 0
+    this.menuStore.pipe(select(selectFilters)).subscribe(filters => {
+      this.filters = filters
+      this.plates = this.filterPlates(this.menu.plates)
+    });
+
   }
 
+  private filterPlates(plates: Plate[]) {
+    let platosFiltered = plates;
+
+    if (this.filters.activateFilters) {
+      if (this.filters.activateFilterSearchTerm.length > 0) {
+        platosFiltered = filterPlatesByTerm(platosFiltered, this.filters.activateFilterSearchTerm);
+      }
+      if (this.filters.activateFilterVegano) {
+        platosFiltered = filterPlatesByVegan(platosFiltered, this.filters.activateFilterVegano);
+      }
+      if (this.filters.activateFilterSinTacc) {
+        platosFiltered = filterPlatesBySinTACC(platosFiltered, this.filters.activateFilterSinTacc);
+      }
+
+      if (this.filters.activateFilterByNames.length > 0) {
+        platosFiltered = filterPlatesByNames(platosFiltered, this.filters.activateFilterByNames);
+      }
+    }
+
+    this.renderDeck = platosFiltered.length > 0;
+    return platosFiltered
+  }
 
 }

@@ -17,25 +17,23 @@ export const filterPlatesByVegan = (plates: Plate[], isVegan: boolean): Plate[] 
   return plates.filter(plate => isPlatoVegano(plate, isVegan));
 }
 
-
 /**
  Filtra los platos según los nombres especificados y devuelve un array de objetos Plato.
  @param plates El array de platos a filtrar.
  @param names El array de nombres de platos utilizados para filtrar.
  @returns Un array de objetos Plato filtrados por los nombres especificados.
  */
-export const filterPlatesByCategory = (plates: Plate[], names: string) => {
+export const filterPlatesByNames = (plates: Plate[], names: string[]) => {
   if (names.length === 0) {
     return plates;
   }
 
-  return plates.filter(menu => isSameCategory(names, menu));
+  return plates.filter(menu => names.includes(menu.nombre));
 
 }
 
 
 /**
- @Deprecated
  * Filtra los platos según si son sin TACC o no.
  * @param plates Array de platos.
  * @param isSinTACC Indica si se deben filtrar los platos sin TACC (true) o con TACC (false).
@@ -80,9 +78,6 @@ const hasPlatoSimilarTerm = (plato: Plate, searchTerm: string) => {
  */
 const isPlatoSinTACC = (plato: Plate, isNoTacc: boolean) => plato.sinTACC === isNoTacc;
 
-const isSameCategory = (names: string, menu: Plate) => names === menu.categoria;
-
-
 /**
  * Verifica si un plato es vegano.
  * @param plato Plato a verificar.
@@ -108,7 +103,7 @@ const hasPlatoSimilarName = (plato: Plate, searchTerm: string) =>
  * @returns `true` si el apellido del plato tiene un término similar, de lo contrario `false`.
  */
 const hasPlatoSimilarSurname = (plato: Plate, searchTerm: string) =>
-  plato.categoria?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
+  plato.subTipoPlato?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
 
 /**
  * Verifica si el tipo de un plato tiene un término similar.

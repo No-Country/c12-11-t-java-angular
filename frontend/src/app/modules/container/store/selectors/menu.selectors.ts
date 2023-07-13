@@ -11,7 +11,7 @@ export const selectFilters = createSelector(
     return {
       activateFilterSinTacc: state.activateFilterSinTacc,
       activateFilterVegano: state.activateFilterVegano,
-      activateFilterByCategory: state.activateFilterByCategory,
+      activateFilterByNames: state.activateFilterByNames,
       activateFilterSearchTerm: state.activateFilterSearchTerm,
       activateFilters: state.activateFilters,
     }
@@ -40,9 +40,4 @@ export const selectAppLoading = createSelector(
 export const selectAppError = createSelector(
   selectMenuState,
   (state: MenuState) => state.error
-);
-
-export const selectPlateSelected = createSelector(
-  selectMenuState,
-  (state: MenuState) => state.plateSelected
 );

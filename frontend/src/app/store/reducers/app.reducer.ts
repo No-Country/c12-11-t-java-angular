@@ -1,22 +1,30 @@
 import {createReducer, on} from '@ngrx/store';
-import {initialState} from "../state/app.state";
-import {addOrderToCart, setShoppingCart} from "../actions/shoppin-card.actions";
+import {loadDataFailure, loadDataSuccess} from '../actions/app.actions';
+import {Feature1} from "@modules/container/store/models/app.model";
 
+export interface AppState {
+  data: Feature1[];
+  loading: boolean;
+  error: string | null;
+}
 
-/*En base a la accion despachada por la accion se hacen los cambios en el store/state
- [Aca ocurre la magia de los cambios]*/
+export const initialState: AppState = {
+  data: [],
+  loading: false,
+  error: null
+};
+
 export const appReducer = createReducer(
   initialState,
-  on(setShoppingCart, (state, {shoppingCart}) => ({
+  on(loadDataSuccess, (state, {feature1Data}) => ({
     ...state,
-    shoppingCart: shoppingCart,
+    feature1Data,
+    loading: false,
+    error: null
   })),
-  on(addOrderToCart, (state, {order}) => ({
+  on(loadDataFailure, (state, {error}) => ({
     ...state,
-    shoppingCart: {
-      orders: [...state.shoppingCart.orders, order],
-      total: 0,
-      state: 'Nuevo'
-    }
-  })),
+    loading: false,
+    error
+  }))
 );

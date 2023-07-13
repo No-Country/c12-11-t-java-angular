@@ -1,6 +1,7 @@
 import {Component, inject, Input} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Plato} from "@shared/interfaces/plato.interface";
+import {faLeaf, faSlash, faWheatAlt, faWheatAwnCircleExclamation} from "@fortawesome/free-solid-svg-icons";
+import {Plate} from "@shared/interfaces/plate.interface";
 
 @Component({
   selector: 'app-card-modal-plate-details',
@@ -8,7 +9,11 @@ import {Plato} from "@shared/interfaces/plato.interface";
   styleUrls: ['./card-modal-plate-details.component.scss']
 })
 export class CardModalPlateDetailsComponent {
-  @Input() plate!: Plato
+  @Input() plate!: Plate
+  iconConTacc = faWheatAwnCircleExclamation
+  iconSinTacc = faWheatAlt
+  iconVegano = faLeaf
+  iconSlash = faSlash
   private modalService = inject(NgbModal);
 
   open(content: any) {

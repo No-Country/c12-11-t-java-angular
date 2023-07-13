@@ -1,7 +1,7 @@
 import {createAction, props} from '@ngrx/store';
 
 
-export const setMenu = createAction(
-  '[Menu] Set menu',
+export const loadMenu = createAction(
+  '[Menu] Load menu',
   props<{ menuName: string }>()
 );
