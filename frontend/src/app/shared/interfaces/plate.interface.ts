@@ -1,9 +1,4 @@
 export interface Plate {
-  id?: number;
-  name: string;
-  description: string;
-  imageUrl: string;
-  price?: number;
   platoId?: number
   nombre: string
   precio: number
@@ -14,4 +9,5 @@ export interface Plate {
   urlImagen: string
   stock: number
   tipoPlato: string
+  subTipoPlato?:string
 }

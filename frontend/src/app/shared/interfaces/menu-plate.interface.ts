@@ -1,6 +1,6 @@
-import {Plato} from "@shared/interfaces/plato.interface";
+import {Plate} from "@shared/interfaces/plate.interface";
 
 export interface MenuPlate {
   name: string;
-  plates: Plato[];
+  plates: Plate[];
 }

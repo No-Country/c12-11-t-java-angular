@@ -17,7 +17,7 @@ export class LoginModalComponent implements AfterViewInit {
   private fb = inject( FormBuilder );
   private router = inject(Router);
 
-  @ViewChild('googleButton') googleButton: ElementRef = new ElementRef({});;
+  @ViewChild('googleButton') googleButton: ElementRef = new ElementRef({});
 
   user:any;
   loggedIn:any;

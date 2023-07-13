@@ -1,27 +1,26 @@
 <div class="carousel d-block d-md-none">
   <div class="button-group ">
-
     <app-button-filter-menu
-      [name]="'Ver todos'"
-      [isActive]="activeViewAll"
       (click)="toggleViewAll($event)"
+      [isActive]="!filter.activateFilters"
+      [name]="'Ver todos'"
     />
 
     <app-button-filter-menu
-      [name]="'Sin Tacc'"
-      [isActive]="activateSinTacc"
       (click)="toggleSinTacc($event)"
+      [isActive]="filter.activateFilterSinTacc"
+      [name]="'Sin Tacc'"
     />
     <app-button-filter-menu
-      [name]="'Vegano'"
-      [isActive]="activateVegano"
       (click)="toggleVegano($event)"
+      [isActive]="filter.activateFilterVegano"
+      [name]="'Vegano'"
     />
     <app-button-filter-menu
-      [name]="filter"
-      [isActive]="activateNames.includes(filter)"
-      (click)="toggleNames(filter)"
-      *ngFor="let filter of filters; let i = index"
+      (click)="toggleNames(name)"
+      *ngFor="let name of filtersNames; let i = index"
+      [isActive]="filter.activateFilterByNames.includes(name)"
+      [name]="name"
     />
   </div>
 </div>
@@ -29,25 +28,26 @@
 <div class="d-none d-md-block my-4">
   <div class="d-flex flex-column border-black">
     <app-button-filter-menu
-      [name]="'Ver todos'"
-      [isActive]="activeViewAll"
       (click)="toggleViewAll($event)"
+      [isActive]="!filter.activateFilters"
+      [name]="'Ver todos'"
     />
+
     <app-button-filter-menu
-      [name]="'Sin Tacc'"
-      [isActive]="activateSinTacc"
       (click)="toggleSinTacc($event)"
+      [isActive]="filter.activateFilterSinTacc"
+      [name]="'Sin Tacc'"
     />
     <app-button-filter-menu
-      [name]="'Vegano'"
-      [isActive]="activateVegano"
       (click)="toggleVegano($event)"
+      [isActive]="filter.activateFilterVegano"
+      [name]="'Vegano'"
     />
     <app-button-filter-menu
-      [name]="filter"
-      [isActive]="activateNames.includes(filter)"
-      (click)="toggleNames(filter)"
-      *ngFor="let filter of filters; let i = index"
+      (click)="toggleNames(name)"
+      *ngFor="let name of filtersNames; let i = index"
+      [isActive]="filter.activateFilterByNames.includes(name)"
+      [name]="name"
     />
   </div>
 </div>

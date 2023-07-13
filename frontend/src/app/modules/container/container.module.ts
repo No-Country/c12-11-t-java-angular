@@ -30,13 +30,12 @@ import {
 } from '@modules/container/components/card-modal-plate-details/card-modal-plate-details.component';
 import {BadgeComponent} from "@modules/container/components/badge/badge.component";
 import {StarRatingComponent} from "@modules/container/components/start-rating/star-rating.component";
-  ProductDetailsModalComponent
-} from '@modules/container/components/product-details-modal/product-details-modal.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
-import { SharedModule } from '@shared/shared.module';
-
+import {TabsComponent} from "@modules/container/components/tabs/tabs.component";
+import {ConfirmOrderComponent} from "@modules/container/pages/confirm-order/confirm-order.component";
+import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
+import {StoreModule} from "@ngrx/store";
+import {SharedModule} from "@shared/shared.module";
+import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
 
 
 @NgModule({
@@ -57,14 +56,13 @@ import { SharedModule } from '@shared/shared.module';
     ButtonCounterComponent,
     ButtonCounterProductOptionalComponent,
     ProductOptionalComponent,
-    CardModalPlateDetailsComponent,
     BadgeComponent,
-    StarRatingComponent
-    CardModalPlateDetailsComponent
-    ProductDetailsModalComponent,
+    StarRatingComponent,
+    CardModalPlateDetailsComponent,
     TabsComponent,
     ConfirmOrderComponent,
-
+    StarRatingComponent,
+    CardModalPlateDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +71,8 @@ import { SharedModule } from '@shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     AuthModule,
+    NgbCarouselModule,
+    StoreModule.forFeature('menu', menuReducer),
     NgbCarouselModule,
     SharedModule,
   ]

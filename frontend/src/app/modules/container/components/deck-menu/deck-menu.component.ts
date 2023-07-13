@@ -1,7 +1,17 @@
 import {Component, Input} from '@angular/core';
-import {MenuPlate} from '@shared/interfaces/menu-plate.interface';
 import {PlatoFilterService} from '@shared/services/filter-plato-service/plato-filter.service';
-import {Plato} from '@shared/interfaces/plato.interface';
+import {Plate} from "@shared/interfaces/plate.interface";
+import {select, Store} from "@ngrx/store";
+import {selectFilters} from "@modules/container/store/selectors/menu.selectors";
+import {MenuState} from "@modules/container/store/state/menu.state";
+import {Filters} from "@modules/container/components/group-button-filter-menu/group-button-filter-menu.component";
+import {
+  filterPlatesByNames,
+  filterPlatesBySinTACC,
+  filterPlatesByTerm,
+  filterPlatesByVegan
+} from "@modules/container/store/reducers/helpers/filters.helpers";
+import {MenuPlate} from "@shared/interfaces/menu-plate.interface";
 
 @Component({
   selector: 'app-deck-menu',
@@ -10,40 +20,55 @@ import {Plato} from '@shared/interfaces/plato.interface';
   providers: [PlatoFilterService]
 })
 export class DeckMenuComponent {
+
   @Input() menu!: MenuPlate;
-  @Input() searchTerm!: string;
-  @Input() activeFilterVegano!: boolean;
-  @Input() activeFilterSinTacc!: boolean;
-  @Input() activeFiltersTerm!: boolean;
-  @Input() activeFilters!: boolean;
-  @Input() activeFiltersNames!: string[];
 
-
-  platosFiltered: Plato[] = [];
-  hasPlatosFiltrados = true;
-
-  constructor(public platoFilterService: PlatoFilterService) {
+  filters: Filters = {
+    activateFilterSinTacc: false,
+    activateFilterVegano: false,
+    activateFilterByNames: [],
+    activateFilters: true,
+    activateFilterSearchTerm: ''
   }
+  plates: Plate[] = []
+  renderDeck: boolean = true
+  name = 'Almuerzo y cena'
+
+
+  constructor(private menuStore: Store<MenuState>) {
+
+  }
+
 
   ngOnInit(): void {
-
-    this.platosFiltered = this.menu.plates;
-    if (this.activeFilters) {
-      if (this.activeFiltersTerm) {
-        this.platosFiltered = this.platoFilterService.filterPlatesByTerm(this.platosFiltered, this.searchTerm);
-      }
-      if (this.activeFilterVegano) {
-        this.platosFiltered = this.platoFilterService.filterPlatesByVegan(this.platosFiltered, this.activeFilterVegano);
-      }
-      if (this.activeFilterSinTacc) {
-        this.platosFiltered = this.platoFilterService.filterPlatesBySinTACC(this.platosFiltered, this.activeFilterSinTacc);
-      }
-
-      if (this.activeFiltersNames.length > 0) {
-        this.platosFiltered = this.platoFilterService.filterPlatesByNames(this.platosFiltered, this.activeFiltersNames);
-      }
-    }
-    this.hasPlatosFiltrados = this.platosFiltered.length > 0;
+    this.menuStore.pipe(select(selectFilters)).subscribe(filters => {
+      this.filters = filters
+      this.plates = this.filterPlates(this.menu.plates)
+    });
 
   }
+
+  private filterPlates(plates: Plate[]) {
+    let platosFiltered = plates;
+
+    if (this.filters.activateFilters) {
+      if (this.filters.activateFilterSearchTerm.length > 0) {
+        platosFiltered = filterPlatesByTerm(platosFiltered, this.filters.activateFilterSearchTerm);
+      }
+      if (this.filters.activateFilterVegano) {
+        platosFiltered = filterPlatesByVegan(platosFiltered, this.filters.activateFilterVegano);
+      }
+      if (this.filters.activateFilterSinTacc) {
+        platosFiltered = filterPlatesBySinTACC(platosFiltered, this.filters.activateFilterSinTacc);
+      }
+
+      if (this.filters.activateFilterByNames.length > 0) {
+        platosFiltered = filterPlatesByNames(platosFiltered, this.filters.activateFilterByNames);
+      }
+    }
+
+    this.renderDeck = platosFiltered.length > 0;
+    return platosFiltered
+  }
+
 }

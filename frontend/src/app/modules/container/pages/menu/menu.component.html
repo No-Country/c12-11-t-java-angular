@@ -1,5 +1,11 @@
-<main class="container">
+<!--spinner-->
+<div *ngIf="isLoading" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
 
+<main *ngIf="!isLoading" class="container">
   <section class="row align-items-center mt-3">
     <div class="col-1">
       <a class="btn m-0 border-0" routerLink="''">
@@ -16,7 +22,7 @@
     <div class="col-12 col-md-9">
       <div class="d-block d-md-flex justify-content-between align-content-center">
         <div class="flex-grow-1">
-          <app-input-search-menu (inputValueChanged)="updateSearchTermFilter($event)"/>
+          <app-input-search-menu/>
         </div>
         <div class="d-none d-md-flex justify-content-center align-items-center">
           <a class="btn btn-dark" id="btn-md-shopping" routerLink="/container/shopping">
@@ -29,25 +35,13 @@
 
   <section class="row">
     <div class="col-12 col-md-3">
-      <app-group-button-filter-menu (toggleNameChanged)="updateActiveFilterName($event)"
-                                    (toggleSinTaccChanged)="  updateActiveFilterSinTacc($event)"
-                                    (toggleVeganoChanged)="  updateActiveFilterVegano($event)"
-                                    (toggleViewAllFilter)="updateViewAll($event)"
-                                    [filters]="menuService.getPlateNamesByTipoPlato()"
+      <app-group-button-filter-menu [filtersNames]="menuService.getPlateNamesByTipoPlato()"
 
       />
     </div>
     <div class="col-12 col-md-9 container-menu overflow-hidden overflow-y-scroll">
       <ng-container *ngFor="let menu of menuService.createMenu()">
-        <app-deck-menu
-          [activeFilterSinTacc]="activeFilterSinTacc"
-          [activeFilterVegano]="activeFilterVegano"
-          [activeFiltersNames]="filterType"
-          [activeFiltersTerm]="activeFilterSearchTerm"
-          [activeFilters]="!viewAll"
-          [menu]="menu"
-          [searchTerm]="searchTerm"
-        />
+        <app-deck-menu [menu]="menu"/>
       </ng-container>
 
     </div>

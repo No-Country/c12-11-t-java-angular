@@ -1,15 +1,15 @@
-<ng-container *ngIf="hasPlatosFiltrados">
-  <h2 class="deck-title d-block d-md-none">{{ menu.name }}</h2>
+<ng-container *ngIf="renderDeck">
+  <h2 class="deck-title d-block d-md-none">{{ name }}</h2>
 
   <div class="d-block d-md-none">
     <app-card-plate
-      *ngFor="let plate of platosFiltered; let i = index"
+      *ngFor="let plate of plates; let i = index"
       [plate]="plate"
     ></app-card-plate>
   </div>
   <div class="d-none d-md-block">
     <app-card-modal-plate-details
-      *ngFor="let plate of platosFiltered; let i = index"
+      *ngFor="let plate of plates; let i = index"
       [plate]="plate"
     ></app-card-modal-plate-details>
   </div>
