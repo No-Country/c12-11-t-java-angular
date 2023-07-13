@@ -34,6 +34,7 @@ import {
 import { TabsComponent } from './components/tabs/tabs.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.compo
     ReactiveFormsModule,
     FormsModule,
     AuthModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    SharedModule,
   ]
 })
 export class ContainerModule { }

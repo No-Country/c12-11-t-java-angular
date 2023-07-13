@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { faUser, faKey, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -13,13 +13,16 @@ import { SocialAuthService, FacebookLoginProvider } from "@abacritt/angularx-soc
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.scss']
 })
-export class LoginModalComponent implements OnInit {
+export class LoginModalComponent implements AfterViewInit {
   private fb = inject( FormBuilder );
   private router = inject(Router);
+
+  @ViewChild('googleButton') googleButton: ElementRef = new ElementRef({});;
 
   user:any;
   loggedIn:any;
 
+  isLogin: boolean = true;
 
   //private modalService = inject(NgbModal);
   public activeModal = inject(NgbActiveModal);
@@ -33,20 +36,27 @@ export class LoginModalComponent implements OnInit {
 
   closeResult = '';
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     // @ts-ignore
     google.accounts.id.initialize({
       client_id: "1062265390620-bsef1fpg54tvsc9fh04tq5hja74ta8ol.apps.googleusercontent.com",
       callback: this.handleCredentialResponse.bind(this),
       auto_select: false,
       cancel_on_tap_outside: true,
-
+      //itp_support: true,
     });
     // @ts-ignore
     google.accounts.id.renderButton(
-    // @ts-ignore
-    document.getElementById("google-button"),
+      // @ts-ignore
+      //document.getElementById("google-button"),
+      this.googleButton.nativeElement,
       { theme: "outline", size: "large", width: "100%" }
+      /*
+      {
+        type: "standard", theme: "outline",
+        size: "medium", width: "50", shape: "pill", ux_mode: "popup",
+      }
+      */
     );
     // @ts-ignore
     google.accounts.id.prompt((notification: PromptMomentNotification) => {
@@ -64,6 +74,36 @@ export class LoginModalComponent implements OnInit {
     username:    ['', [ Validators.required ]],
     password: ['', [ Validators.required, Validators.minLength(6) ]],
   });
+
+  public registerForm: FormGroup = this.fb.group({
+    email:    ['', [ Validators.required, Validators.email ]],
+    password1: ['', [ Validators.required, Validators.minLength(6) ]],
+    password2: ['', [ Validators.required]],
+  }, {
+    validators: [
+      this.validatePasswords('password1', 'password2')
+    ]
+  });
+
+  public validatePasswords( fieldName1: string, fieldName2: string ) {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+
+      if(!formGroup.get(fieldName1)?.value || !formGroup.get(fieldName2)?.value){
+        return null;
+      }
+
+      const field1 = formGroup.get(fieldName1)?.value;
+      const field2 = formGroup.get(fieldName2)?.value;
+
+      if(field1 !== field2){
+        formGroup.get(fieldName2)?.setErrors({ notEqual: true})
+        return { notEqual: true};
+      }
+
+      formGroup.get(fieldName2)?.setErrors(null)
+      return null;
+    }
+  }
 
   /*
   open(content: any) {
@@ -102,4 +142,8 @@ export class LoginModalComponent implements OnInit {
     this.authService.signOut();
   }
   */
+
+  changeToRegister(){
+    this.isLogin = false;
+  }
 }

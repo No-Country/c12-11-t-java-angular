@@ -6,16 +6,13 @@ import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {NotFoundComponent} from './shared/pages/not-found/not-found.component';
-
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotFoundComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
