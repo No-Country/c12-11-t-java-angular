@@ -1,7 +1,7 @@
 import {createAction, props} from '@ngrx/store';
 import {Plate} from "@shared/interfaces/plate.interface";
 
-export const loadPlates = createAction('[Menu] Load plates');
+export const loadMenu = createAction('[Menu] Load menu');
 
 export const applyFilters = createAction('[Menu] Apply Filters');
 

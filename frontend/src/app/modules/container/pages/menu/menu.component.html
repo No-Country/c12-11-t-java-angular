@@ -1,4 +1,4 @@
-<!--spinner-->
+<!--TODO: Refactor-> Componente spinner-->
 <div *ngIf="isLoading" class="d-flex justify-content-center">
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
@@ -13,7 +13,7 @@
       </a>
     </div>
     <div class="col-10">
-      <h1 class="m-0 text-center d-inline-block w-100">{{menuService.tipoPlato}}</h1>
+      <h1 class="m-0 text-center d-inline-block w-100">{{menuService.tipoMenu}}</h1>
     </div>
   </section>
 
@@ -35,11 +35,12 @@
 
   <section class="row">
     <div class="col-12 col-md-3">
-      <app-group-button-filter-menu [filtersNames]="menuService.getPlateNamesByTipoPlato()"
+      <app-group-button-filter-menu [filtersCategories]="menuService.getCategories()"
+                                    [filtersMenu]="menuService.getTipoMenu()"
 
       />
     </div>
-    <div class="col-12 col-md-9 container-menu overflow-hidden overflow-y-scroll">
+    <div class="col-12 col-md-9">
       <ng-container *ngFor="let menu of menuService.createMenu()">
         <app-deck-menu [menu]="menu"/>
       </ng-container>

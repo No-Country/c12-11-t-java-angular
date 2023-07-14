@@ -6,7 +6,7 @@ import {selectFilters} from "@modules/container/store/selectors/menu.selectors";
 import {MenuState} from "@modules/container/store/state/menu.state";
 import {Filters} from "@modules/container/components/group-button-filter-menu/group-button-filter-menu.component";
 import {
-  filterPlatesByNames,
+  filterPlatesByCategories,
   filterPlatesBySinTACC,
   filterPlatesByTerm,
   filterPlatesByVegan
@@ -24,7 +24,9 @@ export class DeckMenuComponent {
   @Input() menu!: MenuPlate;
 
   filters: Filters = {
+    /** @Deprecated */
     activateFilterSinTacc: false,
+    /** @Deprecated */
     activateFilterVegano: false,
     activateFilterByNames: [],
     activateFilters: true,
@@ -32,8 +34,6 @@ export class DeckMenuComponent {
   }
   plates: Plate[] = []
   renderDeck: boolean = true
-  name = 'Almuerzo y cena'
-
 
   constructor(private menuStore: Store<MenuState>) {
 
@@ -55,15 +55,18 @@ export class DeckMenuComponent {
       if (this.filters.activateFilterSearchTerm.length > 0) {
         platosFiltered = filterPlatesByTerm(platosFiltered, this.filters.activateFilterSearchTerm);
       }
+      /** @Deprecated */
       if (this.filters.activateFilterVegano) {
         platosFiltered = filterPlatesByVegan(platosFiltered, this.filters.activateFilterVegano);
       }
+
+      /** @Deprecated */
       if (this.filters.activateFilterSinTacc) {
         platosFiltered = filterPlatesBySinTACC(platosFiltered, this.filters.activateFilterSinTacc);
       }
 
       if (this.filters.activateFilterByNames.length > 0) {
-        platosFiltered = filterPlatesByNames(platosFiltered, this.filters.activateFilterByNames);
+        platosFiltered = filterPlatesByCategories(platosFiltered, this.filters.activateFilterByNames);
       }
     }
 

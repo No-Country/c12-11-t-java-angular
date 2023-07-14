@@ -11,42 +11,35 @@ import {selectMenu, selectPlates} from "@modules/container/store/selectors/menu.
 })
 export class MenuService {
   plates: Plate[] = []
+  tipoMenu = ''
 
   constructor(private platoFilterService: PlatoFilterService, private store: Store<MenuState>) {
     this.store.pipe(select(selectMenu)).subscribe(menuName => {
-      this._tipoPlato = menuName
+      console.log(menuName)
+      this.tipoMenu = menuName
     })
     this.store.pipe(select(selectPlates)).subscribe(plates => {
       this.plates = plates
     })
   }
 
-  private _tipoPlato = ''
 
-  get tipoPlato(): string {
-    return this._tipoPlato;
-  }
-
-  set tipoPlato(value: string) {
-    this._tipoPlato = value;
-  }
-
-
-  /**
-   * Obtiene todos los tipos de plato disponibles.
-   * @returns Un array de strings con los tipos de plato únicos.
-   * Nota: Si no se especifica un tipo de plato válido, se devuelven todos los tipos de plato existentes.
-   */
-  getAllTipoPlato() {
+  getTipoMenu() {
     return [...new Set(this.plates.map(menu => menu.tipoPlato))];
   }
+
+  getCategories() {
+    const platosFiltrados = this.platoFilterService.filterPlatesByPlateType(this.plates, this.tipoMenu);
+    return [...new Set(platosFiltrados.map(menu => menu.categoria))];
+  }
+
 
   /**
    * Obtiene los nombres únicos de los platos según el tipo de plato actual.
    * @returns Un array de strings con los nombres únicos de los platos filtrados por el tipo de plato actual.
    */
-  getPlateNamesByTipoPlato() {
-    const platosFiltrados = this.platoFilterService.filterPlatesByPlateType(this.plates, this._tipoPlato);
+  getPlateNamesFilteredByTipoPlato() {
+    const platosFiltrados = this.platoFilterService.filterPlatesByPlateType(this.plates, this.tipoMenu);
     return [...new Set(platosFiltrados.map(menu => menu.nombre))];
   }
 
@@ -56,7 +49,7 @@ export class MenuService {
    * @returns Un array de objetos MenuPlate generado en base a los platos con el mismo nombre.
    */
   createMenu(tipoPlato: string = ''): MenuPlate[] {
-    return this.getPlateNamesByTipoPlato().map(name => this.createMenuPlate(name));
+    return this.getCategories().map(name => this.createMenuPlate(name));
   }
 
   /**
@@ -67,7 +60,7 @@ export class MenuService {
   createMenuPlate(name: string): MenuPlate {
     return {
       name: name,
-      plates: this.platoFilterService.filterPlatesByName(this.plates, name)
+      plates: this.platoFilterService.filterPlatesByCategoria(this.plates, name)
     };
   }
 

@@ -23,17 +23,18 @@ export const filterPlatesByVegan = (plates: Plate[], isVegan: boolean): Plate[] 
  @param names El array de nombres de platos utilizados para filtrar.
  @returns Un array de objetos Plato filtrados por los nombres especificados.
  */
-export const filterPlatesByNames = (plates: Plate[], names: string[]) => {
+export const filterPlatesByCategories = (plates: Plate[], names: string[]) => {
   if (names.length === 0) {
     return plates;
   }
 
-  return plates.filter(menu => names.includes(menu.nombre));
+  return plates.filter(menu => names.includes(menu.categoria));
 
 }
 
 
 /**
+ @Deprecated
  * Filtra los platos según si son sin TACC o no.
  * @param plates Array de platos.
  * @param isSinTACC Indica si se deben filtrar los platos sin TACC (true) o con TACC (false).
@@ -103,7 +104,7 @@ const hasPlatoSimilarName = (plato: Plate, searchTerm: string) =>
  * @returns `true` si el apellido del plato tiene un término similar, de lo contrario `false`.
  */
 const hasPlatoSimilarSurname = (plato: Plate, searchTerm: string) =>
-  plato.subTipoPlato?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
+  plato.categoria?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
 
 /**
  * Verifica si el tipo de un plato tiene un término similar.

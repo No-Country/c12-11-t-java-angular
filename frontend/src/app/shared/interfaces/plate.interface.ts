@@ -9,5 +9,5 @@ export interface Plate {
   urlImagen: string
   stock: number
   tipoPlato: string
-  subTipoPlato?:string
+  categoria: string
 }

@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialState, MenuState} from "@modules/container/store/state/menu.state";
-import {loadPlates, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
-import {loadMenu} from "@modules/container/store/actions/menu.actions";
+import {loadMenu, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
+import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {
   removeFilters,
   toggleFilterSinTacc,
@@ -13,12 +13,13 @@ import {
 
 export const menuReducer = createReducer(
   initialState,
-  on(loadPlates, (state: MenuState) => ({
+  on(loadMenu, (state: MenuState) => ({
     ...state,
     loading: true,
     error: null
   })),
-  on(loadPlatesSuccess, (state: MenuState, {plates}) => ({
+  on(loadPlatesSuccess, (state: MenuState, {plates}) => (
+    {
     ...state,
     plates: plates,//TODO: Cambiar
     loading: false,
@@ -30,7 +31,7 @@ export const menuReducer = createReducer(
     loading: false,
     error
   })),
-  on(loadMenu, (state: MenuState, {menuName}) => ({
+  on(setMenu, (state: MenuState, {menuName}) => ({
     ...state,
     menu: menuName
   })),

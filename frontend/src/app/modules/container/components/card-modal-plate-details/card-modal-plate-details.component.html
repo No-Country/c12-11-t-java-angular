@@ -1,11 +1,11 @@
 <ng-template #content let-modal>
   <header class="modal-header justify-content-start">
     <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close mx-0" type="button"></button>
-    <h4 class="modal-title mx-3" id="modal-basic-title">{{plate.subTipoPlato}}</h4>
+    <h4 class="modal-title mx-3" id="modal-basic-title">{{plate.categoria}}</h4>
   </header>
   <main class="modal-body ">
     <section class="d-flex justify-content-center img-container">
-      <img alt="{{plate.subTipoPlato}}" class="img-fluid" src="{{plate.urlImagen}}">
+      <img alt="{{plate.categoria}}" class="img-fluid" src="{{plate.urlImagen}}">
     </section>
     <h5 class="my-2">{{plate.precio|currency}}</h5>
 

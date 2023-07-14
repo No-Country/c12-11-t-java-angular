@@ -7,8 +7,9 @@ import {
   toggleFilterVegano,
   updateFilterByNames
 } from "@modules/container/store/actions/filters.actions";
-import {selectFilters} from "@modules/container/store/selectors/menu.selectors";
+import {selectFilters, selectMenu} from "@modules/container/store/selectors/menu.selectors";
 import {MenuState} from "@modules/container/store/state/menu.state";
+import {setMenu} from "@modules/container/store/actions/menu.actions";
 
 
 @Component({
@@ -17,7 +18,10 @@ import {MenuState} from "@modules/container/store/state/menu.state";
   styleUrls: ['./group-button-filter-menu.component.scss']
 })
 export class GroupButtonFilterMenuComponent implements OnInit {
-  @Input() filtersNames?: string[];
+  @Input() filtersMenu?: string[];
+  @Input() filtersCategories?: string[];
+
+  menu = ''
 
   filter: Filters = {
 
@@ -37,7 +41,19 @@ export class GroupButtonFilterMenuComponent implements OnInit {
     this.menuStore.pipe(select(selectFilters)).subscribe(filters => {
       this.filter = filters
     });
+    this.menuStore.pipe(select(selectMenu)).subscribe(menuName => {
+      this.menu = menuName
+    });
   }
+
+  isMenuSelected(menuName: string) {
+    return menuName === this.menu
+  }
+
+  toggleMenu(name: string): void {
+    this.menuStore.dispatch(setMenu({menuName: name}));
+  }
+
 
   toggleNames(name: string): void {
     let filterNames = [...this.filter.activateFilterByNames]; // Crear una copia del array existente
@@ -47,6 +63,7 @@ export class GroupButtonFilterMenuComponent implements OnInit {
     } else {
       filterNames.push(name); // Agregar el nuevo nombre a la copia del array
     }
+
 
     this.filter = {...this.filter, activateFilterByNames: filterNames}
 

@@ -12,11 +12,11 @@ export class PlatoFilterService {
    * @param nombre El nombre del plato utilizado para filtrar.
    * @returns Un array de objetos Plato filtrados por el nombre especificado.
    */
-  filterPlatesByName(plates: Plate[], nombre: string) {
-    if (nombre === '') {
+  filterPlatesByCategoria(plates: Plate[], categoria: string) {
+    if (categoria === '') {
       return plates
     }
-    return plates.filter(menu => menu.nombre === nombre);
+    return plates.filter(menu => menu.categoria === categoria);
   }
 
   /**
@@ -67,7 +67,7 @@ export class PlatoFilterService {
     return plates.filter(plate => this.isPlatoSinTACC(plate, isSinTACC));
   }
 
-  /** @Deprecated
+  /*
    * Filtra los platos según un término de búsqueda y devuelve un array de objetos Plato.
    * @param plates El array de platos a filtrar.
    * @param termSearch El término de búsqueda para filtrar los platos.
@@ -96,7 +96,7 @@ export class PlatoFilterService {
 
 
   private hasPlatoSimilarSurname(plato: Plate, searchTerm: string) {
-    return plato.subTipoPlato ? plato.subTipoPlato.toLowerCase().includes(searchTerm.toLowerCase()) : false;
+    return plato.categoria ? plato.categoria.toLowerCase().includes(searchTerm.toLowerCase()) : false;
   }
 
   private hasPlatoSimilarType(plato: Plate, searchTerm: string) {
@@ -111,6 +111,7 @@ export class PlatoFilterService {
   private isPlatoVegano(plato: Plate, isVegan: boolean) {
     return plato.vegano === isVegan;
   }
+
 
   /**@Deprecated */
   private isPlatoSinTACC(plato: Plate, isNoTacc: boolean) {

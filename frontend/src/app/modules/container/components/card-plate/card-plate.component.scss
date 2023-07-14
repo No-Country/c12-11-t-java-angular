@@ -3,19 +3,21 @@
   cursor: pointer;
   opacity: 90%;
   transition: opacity .2s ease-in-out;
-
 }
+
 
 .card:hover {
   opacity: 100%;
   transition: opacity .2s ease-in-out;
 }
-.bg-image{
-  background-size:cover;
+
+.bg-image {
+  background-size: cover;
   background-position: center;
   background-color: black;
   background-repeat: no-repeat;
 }
+
 .card-text {
   margin: 0;
   padding: 0 .2rem 0 0;

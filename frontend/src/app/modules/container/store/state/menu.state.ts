@@ -18,7 +18,7 @@ export const initialState: MenuState = {
     {
       platoId: 1,
       nombre: 'Hamburguesa',
-      subTipoPlato: 'Hamburguesa 1',
+      categoria: 'Hamburguesa 1',
       precio: 2000,
       descripcion: 'Minced oysters can be made melted by whisking with gold tequila.',
       vegano: true,
@@ -31,7 +31,7 @@ export const initialState: MenuState = {
     {
       platoId: 1,
       nombre: 'Hamburguesa',
-      subTipoPlato: 'Hamburguesa 2',
+      categoria: 'Hamburguesa 2',
       precio: 2000,
       descripcion: 'To the small oysters add watermelon, chickpeas, champaign and bitter rice.',
       vegano: false,
@@ -44,7 +44,7 @@ export const initialState: MenuState = {
     {
       platoId: 1,
       nombre: 'Hamburguesa',
-      subTipoPlato: 'Hamburguesa Vegana y sin tacc',
+      categoria: 'Hamburguesa Vegana y sin tacc',
       precio: 2000,
       descripcion: 'Per guest prepare twelve peaces of worcestershire sauce with shreded butter for dessert.',
       vegano: true,
@@ -57,7 +57,7 @@ export const initialState: MenuState = {
     {
       platoId: 2,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 1',
+      categoria: 'Panini 1',
       precio: 2000,
       descripcion: 'Per guest prepare one package of kefir with sliced chicory for dessert.',
       vegano: true,
@@ -70,7 +70,7 @@ export const initialState: MenuState = {
     {
       platoId: 2,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 2',
+      categoria: 'Panini 2',
       precio: 2000,
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: false,
@@ -83,7 +83,7 @@ export const initialState: MenuState = {
     {
       platoId: 3,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 3',
+      categoria: 'Panini 3',
       precio: 2000,
       descripcion: 'To the springy chicken add white bread, chicken breasts, joghurt and cold raspberries.',
       vegano: false,
@@ -96,7 +96,7 @@ export const initialState: MenuState = {
     {
       platoId: 4,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 4',
+      categoria: 'Panini 4',
       precio: 2000,
       descripcion: 'Toss each side of the cracker crumps with six and a half teaspoons of garlic.',
       vegano: false,
@@ -109,7 +109,7 @@ export const initialState: MenuState = {
     {
       platoId: 5,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 5',
+      categoria: 'Panini 5',
       precio: 2000,
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
@@ -122,7 +122,7 @@ export const initialState: MenuState = {
     {
       platoId: 6,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 6',
+      categoria: 'Panini 6',
       precio: 2000,
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
@@ -135,7 +135,7 @@ export const initialState: MenuState = {
     {
       platoId: 7,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 7',
+      categoria: 'Panini 7',
       precio: 2000,
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
@@ -148,7 +148,7 @@ export const initialState: MenuState = {
     {
       platoId: 8,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 8',
+      categoria: 'Panini 8',
       precio: 2000,
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
@@ -161,7 +161,7 @@ export const initialState: MenuState = {
     {
       platoId: 9,
       nombre: 'Panini',
-      subTipoPlato: 'Panini 9',
+      categoria: 'Panini 9',
       precio: 2000,
       descripcion: 'Everyone just loves the pepperiness of tuna salad soakd with basil.',
       vegano: true,
@@ -174,7 +174,7 @@ export const initialState: MenuState = {
     {
       platoId: 3,
       nombre: 'Cafe',
-      subTipoPlato: 'Expreso',
+      categoria: 'Expreso',
       precio: 4000,
       descripcion: 'To the melted white bread add pork shoulder, raspberries, beer and fluffy onion.',
       vegano: false,
@@ -187,7 +187,7 @@ export const initialState: MenuState = {
     {
       platoId: 3,
       nombre: 'Cafe',
-      subTipoPlato: 'Americano',
+      categoria: 'Americano',
       precio: 4000,
       descripcion: 'Per guest prepare nine oz of lemon juice with boilled blueberries for dessert. .',
       vegano: false,
@@ -200,7 +200,7 @@ export const initialState: MenuState = {
     {
       platoId: 4,
       nombre: 'Cafe',
-      subTipoPlato: 'Submarino',
+      categoria: 'Submarino',
       precio: 4000,
       descripcion: 'To the tasty celery add raspberries, ginger, soy sauce and roasted turkey.',
       vegano: false,
@@ -213,7 +213,7 @@ export const initialState: MenuState = {
     {
       platoId: 4,
       nombre: 'Te',
-      subTipoPlato: 'Te Verde',
+      categoria: 'Te Verde',
       precio: 4000,
       descripcion: 'To the tasty celery add raspberries, ginger, soy sauce and roasted turkey.',
       vegano: false,

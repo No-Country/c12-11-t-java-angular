@@ -4,9 +4,9 @@ import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
 import {MenuState} from "@modules/container/store/state/menu.state";
 import {select, Store} from "@ngrx/store";
-import {loadMenu} from "@modules/container/store/actions/menu.actions";
+import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {PlateService} from "@shared/services/plate.service";
-import {loadPlates, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
+import {loadMenu, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
 
 @Component({
@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
 
   isLoading = true
 
-  menuName = 'Almuerzo y Cena' //TODO: Debe venir del navbar
+  menuName = 'Desayuno' //TODO: Debe venir del navbar
 
   constructor(private location: Location, private menuStore: Store<MenuState>, public menuService: MenuService, public plateService: PlateService) {
 
@@ -36,18 +36,19 @@ export class MenuComponent implements OnInit {
       this.isLoading = isLoad
     });
     this.getPlateList()
-    this.menuStore.dispatch(loadMenu({menuName: this.menuName}))
+    this.menuStore.dispatch(setMenu({menuName: this.menuName}))
   }
 
   getPlateList() {
     let plates = []
-    this.menuStore.dispatch(loadPlates())
+    this.menuStore.dispatch(loadMenu())
+
     this.plateService.listarPlatos()
       .subscribe({
         next: (rpta) => {
           plates = rpta
           console.log("rpta =>", rpta)
-          this.menuStore.dispatch(loadPlatesSuccess({plates: plates}))
+          this.menuStore.dispatch(loadPlatesSuccess({plates: rpta}))
         },
         error: (message) => {
           console.log("error =>", message);
