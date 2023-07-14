@@ -1,19 +1,21 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AppState} from '../reducers/app.reducer';
+import {AppState} from "../state/app.state";
 
-export const selectFeature1State = createFeatureSelector<AppState>('feature1');
+/*Los selectors se encargan de hacer los getters al state/store */
+export const selectAppState = createFeatureSelector<AppState>('AppState');
 
-export const selectFeature1Data = createSelector(
-  selectFeature1State,
-  (state: AppState) => state.data
+export const selectShoppingCart = createSelector(
+  selectAppState,
+  (state: AppState) => state.shoppingCart
 );
 
+
 export const selectAppLoading = createSelector(
-  selectFeature1State,
+  selectAppState,
   (state: AppState) => state.loading
 );
 
 export const selectAppError = createSelector(
-  selectFeature1State,
+  selectAppState,
   (state: AppState) => state.error
 );

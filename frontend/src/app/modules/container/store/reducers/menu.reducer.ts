@@ -1,6 +1,11 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialState, MenuState} from "@modules/container/store/state/menu.state";
-import {loadMenu, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
+import {
+  loadMenu,
+  loadPlatesFailure,
+  loadPlatesSuccess,
+  setPlateSelected
+} from "@modules/container/store/actions/plates.actions";
 import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {
   removeFilters,
@@ -66,5 +71,9 @@ export const menuReducer = createReducer(
     ...state,
     activateFilterSearchTerm: searchTerm,
     activateFilters: searchTerm.trim().length > 0 || state.activateFilterByCategory.length > 0
-  }))
+  })),
+  on(setPlateSelected, (state: MenuState, {plateSelected}) => ({
+    ...state,
+    plateSelected: plateSelected
+  })),
 )

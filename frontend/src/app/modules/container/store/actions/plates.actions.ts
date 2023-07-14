@@ -14,3 +14,8 @@ export const loadPlatesFailure = createAction(
   '[App] Load plates Failure',
   props<{ error: string }>()
 );
+
+export const setPlateSelected = createAction(
+  '[App] Set plate selected',
+  props<{ plateSelected: Plate }>()
+);

@@ -41,3 +41,8 @@ export const selectAppError = createSelector(
   selectMenuState,
   (state: MenuState) => state.error
 );
+
+export const selectPlateSelected = createSelector(
+  selectMenuState,
+  (state: MenuState) => state.plateSelected
+);

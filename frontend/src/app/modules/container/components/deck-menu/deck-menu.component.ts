@@ -12,6 +12,8 @@ import {
   filterPlatesByVegan
 } from "@modules/container/store/reducers/helpers/filters.helpers";
 import {MenuPlate} from "@shared/interfaces/menu-plate.interface";
+import {setPlateSelected} from "@modules/container/store/actions/plates.actions";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-deck-menu',
@@ -35,7 +37,7 @@ export class DeckMenuComponent {
   plates: Plate[] = []
   renderDeck: boolean = true
 
-  constructor(private menuStore: Store<MenuState>) {
+  constructor(private menuStore: Store<MenuState>, private router: Router) {
 
   }
 
@@ -45,6 +47,13 @@ export class DeckMenuComponent {
       this.filters = filters
       this.plates = this.filterPlates(this.menu.plates)
     });
+
+  }
+
+  selectedPlate(plate: Plate) {
+
+    this.menuStore.dispatch(setPlateSelected({plateSelected: plate}))
+    this.router.navigateByUrl('/container/descripcion');
 
   }
 

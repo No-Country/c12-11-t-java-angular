@@ -3,6 +3,7 @@ import {Plate} from "@shared/interfaces/plate.interface";
 export interface MenuState {
   menu: string;
   plates: Plate[];
+  plateSelected: Plate | null;
   activateFilterSearchTerm: string;
   /**@Deprecated*/
   activateFilterSinTacc: boolean;
@@ -17,6 +18,7 @@ export interface MenuState {
 
 export const initialState: MenuState = {
   menu: '',
+  plateSelected: null,
   plates: [
     {
       platoId: 1,
