@@ -22,12 +22,12 @@ export class GroupButtonFilterMenuComponent implements OnInit {
   @Input() filtersCategories?: string[];
 
   menu = ''
+  category = ''
 
   filter: Filters = {
-
     activateFilterSinTacc: false,
     activateFilterVegano: false,
-    activateFilterByNames: [],
+    activateFilterByCategory: '',
     activateFilters: true,
     activateFilterSearchTerm: ''
   }
@@ -40,6 +40,7 @@ export class GroupButtonFilterMenuComponent implements OnInit {
   ngOnInit(): void {
     this.menuStore.pipe(select(selectFilters)).subscribe(filters => {
       this.filter = filters
+      this.category = filters.activateFilterByCategory
     });
     this.menuStore.pipe(select(selectMenu)).subscribe(menuName => {
       this.menu = menuName
@@ -54,20 +55,23 @@ export class GroupButtonFilterMenuComponent implements OnInit {
     this.menuStore.dispatch(setMenu({menuName: name}));
   }
 
-
+  /**@Deprecated */
+  /*
   toggleNames(name: string): void {
-    let filterNames = [...this.filter.activateFilterByNames]; // Crear una copia del array existente
+    let filterNames = [...this.filter.activateFilterByNames];
 
     if (filterNames.includes(name)) {
       filterNames = filterNames.filter(oneName => oneName !== name);
     } else {
-      filterNames.push(name); // Agregar el nuevo nombre a la copia del array
+      filterNames.push(name);
     }
-
-
     this.filter = {...this.filter, activateFilterByNames: filterNames}
 
     this.menuStore.dispatch(updateFilterByNames({filterNames: this.filter.activateFilterByNames}));
+  }
+   */
+  toggleCategory(name: string): void {
+    this.menuStore.dispatch(updateFilterByNames({filterNames: name}));
   }
 
   toggleVegano(event: Event): void {
@@ -88,7 +92,7 @@ export class GroupButtonFilterMenuComponent implements OnInit {
 export interface Filters {
   activateFilterSinTacc: boolean;
   activateFilterVegano: boolean;
-  activateFilterByNames: string[];
+  activateFilterByCategory: string;
   activateFilterSearchTerm: string;
   activateFilters: boolean;
 }

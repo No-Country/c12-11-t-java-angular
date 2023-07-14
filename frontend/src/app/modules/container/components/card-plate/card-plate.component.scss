@@ -1,10 +1,17 @@
 .card {
   margin: 20px 0;
   cursor: pointer;
-  opacity: 90%;
+  opacity: 95%;
   transition: opacity .2s ease-in-out;
 }
 
+.btn {
+  padding: 1px 6px;
+}
+
+.card-body {
+  padding: 0.8125rem;
+}
 
 .card:hover {
   opacity: 100%;
@@ -18,18 +25,44 @@
   background-repeat: no-repeat;
 }
 
+.card-title, {
+  font-size: .875rem;
+  font-weight: 500;
+}
+
+.card-price {
+  font-width: 700;
+}
+
 .card-text {
+  font-size: .6875rem;
+  font-weight: 400;
+  line-height: 0.9375rem;
+  letter-spacing: 0;
+  text-align: left;
   margin: 0;
-  padding: 0 .2rem 0 0;
-  font-size: .7rem;
-  line-height: 0.75rem;
+  padding: 0 .4375rem 0 0;
   color: grey;
 }
 
 @media screen and (min-width: 768px) {
+  .btn {
+    padding: 7px 12px;
+    margin: 0 1.19rem 0 0;
+  }
   .card-text {
-    font-size: .95rem;
+    padding: 0 0 1rem 0;
+  }
+  .card-price {
+    font-weight: 700;
+  }
+  .card-text, .card-price {
+    font-size: 1rem;
     line-height: 1.05rem;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
   }
 }
 

@@ -40,9 +40,9 @@
 
 
     <app-button-filter-menu
-      (click)="toggleNames(name)"
+      (click)="toggleCategory(name)"
       *ngFor="let name of filtersCategories; let i = index"
-      [isActive]="filter.activateFilterByNames.includes(name)"
+      [isActive]="filter.activateFilterByCategory.includes(name)"
       [name]="name"
     />
     <!--

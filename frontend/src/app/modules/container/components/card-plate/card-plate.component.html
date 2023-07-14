@@ -7,15 +7,23 @@
       <div class="card-body h-100 d-flex flex-column  flex-grow-1">
         <div class="d-flex justify-content-between  d-md-block flex-wrap">
           <h6 class="card-title">{{plate.nombre| titlecase}}</h6>
-          <h6 class="card-title">{{plate.precio|currency}}</h6>
+          <h6 class="card-price">{{plate.precio|currency}}</h6>
         </div>
         <div class="d-flex justify-content-between flex-row flex-md-column my-1">
+          <!--
           <p
-            class=" d-block d-md-none card-text "> {{ plate.descripcion| slice:0:50 }}{{ plate.descripcion.length > 50 ? '...' : '' }}</p>
+            class="card-text text-truncate"> {{ plate.descripcion}}</p>
+          -->
           <p
-            class=" d-none d-md-block card-text">{{ plate.descripcion| slice:0:150 }}{{ plate.descripcion.length > 150 ? '...' : '' }}</p>
+            class=" d-block d-md-none d-lg-none card-text "> {{ plate.descripcion| slice:0:50 }}{{ plate.descripcion.length > 50 ? ' ...' : '' }}</p>
+          <p
+            class=" d-none d-md-block d-lg-none  card-text">{{ plate.descripcion| slice:0:70 }}{{ plate.descripcion.length > 70 ? ' ...' : '' }}</p>
+
+          <p
+            class=" d-none d-lg-block card-text">{{ plate.descripcion| slice:0:90 }}{{ plate.descripcion.length > 90 ? ' ...' : '' }}</p>
+
           <div class="align-self-end">
-            <button (click)="addCart()" class="btn btn-dark ">+</button>
+            <button (click)="addCart()" class="btn btn-dark "><fa-icon [icon]="faPlus"></fa-icon></button>
           </div>
         </div>
       </div>

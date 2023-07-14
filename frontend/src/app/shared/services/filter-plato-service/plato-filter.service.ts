@@ -12,11 +12,11 @@ export class PlatoFilterService {
    * @param nombre El nombre del plato utilizado para filtrar.
    * @returns Un array de objetos Plato filtrados por el nombre especificado.
    */
-  filterPlatesByCategoria(plates: Plate[], categoria: string) {
-    if (categoria === '') {
+  filterPlatesByCategory(plates: Plate[], category: string) {
+    if (category === '') {
       return plates
     }
-    return plates.filter(menu => menu.categoria === categoria);
+    return plates.filter(menu => menu.categoria === category);
   }
 
   /**

@@ -6,7 +6,7 @@ import {selectFilters} from "@modules/container/store/selectors/menu.selectors";
 import {MenuState} from "@modules/container/store/state/menu.state";
 import {Filters} from "@modules/container/components/group-button-filter-menu/group-button-filter-menu.component";
 import {
-  filterPlatesByCategories,
+  filterPlatesByCategory,
   filterPlatesBySinTACC,
   filterPlatesByTerm,
   filterPlatesByVegan
@@ -28,7 +28,7 @@ export class DeckMenuComponent {
     activateFilterSinTacc: false,
     /** @Deprecated */
     activateFilterVegano: false,
-    activateFilterByNames: [],
+    activateFilterByCategory: '',
     activateFilters: true,
     activateFilterSearchTerm: ''
   }
@@ -65,8 +65,8 @@ export class DeckMenuComponent {
         platosFiltered = filterPlatesBySinTACC(platosFiltered, this.filters.activateFilterSinTacc);
       }
 
-      if (this.filters.activateFilterByNames.length > 0) {
-        platosFiltered = filterPlatesByCategories(platosFiltered, this.filters.activateFilterByNames);
+      if (this.filters.activateFilterByCategory.length > 0) {
+        platosFiltered = filterPlatesByCategory(platosFiltered, this.filters.activateFilterByCategory);
       }
     }
 

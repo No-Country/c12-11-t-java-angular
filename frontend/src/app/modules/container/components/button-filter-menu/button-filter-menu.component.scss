@@ -2,15 +2,17 @@
   padding: 2px 20px 2px 20px;
   border-radius: 12px;
   text-transform: capitalize;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: .75rem;
+  font-weight: bold;
   margin-right: 14px;
 }
 
 @media (min-width: 768px) {
   .btn {
-    padding: 12px 20px;
+    padding: 0.5rem 1rem;
     text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
     border-radius: 0;
     width: 100%;
     border: 1px solid black;

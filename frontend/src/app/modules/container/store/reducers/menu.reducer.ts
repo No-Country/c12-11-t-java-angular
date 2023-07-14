@@ -20,11 +20,11 @@ export const menuReducer = createReducer(
   })),
   on(loadPlatesSuccess, (state: MenuState, {plates}) => (
     {
-    ...state,
-    plates: plates,//TODO: Cambiar
-    loading: false,
-    error: null
-  })),
+      ...state,
+      plates: plates,//TODO: Cambiar
+      loading: false,
+      error: null
+    })),
   on(loadPlatesFailure, (state: MenuState, {error}) => ({
     ...state,
     plates: initialState.plates,//TODO: Cambiar
@@ -38,29 +38,33 @@ export const menuReducer = createReducer(
   on(removeFilters, (state: MenuState, _) => ({
     ...state,
     activateFilters: false,
+    /**@Deprecated*/
     activateFilterSinTacc: false,
+    /**@Deprecated*/
     activateFilterVegano: false,
     activateFilterSearchTerm: '',
-    activateFilterByNames: [],
+    activateFilterByCategory: '',
   })),
+  /**@Deprecated*/
   on(toggleFilterSinTacc, (state: MenuState, _) => ({
     ...state,
     activateFilterSinTacc: !state.activateFilterSinTacc,
     activateFilters: true
   })),
+  /**@Deprecated*/
   on(toggleFilterVegano, (state: MenuState, _) => ({
     ...state,
     activateFilterVegano: !state.activateFilterVegano,
     activateFilters: true
   })),
-  on(updateFilterByNames, (state: MenuState, {filterNames}) => ({
+  on(updateFilterByNames, (state: MenuState, {filterNames: filterName}) => ({
     ...state,
-    activateFilterByNames: filterNames,
-    activateFilters: filterNames.length > 0 || state.activateFilterVegano || state.activateFilterSinTacc
+    activateFilterByCategory: filterName,
+    activateFilters: filterName !== ''
   })),
   on(updateFilterBySearch, (state: MenuState, {searchTerm}) => ({
     ...state,
     activateFilterSearchTerm: searchTerm,
-    activateFilters: searchTerm.trim().length > 0 || state.activateFilterByNames.length > 0 || state.activateFilterVegano || state.activateFilterSinTacc
+    activateFilters: searchTerm.trim().length > 0 || state.activateFilterByCategory.length > 0
   }))
 )

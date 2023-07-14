@@ -4,9 +4,12 @@ export interface MenuState {
   menu: string;
   plates: Plate[];
   activateFilterSearchTerm: string;
+  /**@Deprecated*/
   activateFilterSinTacc: boolean;
+  /**@Deprecated*/
   activateFilterVegano: boolean;
-  activateFilterByNames: string[];
+
+  activateFilterByCategory: string;
   activateFilters: boolean;
   loading: boolean;
   error: string | null;
@@ -226,9 +229,11 @@ export const initialState: MenuState = {
   ],
   activateFilters: false,
   activateFilterSearchTerm: '',
+  /**@Deprecated*/
   activateFilterSinTacc: false,
+  /**@Deprecated*/
   activateFilterVegano: false,
-  activateFilterByNames: [],
+  activateFilterByCategory: '',
   loading: false,
   error: null
 };

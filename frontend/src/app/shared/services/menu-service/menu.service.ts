@@ -60,7 +60,7 @@ export class MenuService {
   createMenuPlate(name: string): MenuPlate {
     return {
       name: name,
-      plates: this.platoFilterService.filterPlatesByCategoria(this.plates, name)
+      plates: this.platoFilterService.filterPlatesByCategory(this.plates, name)
     };
   }
 

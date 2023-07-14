@@ -17,18 +17,19 @@ export const filterPlatesByVegan = (plates: Plate[], isVegan: boolean): Plate[] 
   return plates.filter(plate => isPlatoVegano(plate, isVegan));
 }
 
+
 /**
  Filtra los platos según los nombres especificados y devuelve un array de objetos Plato.
  @param plates El array de platos a filtrar.
  @param names El array de nombres de platos utilizados para filtrar.
  @returns Un array de objetos Plato filtrados por los nombres especificados.
  */
-export const filterPlatesByCategories = (plates: Plate[], names: string[]) => {
+export const filterPlatesByCategory = (plates: Plate[], names: string) => {
   if (names.length === 0) {
     return plates;
   }
 
-  return plates.filter(menu => names.includes(menu.categoria));
+  return plates.filter(menu => isSameCategory(names, menu));
 
 }
 
@@ -78,6 +79,9 @@ const hasPlatoSimilarTerm = (plato: Plate, searchTerm: string) => {
  * @returns `true` si el plato es sin TACC, de lo contrario `false`.
  */
 const isPlatoSinTACC = (plato: Plate, isNoTacc: boolean) => plato.sinTACC === isNoTacc;
+
+const isSameCategory = (names: string, menu: Plate) => names === menu.categoria;
+
 
 /**
  * Verifica si un plato es vegano.
