@@ -16,7 +16,7 @@
   <div class="d-flex justify-content-between align-items-center">
     <!-- TODO Hacerlo componente-->
     <app-button-counter [maxValue]="plate?plate.stock:0" [minValue]="1" [value]="1"/>
-    <a class="btn btn-dark" href="#" id="button">Button</a>
+    <button class="btn btn-dark" id="button" (click)="addCart()">Agregar a mi pedido</button>
   </div>
 </footer>
 

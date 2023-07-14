@@ -36,7 +36,7 @@ import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import {StoreModule} from "@ngrx/store";
 import {SharedModule} from "@shared/shared.module";
 import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
-
+import {appReducer} from "../../store/reducers/app.reducer";
 
 
 @NgModule({
@@ -74,6 +74,7 @@ import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
     AuthModule,
     NgbCarouselModule,
     StoreModule.forFeature('menu', menuReducer),
+    StoreModule.forFeature('AppState', appReducer),
     NgbCarouselModule,
     SharedModule,
   ]

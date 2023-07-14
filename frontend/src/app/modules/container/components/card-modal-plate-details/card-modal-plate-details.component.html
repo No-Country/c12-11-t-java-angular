@@ -30,13 +30,10 @@
     -->
   </main>
   <div class="modal-footer justify-content-sm-between">
-    <app-button-counter [maxValue]="plate.stock" [minValue]="1" [value]="1"/>
+    <app-button-counter (valueChange)="onCountChange($event)" [maxValue]="plate.stock" [minValue]="1" [value]="1"/>
 
     <div>
-      <button (click)="modal.close('Save click')" class="btn btn-primary mx-2" type="button">
-        Cerrar
-      </button>
-      <a class="btn btn-dark" href="#" id="button">Agregar carrito</a>
+      <button (click)="addCart()" class="btn btn-dark" id="button">Agregar a mi pedido</button>
     </div>
   </div>
 </ng-template>

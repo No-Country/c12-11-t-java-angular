@@ -8,6 +8,8 @@ import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {PlateService} from "@shared/services/plate.service";
 import {loadMenu, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
+import {AppState} from "../../../../store/state/app.state";
+import {selectShoppingCart} from "../../../../store/selectors/app.selectors";
 
 @Component({
   selector: 'app-menu',
@@ -27,7 +29,9 @@ export class MenuComponent implements OnInit {
 
   menuName = 'Desayuno' //TODO: Debe venir del navbar
 
-  constructor(private location: Location, private menuStore: Store<MenuState>, public menuService: MenuService, public plateService: PlateService) {
+  constructor(private location: Location, private menuStore: Store<MenuState>
+    , private appStore: Store<AppState>
+    , public menuService: MenuService, public plateService: PlateService) {
 
   }
 
@@ -35,6 +39,12 @@ export class MenuComponent implements OnInit {
     this.menuStore.pipe(select(selectLoading)).subscribe(isLoad => {
       this.isLoading = isLoad
     });
+
+    this.appStore.pipe(select(selectShoppingCart)).subscribe(cart => {
+      console.log("state")
+      console.log(cart)
+    });
+
     this.getPlateList()
     this.menuStore.dispatch(setMenu({menuName: this.menuName}))
   }
