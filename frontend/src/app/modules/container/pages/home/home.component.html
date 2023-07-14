@@ -40,7 +40,7 @@
   <ngb-carousel *ngIf="slides.length > 0" class="d-sm-none home-carousel">
     <ng-template ngbSlide class="home-slide" *ngFor="let slide of slides" >
       <div class="picsum-img-wrapper">
-        <img [src]="slide.imageUrl" alt="Random first slide" />
+        <img [src]="slide.imageUrl" class="home-slide-image" alt="Random first slide" />
       </div>
       <div class="carousel-caption">
         <h3>{{ slide.title }}</h3>
@@ -56,10 +56,11 @@
   <div class="row">
     <div *ngFor="let plate of plateList" class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="card">
-        <img [src]="plate.urlImagen" alt="plato" class="card-img-top">
-        <div class="card-body">
+        <img [src]="'assets/img/plates/' + plate.urlImagen" alt="plato" class="card-img-plate">
+        <div class="card-body card-body-plate">
           <h5 class="card-title plate-name">{{ plate.nombre }}</h5>
-          <p class="card-text plate-description">
+          <p class="card-text plate-description"
+          >
             {{ plate.descripcion }}
           </p>
         </div>
