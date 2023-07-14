@@ -9,10 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class NoCVeggieApplication {
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(NoCVeggieApplication.class, args);
 	}
 
+	/* 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -27,4 +29,5 @@ public class NoCVeggieApplication {
 			}
 		};
 	}
+	*/
 }

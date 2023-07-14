@@ -1,5 +1,8 @@
 package com.proyecto.entidades;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +28,14 @@ public class Usuario {
     @Column(name = "contrasena")
     private String contrasena;
 
-    @Column(name = "clienteId")
-    private int clienteId;
+    //@Column(name = "clienteId")
+    //private int clienteId;
+    
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "TBL_USER_AUTHORITY", joinColumns = { @JoinColumn(name = "usuarioId") }, inverseJoinColumns = {
+			@JoinColumn(name = "AUTHORITY_ID") })
+	private Set<AuthorityEntity> authorities = new HashSet<>();
+    
+    @OneToOne(mappedBy = "usuario")
+	private Cliente cliente;
 }
