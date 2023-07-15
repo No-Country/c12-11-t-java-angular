@@ -4,10 +4,12 @@ import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
 import {MenuState} from "@modules/container/store/state/menu.state";
 import {select, Store} from "@ngrx/store";
-import {loadMenu} from "@modules/container/store/actions/menu.actions";
+import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {PlateService} from "@shared/services/plate.service";
-import {loadPlates, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
+import {AppState} from "../../../../store/state/app.state";
+import {selectShoppingCart, selectShoppingCartState} from "../../../../store/selectors/app.selectors";
+import {ShoppingCartState} from "@shared/enums/shopping-cart-state.interface";
 
 @Component({
   selector: 'app-menu',
@@ -25,9 +27,13 @@ export class MenuComponent implements OnInit {
 
   isLoading = true
 
-  menuName = 'Almuerzo y Cena' //TODO: Debe venir del navbar
+  menuName = 'Desayuno' //TODO: Debe venir del navbar
 
-  constructor(private location: Location, private menuStore: Store<MenuState>, public menuService: MenuService, public plateService: PlateService) {
+  constructor(private location: Location,
+              private menuStore: Store<MenuState>,
+              private appStore: Store<AppState>,
+              public menuService: MenuService,
+              public plateService: PlateService) {
 
   }
 
@@ -35,26 +41,19 @@ export class MenuComponent implements OnInit {
     this.menuStore.pipe(select(selectLoading)).subscribe(isLoad => {
       this.isLoading = isLoad
     });
-    this.getPlateList()
-    this.menuStore.dispatch(loadMenu({menuName: this.menuName}))
+
+    this.appStore.pipe(select(selectShoppingCart)).subscribe(cart => {
+      console.log("state")
+      console.log(cart)
+    });
+
+    this.appStore.pipe(select(selectShoppingCartState)).subscribe(state => {
+      this.isButtonSuccessDisabled = state === ShoppingCartState.New
+    });
+
+
+    this.menuStore.dispatch(setMenu({menuName: this.menuName}))
   }
 
-  getPlateList() {
-    let plates = []
-    this.menuStore.dispatch(loadPlates())
-    this.plateService.listarPlatos()
-      .subscribe({
-        next: (rpta) => {
-          plates = rpta
-          console.log("rpta =>", rpta)
-          this.menuStore.dispatch(loadPlatesSuccess({plates: plates}))
-        },
-        error: (message) => {
-          console.log("error =>", message);
-          this.menuStore.dispatch(loadPlatesFailure(message))
-        }
-      })
-
-  }
 
 }

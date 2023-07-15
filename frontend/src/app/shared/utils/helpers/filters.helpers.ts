@@ -1,11 +1,27 @@
 import {Plate} from "@shared/interfaces/plate.interface";
 
-
+/**
+ * Filtra los platos por tipo de menú.
+ * @param plates Array de platos.
+ * @param type Tipo de menú para filtrar.
+ * @returns Array de platos filtrados.
+ *
+ * @note Esta función filtra los platos del array según el tipo de menú especificado.
+ */
 export const filterPlatesByType = (plates: Plate[], type: string): Plate[] => {
   return plates.filter(plate => isTypePlate(plate, type));
 }
 
-const isTypePlate = (plate: Plate, type: string) => plate.tipoPlato === type
+/**
+ * Verifica si un plato pertenece al tipo especificado.
+ * @param plate Plato a verificar.
+ * @param type Tipo de menú.
+ * @returns `true` si el plato pertenece al tipo especificado, de lo contrario `false`.
+ *
+ * @note Esta función verifica si el tipo de menú de un plato coincide con el tipo especificado.
+ */
+const isTypePlate = (plate: Plate, type: string) => plate.tipoPlato === type;
+
 
 /**
  * Filtra los platos según si son veganos o no.

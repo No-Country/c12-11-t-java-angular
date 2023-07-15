@@ -1,4 +1,5 @@
 import {ShoppingCart} from "@shared/interfaces/shopping-cart.interface";
+import {ShoppingCartState} from "@shared/enums/shopping-cart-state.interface";
 
 /*Este es el store|state de la app,
 los cambios esta a debatir es solo de prueba */
@@ -14,7 +15,7 @@ export const initialState: AppState = {
   shoppingCart: {
     orders: [],
     total: 0,
-    state: 'Nuevo'
+    state: ShoppingCartState.New
   },
   loading: false,
   error: null

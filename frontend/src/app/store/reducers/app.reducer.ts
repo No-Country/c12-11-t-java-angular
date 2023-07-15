@@ -1,6 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialState} from "../state/app.state";
 import {addOrderToCart, setShoppingCart} from "../actions/shoppin-card.actions";
+import {ShoppingCartState} from "@shared/enums/shopping-cart-state.interface";
 
 
 /*En base a la accion despachada por la accion se hacen los cambios en el store/state
@@ -18,7 +19,7 @@ export const appReducer = createReducer(
       total: state.shoppingCart.orders
         .map(o => o.totalParcial)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0),
-      state: 'Nuevo'
+      state: ShoppingCartState.ReadyToOrdered
     },
   })),
 );
