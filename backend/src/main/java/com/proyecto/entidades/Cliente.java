@@ -30,8 +30,13 @@ public class Cliente {
     @Column(name = "numeroCelular")
     private String numeroCelular;
     
+    /*
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuarioId")
     private Usuario usuario;
+    */
+    
+    @OneToOne(mappedBy = "cliente")
+	private Usuario usuario;
 
 }

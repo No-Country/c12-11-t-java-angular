@@ -2,22 +2,25 @@ package com.proyecto.entidades;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
 @Entity
-@Table(name = "TBL_AUTHORITY", schema = "esq_security")
+@Table(name = "TBL_AUTHORITY")
 @ToString
 @Data
 public class AuthorityEntity{
 
 	@Id
-	@Column(name = "AUTHORITY_ID") 
-	private Long id = 0L;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "AUTHORITY_ID")
+	private Integer id;
 
 	@Column(name = "NOMBRE")
-	private String nombre = "";
+	private String nombre;
 
 }

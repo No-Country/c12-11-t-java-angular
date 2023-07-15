@@ -36,6 +36,12 @@ public class Usuario {
 			@JoinColumn(name = "AUTHORITY_ID") })
 	private Set<AuthorityEntity> authorities = new HashSet<>();
     
+    /*
     @OneToOne(mappedBy = "usuario")
 	private Cliente cliente;
+	*/
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clienteId")
+    private Cliente cliente;;
 }

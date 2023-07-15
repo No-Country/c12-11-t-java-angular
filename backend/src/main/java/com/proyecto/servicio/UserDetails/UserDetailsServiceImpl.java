@@ -45,5 +45,15 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 			
 		return new UserDetailsImpl(usuarioEntity);
 	}
+	
+	public boolean esUsuarioRegistrado(String usuario) {
+		Usuario usuarioEntity= this.usuarioRepository.findByUsuario(usuario);
+		
+		if (!isNull(usuarioEntity)) {
+			return true;
+		}
+		
+		return false;
+	}
 
 }
