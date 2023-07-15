@@ -1,65 +1,47 @@
 import {createReducer, on} from '@ngrx/store';
-import {initialState, MenuState} from "@modules/container/store/state/menu.state";
-import {loadPlates, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
-import {loadMenu} from "@modules/container/store/actions/menu.actions";
+import {initialState} from "@modules/container/store/state/menu.state";
+import {
+  loadMenu,
+  loadPlatesFailure,
+  loadPlatesSuccess,
+  setPlateSelected
+} from "@modules/container/store/actions/plates.actions";
+import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {
   removeFilters,
   toggleFilterSinTacc,
   toggleFilterVegano,
-  updateFilterByNames,
+  updateFilterByCategory,
   updateFilterBySearch
 } from "@modules/container/store/actions/filters.actions";
+import {handleLoadMenu, handleSetMenu} from "@modules/container/store/reducers/handlers/menu.handler";
+import {
+  handleLoadPlatesFailure,
+  handleLoadPlatesSuccess,
+  handleSetPlateSelected
+} from "@modules/container/store/reducers/handlers/plate.handler";
+import {
+  handleFilterByCategory,
+  handleFilterBySearchTerm,
+  handleFilterSinTacc,
+  handleFilterVegano,
+  handleRemoveFilters
+} from "@modules/container/store/reducers/handlers/filter.handler";
 
 
 export const menuReducer = createReducer(
   initialState,
-  on(loadPlates, (state: MenuState) => ({
-    ...state,
-    loading: true,
-    error: null
-  })),
-  on(loadPlatesSuccess, (state: MenuState, {plates}) => ({
-    ...state,
-    plates: plates,//TODO: Cambiar
-    loading: false,
-    error: null
-  })),
-  on(loadPlatesFailure, (state: MenuState, {error}) => ({
-    ...state,
-    plates: initialState.plates,//TODO: Cambiar
-    loading: false,
-    error
-  })),
-  on(loadMenu, (state: MenuState, {menuName}) => ({
-    ...state,
-    menu: menuName
-  })),
-  on(removeFilters, (state: MenuState, _) => ({
-    ...state,
-    activateFilters: false,
-    activateFilterSinTacc: false,
-    activateFilterVegano: false,
-    activateFilterSearchTerm: '',
-    activateFilterByNames: [],
-  })),
-  on(toggleFilterSinTacc, (state: MenuState, _) => ({
-    ...state,
-    activateFilterSinTacc: !state.activateFilterSinTacc,
-    activateFilters: true
-  })),
-  on(toggleFilterVegano, (state: MenuState, _) => ({
-    ...state,
-    activateFilterVegano: !state.activateFilterVegano,
-    activateFilters: true
-  })),
-  on(updateFilterByNames, (state: MenuState, {filterNames}) => ({
-    ...state,
-    activateFilterByNames: filterNames,
-    activateFilters: filterNames.length > 0 || state.activateFilterVegano || state.activateFilterSinTacc
-  })),
-  on(updateFilterBySearch, (state: MenuState, {searchTerm}) => ({
-    ...state,
-    activateFilterSearchTerm: searchTerm,
-    activateFilters: searchTerm.trim().length > 0 || state.activateFilterByNames.length > 0 || state.activateFilterVegano || state.activateFilterSinTacc
-  }))
+  on(loadMenu, handleLoadMenu),
+  on(loadPlatesSuccess, handleLoadPlatesSuccess),
+  on(loadPlatesFailure, handleLoadPlatesFailure),
+  on(setMenu, handleSetMenu),
+  on(removeFilters, handleRemoveFilters),
+  on(toggleFilterSinTacc, handleFilterSinTacc),
+  on(toggleFilterVegano, handleFilterVegano),
+  on(updateFilterByCategory, handleFilterByCategory),
+  on(updateFilterBySearch, handleFilterBySearchTerm),
+  on(setPlateSelected, handleSetPlateSelected),
 )
+
+
+

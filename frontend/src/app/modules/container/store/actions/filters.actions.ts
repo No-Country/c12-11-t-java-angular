@@ -1,25 +1,29 @@
 import {createAction, props} from '@ngrx/store';
+import {MenuActionTypeEnum} from "@modules/container/store/models/menu-action-type.enum";
 
 
 export const removeFilters = createAction(
-  '[Menu] Toggle remove filters'
+  MenuActionTypeEnum.RemoveFilters
 );
 
+/**@Deprecated*/
 export const toggleFilterVegano = createAction(
-  '[Menu] Toggle filter vegano'
+  MenuActionTypeEnum.ToggleFilterVegano
 );
 
+/**@Deprecated*/
 export const toggleFilterSinTacc = createAction(
-  '[Menu] Toggle filter sin TACC'
+  MenuActionTypeEnum.ToggleFilterSinTacc
 );
 
-export const updateFilterByNames = createAction(
-  '[Menu] Update filter by names',
-  props<{ filterNames: string[] }>()
+export const updateFilterByCategory = createAction(
+  MenuActionTypeEnum.UpdateFilterByCategory,
+  props<{ filterNames: string }>()
 );
 
 export const updateFilterBySearch = createAction(
-  '[Menu] Update filter by search',
+  MenuActionTypeEnum.UpdateFilterBySearch,
   props<{ searchTerm: string }>()
-);
+)
+
 

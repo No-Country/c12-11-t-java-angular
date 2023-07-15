@@ -1,54 +1,47 @@
 <div class="carousel d-block d-md-none">
-  <div class="button-group ">
-    <app-button-filter-menu
-      (click)="toggleViewAll($event)"
-      [isActive]="!filter.activateFilters"
-      [name]="'Ver todos'"
-    />
-
-    <app-button-filter-menu
-      (click)="toggleSinTacc($event)"
-      [isActive]="filter.activateFilterSinTacc"
-      [name]="'Sin Tacc'"
-    />
-    <app-button-filter-menu
-      (click)="toggleVegano($event)"
-      [isActive]="filter.activateFilterVegano"
-      [name]="'Vegano'"
-    />
-    <app-button-filter-menu
-      (click)="toggleNames(name)"
-      *ngFor="let name of filtersNames; let i = index"
-      [isActive]="filter.activateFilterByNames.includes(name)"
-      [name]="name"
-    />
-  </div>
+  <app-button-filter-menu
+    (click)="toggleCategory(name)"
+    *ngFor="let name of filtersCategories; let i = index"
+    [isActive]="filter.activateFilterByCategory.includes(name)"
+    [name]="name"
+  />
+  <app-button-filter-menu
+    (click)="toggleSinTacc()"
+    [isActive]="filter.activateFilterSinTacc"
+    [name]="'Sin Tacc'"
+  />
+  <app-button-filter-menu
+    (click)="toggleVegano()"
+    [isActive]="filter.activateFilterVegano"
+    [name]="'Vegano'"
+  />
 </div>
 
 <div class="d-none d-md-block my-4">
   <div class="d-flex flex-column border-black">
-    <app-button-filter-menu
-      (click)="toggleViewAll($event)"
-      [isActive]="!filter.activateFilters"
-      [name]="'Ver todos'"
-    />
+    <p class="m-0 px-1">Categoria</p>
+    <hr class="border border-dark border-2 my-2 opacity-75 w-50">
 
     <app-button-filter-menu
-      (click)="toggleSinTacc($event)"
-      [isActive]="filter.activateFilterSinTacc"
-      [name]="'Sin Tacc'"
-    />
-    <app-button-filter-menu
-      (click)="toggleVegano($event)"
-      [isActive]="filter.activateFilterVegano"
-      [name]="'Vegano'"
-    />
-    <app-button-filter-menu
-      (click)="toggleNames(name)"
-      *ngFor="let name of filtersNames; let i = index"
-      [isActive]="filter.activateFilterByNames.includes(name)"
+      (click)="toggleCategory(name)"
+      *ngFor="let name of filtersCategories; let i = index"
+      [isActive]="filter.activateFilterByCategory.includes(name)"
       [name]="name"
     />
+    <div class="my-2">
+      <p class="m-0 px-1">Contenido</p>
+      <hr class="border border-dark border-2 my-2 opacity-75 w-50">
+      <app-button-filter-menu
+        (click)="toggleSinTacc()"
+        [isActive]="filter.activateFilterSinTacc"
+        [name]="'Sin Tacc'"
+      />
+      <app-button-filter-menu
+        (click)="toggleVegano()"
+        [isActive]="filter.activateFilterVegano"
+        [name]="'Vegano'"
+      />
+    </div>
   </div>
 </div>
 

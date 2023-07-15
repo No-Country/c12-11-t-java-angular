@@ -1,16 +1,22 @@
 import {createAction, props} from '@ngrx/store';
 import {Plate} from "@shared/interfaces/plate.interface";
+import {MenuActionTypeEnum} from "@modules/container/store/models/menu-action-type.enum";
 
-export const loadPlates = createAction('[Menu] Load plates');
+export const loadMenu = createAction(MenuActionTypeEnum.LoadMenu);
 
-export const applyFilters = createAction('[Menu] Apply Filters');
+export const applyFilters = createAction(MenuActionTypeEnum.ApplyFilters);
 
 export const loadPlatesSuccess = createAction(
-  '[App] Load plates Success',
+  MenuActionTypeEnum.LoadPlatesSuccess,
   props<{ plates: Plate[] }>()
 );
 
 export const loadPlatesFailure = createAction(
-  '[App] Load plates Failure',
+  MenuActionTypeEnum.LoadPlatesFailure,
   props<{ error: string }>()
+);
+
+export const setPlateSelected = createAction(
+  MenuActionTypeEnum.SetPlateSelected,
+  props<{ plateSelected: Plate }>()
 );
