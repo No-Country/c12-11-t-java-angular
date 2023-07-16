@@ -37,6 +37,13 @@ import {StoreModule} from "@ngrx/store";
 import {SharedModule} from "@shared/shared.module";
 import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
 import {appReducer} from "../../store/reducers/app.reducer";
+  ProductDetailsModalComponent
+} from '@modules/container/components/product-details-modal/product-details-modal.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+import { SharedModule } from '@shared/shared.module';
+import { DeliveryContainerComponent } from './components/delivery-container/delivery-container.component';
 
 
 @NgModule({
@@ -62,6 +69,8 @@ import {appReducer} from "../../store/reducers/app.reducer";
     CardModalPlateDetailsComponent,
     TabsComponent,
     ConfirmOrderComponent,
+    DeliveryContainerComponent,
+
     StarRatingComponent,
     CardModalPlateDetailsComponent,
   ],

@@ -1,0 +1,108 @@
+<div class="delivery-container">
+  <div class="delivery-detail-container">
+    <h1 class="title-page">Detalle de Entrega</h1>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" [(ngModel)]="optionsDelivery"
+        id="inlineRadio1" value="0" checked />
+      <label class="form-check-label" for="inlineRadio1">Delivery</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" [(ngModel)]="optionsDelivery" name="inlineRadioOptions"
+        id="inlineRadio2" value="1" />
+      <label class="form-check-label" for="inlineRadio2">Retiro en el Local</label>
+    </div>
+
+
+  <div class="row">
+
+    <div class="col-md">
+      <div *ngIf="optionsDelivery=='1'">
+        <h1 class="title-page mt-3 ">Notas</h1>
+        <input class="form-control form-control-sm " type="text" placeholder="example"
+          aria-label=".form-control-sm example" />
+      </div>
+      <ul class="list-group list-address mt-3 " *ngIf="direcciones.length > 0&& optionsDelivery=='0'">
+        <li class="list-group-item" *ngFor="let direccion of direcciones">
+          <input type="radio" name="radios" [value]="direccion.zona" />
+          {{ direccion.zona }}
+          <fa-icon [icon]="faTrashCan" class="icon-end" ></fa-icon>
+        </li>
+
+        <button type="button" class="btn btn-secondary btn-sm  btn-lgp mt-2" (click)=" hasDireccion = !hasDireccion">
+          <img src="assets/icons/circlePlus.svg" alt="" /> Nueva dirreccion
+        </button>
+      </ul>
+      <div class="first-address " *ngIf="direcciones.length === 0 ||hasDireccion">
+
+        <!-- formulario para crear una direccion. -->
+
+        <form *ngIf="optionsDelivery=='0'" [formGroup]="addressform" (ngSubmit)="addAddress()">
+          <div class="row">
+            <div class="col">
+              <h1 class="subtitle-page mt-3">Zona</h1>
+              <input class="form-control form-control-sm" type="text" formControlName="zona" placeholder="Zona de residencia"
+                aria-label=".form-control-sm example" />
+              <h1 class="subtitle-page mt-3">Altura</h1>
+              <input class="form-control form-control-sm"  type="text"  formControlName="altura"
+                aria-label=".form-control-sm example" />
+            </div>
+            <div class="col">
+              <h1 class="subtitle-page mt-3" >Calle</h1>
+              <input class="form-control form-control-sm" type="text" formControlName="nombreCalle" placeholder="Nombre de la calle"
+                aria-label=".form-control-sm example" />
+              <h1 class="subtitle-page mt-3">Tipo de vivienda</h1>
+              <input class="form-control form-control-sm" type="text" formControlName="tipoVivienda" placeholder=""
+                aria-label=".form-control-sm example" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-secondary btn-sm btn-lgp mt-2">
+            Agregar
+          </button>
+        </form>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="order-summary-container">
+        <h1 class="title-page mt-3 mb-3">Resumen del Pedido</h1>
+        <hr />
+        <div class="row mb-2">
+          <div class="col">
+            <h2 class="subtitle-page">Producto</h2>
+          </div>
+          <div class="col text-end">
+            <h2 class="subtitle-page">{{ price | currency }}</h2>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <h2 class="subtitle-page">Envio</h2>
+          </div>
+          <div class="col text-end">
+            <h2 class="subtitle-page">{{ price - 2000 | currency }}</h2>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <h2 class="subtitle-page">Propina</h2>
+          </div>
+          <div class="col text-end">
+            <h2 class="subtitle-page">{{ price - 3500 | currency }}</h2>
+          </div>
+        </div>
+        <hr />
+        <div class="row mb-2">
+          <div class="col">
+            <h2 class="subtitle-page-bold">Total</h2>
+          </div>
+          <div class="col text-end">
+            <h2 class="subtitle-page-bold">
+              {{ price - 3500 | currency }}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
