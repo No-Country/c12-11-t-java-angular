@@ -17,6 +17,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public state:string="";
   public textAddress:string="";
+  public optionsDelivery:string="0";
   public newAddress:any={
   }
   public valueDefaul:number=1;

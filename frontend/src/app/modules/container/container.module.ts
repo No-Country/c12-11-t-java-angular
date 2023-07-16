@@ -35,6 +35,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
 import { SharedModule } from '@shared/shared.module';
+import { DeliveryContainerComponent } from './components/delivery-container/delivery-container.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { SharedModule } from '@shared/shared.module';
     ProductDetailsModalComponent,
     TabsComponent,
     ConfirmOrderComponent,
+    DeliveryContainerComponent,
 
   ],
   imports: [

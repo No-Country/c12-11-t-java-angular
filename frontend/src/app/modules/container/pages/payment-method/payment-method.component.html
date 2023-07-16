@@ -28,8 +28,8 @@
         <div class="Method-container">
 
           <div class="select-Method-container" >
-            <h2 class="subtitle-page-bold-lg">Selecciona el metodo</h2>
-            <div class="form-check">
+            <h2 class="title-page">Selecciona el metodo</h2>
+            <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
@@ -43,7 +43,7 @@
                 Tarjeta debito/credito
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
                 type="radio"
@@ -57,17 +57,17 @@
               </label>
             </div>
           </div>
-          <ul class="list-group list-cards " *ngIf="cardsRegister.length > 0&&valueMethod == '0'" >
+          <ul class="list-group list-cards  mt-3" *ngIf="cardsRegister.length > 0&&valueMethod == '0'" >
             <li class="list-group-item" *ngFor="let card of cardsRegister ;let i =index" >
               <input type="radio" name="radios" [value]="card.numero"  />  <img class="imgCard" src="assets/icons/image.svg" alt="">  {{card.numero }}-{{card.name}}
               <fa-icon [icon]="faTrashCan" class="icon-end" (click)="deleteCard(i)"></fa-icon>
             </li>
 
-            <button type="button" class="btn btn-secondary btn-sm mt-2 btn-add" (click)="isnewCard=true">
+            <button type="button" class="btn btn-secondary btn-sm mt-2 btn-add" (click)="isnewCard=!isnewCard">
               <img src="assets/icons/circlePlus.svg" alt="" /> Nueva tarjeta
             </button>
           </ul>
-          <div class="add-card-container  " *ngIf="(valueMethod == '0'&&cardsRegister.length==0)||isnewCard">
+          <div class="add-card-container  " *ngIf="(valueMethod == '0'&&cardsRegister.length==0)||isnewCard &&valueMethod == '0'">
             <h1 class="subtitle-page mt-3">Numero</h1>
             <input
               class="form-control form-control-sm"
