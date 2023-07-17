@@ -65,6 +65,15 @@ public class ControladorPlato {
         return ResponseEntity.ok(ListaDePlatos);
 
     }
+    @GetMapping
+    @RequestMapping(value = "listaDeAcompañamientos", method = RequestMethod.GET)
+    public ResponseEntity<?> listDeAcompañamientos() {
+    	
+    	List<Plato> ListaDePlatos = this.psimpl.buscarAcompañamientos();
+    	
+    	return ResponseEntity.ok(ListaDePlatos);
+    	
+    }
     
     @PostMapping
     @RequestMapping(value = "crearPlato", method = RequestMethod.POST)

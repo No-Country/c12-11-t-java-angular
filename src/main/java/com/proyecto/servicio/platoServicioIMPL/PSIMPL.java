@@ -106,6 +106,21 @@ public class PSIMPL implements PlatoServicio {
 			}
 	return lista;	
 	}
+	@Override
+	public List<Plato> buscarAcompañamientos() {
+		
+		List<Plato> lista= new ArrayList<Plato>();
+		List<Plato> listaAux= new ArrayList<Plato>();
+		
+		listaAux=(List<Plato>) platoRepositorio.findAll();
+		
+		for (Plato plato : listaAux) {
+			if(plato.getTipoPlato().matches("Acompañamiento")) {
+				lista.add(plato);
+			}
+		}
+		return lista;	
+	}
 
 
     

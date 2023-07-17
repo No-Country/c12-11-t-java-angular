@@ -23,6 +23,8 @@ public interface PlatoServicio {
     public List<Plato> buscarPrincipales();
     
     public List<Plato> buscarBebidas();
+   
+    public List<Plato> buscarAcompañamientos();
     
     
 }
