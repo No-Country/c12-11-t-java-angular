@@ -27,4 +27,5 @@ public class Usuario {
 
     @Column(name = "clienteId")
     private int clienteId;
+    
 }

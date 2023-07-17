@@ -25,6 +25,47 @@ public class ControladorPlato {
         return ResponseEntity.ok(ListaDePlatosx);
 
     }
+    
+    @GetMapping
+    @RequestMapping(value = "listaDePlatosVeganos", method = RequestMethod.GET)
+    public ResponseEntity<?> listDePlatosVeganos() {
+
+        List<Plato> ListaDePlatos = this.psimpl.buscarPlatoVegano();
+
+        return ResponseEntity.ok(ListaDePlatos);
+
+    }
+    
+    @GetMapping
+    @RequestMapping(value = "listaDePrincipales", method = RequestMethod.GET)
+    public ResponseEntity<?> listDePlatosPrincipales() {
+
+        List<Plato> ListaDePlatos = this.psimpl.buscarPrincipales();
+
+        return ResponseEntity.ok(ListaDePlatos);
+
+    }
+    
+    @GetMapping
+    @RequestMapping(value = "listaDePostres", method = RequestMethod.GET)
+    public ResponseEntity<?> listDePostres() {
+
+        List<Plato> ListaDePlatos = this.psimpl.buscarPostres();
+
+        return ResponseEntity.ok(ListaDePlatos);
+
+    }
+    
+    @GetMapping
+    @RequestMapping(value = "listaDeBebidas", method = RequestMethod.GET)
+    public ResponseEntity<?> listDeBebidas() {
+
+        List<Plato> ListaDePlatos = this.psimpl.buscarBebidas();
+
+        return ResponseEntity.ok(ListaDePlatos);
+
+    }
+    
     @PostMapping
     @RequestMapping(value = "crearPlato", method = RequestMethod.POST)
     public ResponseEntity<?> crearPlato(@RequestBody Plato plato){
@@ -53,6 +94,7 @@ public class ControladorPlato {
         return ResponseEntity.ok(plato);
 
     }
+    
     @DeleteMapping
     @RequestMapping(value = "eliminarPlato/{id}",method = RequestMethod.DELETE)
     public ResponseEntity<?> eliminarPlato(@PathVariable int id){
@@ -62,4 +104,5 @@ public class ControladorPlato {
         return ResponseEntity.ok().build();
 
     }
+    
 }

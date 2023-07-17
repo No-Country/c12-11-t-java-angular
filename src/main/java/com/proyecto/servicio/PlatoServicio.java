@@ -15,4 +15,14 @@ public interface PlatoServicio {
     public Plato buscarPlato(int id);
 
     public void eliminarPlato(int id);
+    
+    public List<Plato> buscarPlatoVegano();
+   
+    public List<Plato> buscarPostres();
+  
+    public List<Plato> buscarPrincipales();
+    
+    public List<Plato> buscarBebidas();
+    
+    
 }

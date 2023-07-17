@@ -34,7 +34,7 @@ public class WebSecurityConfig {
 	                .anyRequest().authenticated() // Todas las demás rutas requieren autenticación
 	            )
 	            .formLogin(form -> form
-	                .loginPage("/VeggieDelivery/listaDePlatos") // Ruta personalizada para la página de inicio de sesión
+	                .loginPage("/") // Ruta personalizada para la página de inicio de sesión
 	                .defaultSuccessUrl("/") // Ruta a la que se redirige después de un inicio de sesión exitoso
 	                .permitAll() // Permitir a todos los usuarios acceder a la página de inicio de sesión
 	            )
