@@ -38,11 +38,13 @@ export class DeliveryContainerComponent implements OnInit{
   }
 
   addAddress(){
-    console.log(this.addressform.value);
-   /*  this.addressService.crearDirreccion(this.addressform.value).subscribe(resp=>{
-      console.log(resp)});
-    this.listAddress();
- */
+
+    this.addressService.crearDirreccion(this.addressform.value).subscribe(resp=>{
+      console.log(resp);
+      this.listAddress();
+    });
+
+
 
 
   }
@@ -65,6 +67,14 @@ export class DeliveryContainerComponent implements OnInit{
   }
   public goBack(){
     this.router.navigateByUrl('/container/menu');
+
+  }
+  public deleteAddress(id?:number){
+   this.addressService.eliminarDirreccion(id as number).subscribe(resp=>{
+    this.listAddress();
+   }
+   )
+
 
   }
 }
