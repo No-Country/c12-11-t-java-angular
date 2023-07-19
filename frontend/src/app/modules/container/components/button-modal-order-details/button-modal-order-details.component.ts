@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {Cart} from "../../../../store/models/cart.model";
 import {CartState} from "../../../../store/models/cart-state.model";
 import {selectCart} from "../../../../store/selectors/cart.selectors";
+import {CartActions} from "../../../../store/actions/cart.actions";
 
 
 @Component({
@@ -33,11 +34,15 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.pipe(select(selectCart)).subscribe(shoppingCart => {
-      console.log("hola", shoppingCart)
       this.shoppingCart = shoppingCart
     });
   }
 
+  goToPayment() {
+    this.modalService.dismissAll();
+    this.store.dispatch(CartActions.setState({state: CartState.ReadyToPay}));
+    this.router.navigateByUrl("/container/shopping");
+  }
 
   open(content: any) {
     this.modalService.open(content, {

@@ -31,7 +31,6 @@ export class CardOrderComponent implements OnInit {
   }
 
   onCountChange(newValue: number) {
-    console.log("Cambiando a", newValue)
     this.count = newValue;
     if (newValue >= 1) {
       this.appStore.dispatch(CartActions.addOrder({

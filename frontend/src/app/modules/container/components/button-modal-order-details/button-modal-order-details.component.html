@@ -21,7 +21,7 @@
       <p>Total:</p>
       <p>{{shoppingCart.total|currency}}</p>
     </div>
-    <button (click)="modal.dismiss('Cross click')" *ngIf="shoppingCart.orders.length>0" class="btn btn-dark m-auto"
+    <button (click)="goToPayment()" *ngIf="shoppingCart.orders.length>0" class="btn btn-dark m-auto"
             id="button"
             routerLink="/container/shopping">
       <fa-icon [icon]="faCartSuccess"/>
