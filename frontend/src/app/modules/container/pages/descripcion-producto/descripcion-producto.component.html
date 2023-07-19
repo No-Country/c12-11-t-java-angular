@@ -3,7 +3,7 @@
 
   <div class="container">
 
-    <h1 class="text-title">{{plate ? plate.nombre : ''}}</h1>
+    <h1 class="text-title">{{plate ? plate.categoria : ''}}</h1>
     <h2 class="text-title">{{plate ? plate.precio : ''}}</h2>
     <p class="text-break text-truncate text-muted">{{plate ? plate.descripcion : ''}}</p>
 
@@ -14,7 +14,6 @@
 <footer *ngIf="showPlate" class="descripcion-footer sticky-bottom bg-light  ">
 
   <div class="d-flex justify-content-between align-items-center">
-    <!-- TODO Hacerlo componente-->
     <app-button-counter [maxValue]="plate?plate.stock:0" [minValue]="1" [value]="1"/>
     <button class="btn btn-dark" id="button" (click)="addCart()">Agregar a mi pedido</button>
   </div>

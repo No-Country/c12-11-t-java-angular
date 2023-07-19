@@ -4,8 +4,6 @@ import {MenuActionTypeEnum} from "@modules/container/store/models/menu-action-ty
 
 export const loadMenu = createAction(MenuActionTypeEnum.LoadMenu);
 
-export const applyFilters = createAction(MenuActionTypeEnum.ApplyFilters);
-
 export const loadPlatesSuccess = createAction(
   MenuActionTypeEnum.LoadPlatesSuccess,
   props<{ plates: Plate[] }>()

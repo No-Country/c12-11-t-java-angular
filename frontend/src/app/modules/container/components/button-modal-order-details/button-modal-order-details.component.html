@@ -1,0 +1,35 @@
+<ng-template #content let-modal>
+  <header class="modal-header justify-content-start">
+    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close mx-0" type="button"></button>
+    <h4 class="modal-title mx-3" id="modal-basic-title">Tu pedido</h4>
+  </header>
+  <main class="modal-body ">
+
+    <div *ngIf="shoppingCart.orders.length===0" class="text-dark-emphasis">
+      <p> No has seleccionado comidas...</p>
+      <p>Hambre + Opciones = ¡Estamos listos para que pidas y sigas disfrutando!</p>
+    </div>
+
+    <ng-container
+      *ngFor="let order of shoppingCart.orders; let i = index"
+    >
+      <app-card-order [order]="order"></app-card-order>
+    </ng-container>
+  </main>
+  <div class="modal-footer justify-content-sm-between">
+    <div class="d-flex w-100 justify-content-between text-price border-bottom">
+      <p>Total:</p>
+      <p>{{shoppingCart.total|currency}}</p>
+    </div>
+    <button *ngIf="shoppingCart.orders.length>0" class="btn btn-dark m-auto" id="button">
+      <fa-icon [icon]="faCartSuccess"/>
+      Ir a pagar
+    </button>
+  </div>
+</ng-template>
+
+<button (click)="open(content)" class="btn btn-dark">
+  <fa-icon [icon]="faCart"/>
+  Ver mi pedido
+</button>
+

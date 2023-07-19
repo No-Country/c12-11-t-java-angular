@@ -22,7 +22,7 @@ export class MenuService {
     this.loadPlates();
 
     this.menuStore.pipe(select(selectMenu)).subscribe((menuName: string) => {
-      this.tipoMenu = menuName as string;
+      this.tipoMenu = menuName;
     });
 
     this.menuStore.pipe(select(selectPlates)).subscribe((plates: Plate[]) => {
@@ -91,7 +91,7 @@ export class MenuService {
    */
   createMenuPlate(name: string): MenuPlate {
     return {
-      name,
+      category: name,
       plates: filterPlatesByCategory(this.plates, name)
     };
   }

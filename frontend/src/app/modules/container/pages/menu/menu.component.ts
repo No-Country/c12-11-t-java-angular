@@ -1,15 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {faCartShopping, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
-import {MenuState} from "@modules/container/store/state/menu.state";
 import {select, Store} from "@ngrx/store";
 import {setMenu} from "@modules/container/store/actions/menu.actions";
-import {PlateService} from "@shared/services/plate.service";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
-import {AppState} from "../../../../store/state/app.state";
-import {selectShoppingCart, selectShoppingCartState} from "../../../../store/selectors/app.selectors";
-import {ShoppingCartState} from "@shared/enums/shopping-cart-state.interface";
+import {CartState} from '../../../../store/models/cart-state.model';
+import {selectCart} from "../../../../store/selectors/cart.selectors";
 
 @Component({
   selector: 'app-menu',
@@ -20,40 +17,33 @@ export class MenuComponent implements OnInit {
 
 
   faChevronLeft = faChevronLeft
-  faCart = faCartShopping
 
-  //Tiene algo en el carrito? -> NgRX -> Consultar Store Carrito
-  isButtonSuccessDisabled = false
 
+  cartState: CartState = CartState.New
   isLoading = true
 
   menuName = 'Desayuno' //TODO: Debe venir del navbar
 
   constructor(private location: Location,
-              private menuStore: Store<MenuState>,
-              private appStore: Store<AppState>,
-              public menuService: MenuService,
-              public plateService: PlateService) {
+              private store: Store,
+              public menuService: MenuService) {
 
   }
 
   ngOnInit(): void {
-    this.menuStore.pipe(select(selectLoading)).subscribe(isLoad => {
+    this.store.pipe(select(selectLoading)).subscribe(isLoad => {
       this.isLoading = isLoad
     });
 
-    this.appStore.pipe(select(selectShoppingCart)).subscribe(cart => {
-      console.log("state")
-      console.log(cart)
+    this.store.dispatch(setMenu({menuName: this.menuName}))
+
+    this.store.pipe(select(selectCart)).subscribe(cart => {
+      this.cartState = cart.state
     });
-
-    this.appStore.pipe(select(selectShoppingCartState)).subscribe(state => {
-      this.isButtonSuccessDisabled = state === ShoppingCartState.New
-    });
-
-
-    this.menuStore.dispatch(setMenu({menuName: this.menuName}))
   }
 
+  disabledFooter() {
+    return this.cartState === CartState.New
+  }
 
 }

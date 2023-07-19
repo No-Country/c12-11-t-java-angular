@@ -35,6 +35,14 @@ import {ConfirmOrderComponent} from "@modules/container/pages/confirm-order/conf
 import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import {StoreModule} from "@ngrx/store";
 import {SharedModule} from "@shared/shared.module";
+
+import {
+  DeliveryContainerComponent
+} from "@modules/container/components/delivery-container/delivery-container.component";
+import {CardOrderComponent} from "@modules/container/components/card-order/card-order.component";
+import {
+  ButtonModalOrderDetailsComponent
+} from "@modules/container/components/button-modal-order-details/button-modal-order-details.component";
 import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
 
 
@@ -64,6 +72,8 @@ import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
     StarRatingComponent,
     CardModalPlateDetailsComponent,
     DeliveryContainerComponent,
+    CardOrderComponent,
+    ButtonModalOrderDetailsComponent,
 
   ],
   imports: [
@@ -75,6 +85,7 @@ import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
     AuthModule,
     NgbCarouselModule,
     StoreModule.forFeature('menu', menuReducer),
+
     NgbCarouselModule,
     SharedModule,
   ]

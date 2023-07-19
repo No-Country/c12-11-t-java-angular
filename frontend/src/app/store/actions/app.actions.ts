@@ -1,6 +1,4 @@
-import {createAction, props} from '@ngrx/store';
-import {Plate} from "@shared/interfaces/plate.interface";
-
+/*
 export const loadData = createAction('[App] Load data');
 
 export const loadDataSuccess = createAction(
@@ -12,3 +10,4 @@ export const loadDataFailure = createAction(
   '[App] Load data Failure',
   props<{ error: string }>()
 );
+*/

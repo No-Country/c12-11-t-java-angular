@@ -1,6 +1,6 @@
 export interface Plate {
   platoId?: number
-  nombre: string
+  categoria: string
   precio: number
   descripcion: string
   vegano: boolean
@@ -9,5 +9,5 @@ export interface Plate {
   urlImagen: string
   stock: number
   tipoPlato: string
-  subTipoPlato?:string
+  nombre:string
 }

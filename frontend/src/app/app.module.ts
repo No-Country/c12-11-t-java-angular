@@ -10,10 +10,9 @@ import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 
 
 /*NgRx*/
 import {StoreModule} from '@ngrx/store';
-//import { EffectsModule } from '@ngrx/effects'; <- instalar
 import {appReducer} from "./store/reducers/app.reducer";
+import {cartReducer} from "./store/reducers/cart.reducer";
 
-//import {menuReducer} from "./store/reducers/feature1.reducer";
 
 
 @NgModule({
@@ -27,8 +26,7 @@ import {appReducer} from "./store/reducers/app.reducer";
     FontAwesomeModule,
     SocialLoginModule,
     HttpClientModule,
-    StoreModule.forRoot(appReducer),
-    //EffectsModule.forFeature([Feature1Effects])
+    StoreModule.forRoot({app: appReducer, cart: cartReducer}),
   ],
   providers: [
     {
@@ -42,7 +40,6 @@ import {appReducer} from "./store/reducers/app.reducer";
           }
         ],
         onError: (err) => {
-          //console.error(err);
           console.log("err =>", err);
         }
       } as SocialAuthServiceConfig,

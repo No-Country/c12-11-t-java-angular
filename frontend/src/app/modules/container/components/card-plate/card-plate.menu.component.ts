@@ -1,6 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {Plate} from "@shared/interfaces/plate.interface";
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
+import {Store} from "@ngrx/store";
+import {CartActions} from "../../../../store/actions/cart.actions";
 
 @Component({
   selector: 'app-card-plate',
@@ -11,8 +14,22 @@ export class CardPlateMenuComponent {
   @Input() plate!: Plate;
   @Input() truncate: boolean = true;
 
+
+  faPlus = faPlus
+
+  constructor(private appStore: Store) {
+
+  }
+
+
   addCart() {
-    console.log("Se debe agregar al carrito")
+    this.appStore.dispatch(CartActions.addOrder({
+      order: {
+        plate: this.plate,
+        count: 1,
+        totalParcial: this.plate.precio,
+      }
+    }))
   }
 }
 

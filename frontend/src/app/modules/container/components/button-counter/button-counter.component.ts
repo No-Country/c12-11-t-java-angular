@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {faMinus, faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faTrashAlt} from '@fortawesome/free-regular-svg-icons'
 
 @Component({
   selector: 'app-button-counter',
@@ -9,9 +10,13 @@ import {faMinus, faPlus} from '@fortawesome/free-solid-svg-icons'
 export class ButtonCounterComponent {
   faPlus = faPlus
   faMinus = faMinus
-  @Input() minValue!: number;
+  faTrash = faTrashAlt
+  @Input() minValue: number = 0;
   @Input() maxValue!: number;
   @Input() value: number = 0;
+  @Input() deleteIcon: boolean = false;
+
+
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
 
 

@@ -1,5 +1,13 @@
 import {Plate} from "@shared/interfaces/plate.interface";
 
+
+
+export const filterPlatesByCategory = (plates: Plate[], type: string): Plate[] => {
+  return plates.filter(plate => isCategoryPlate(plate, type));
+}
+
+const isCategoryPlate = (plate: Plate, category: string) => plate.categoria === category;
+
 /**
  * Filtra los platos por tipo de menú.
  * @param plates Array de platos.
@@ -44,7 +52,7 @@ export const filterPlatesByNames = (plates: Plate[], names: string[]) => {
     return plates;
   }
 
-  return plates.filter(menu => names.includes(menu.nombre));
+  return plates.filter(menu => names.includes(menu.categoria));
 
 }
 
@@ -110,7 +118,7 @@ const isPlatoVegano = (plato: Plate, isVegan: boolean): boolean =>
  * @returns `true` si el nombre del plato tiene un término similar, de lo contrario `false`.
  */
 const hasPlatoSimilarName = (plato: Plate, searchTerm: string) =>
-  plato.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+  plato.categoria.toLowerCase().includes(searchTerm.toLowerCase());
 
 /**
  * Verifica si el apellido de un plato tiene un término similar.
@@ -119,7 +127,7 @@ const hasPlatoSimilarName = (plato: Plate, searchTerm: string) =>
  * @returns `true` si el apellido del plato tiene un término similar, de lo contrario `false`.
  */
 const hasPlatoSimilarSurname = (plato: Plate, searchTerm: string) =>
-  plato.subTipoPlato?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
+  plato.nombre?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
 
 /**
  * Verifica si el tipo de un plato tiene un término similar.
