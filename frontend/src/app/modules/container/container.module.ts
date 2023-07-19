@@ -44,6 +44,13 @@ import {
   ButtonModalOrderDetailsComponent
 } from "@modules/container/components/button-modal-order-details/button-modal-order-details.component";
 import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
+  ProductDetailsModalComponent
+} from '@modules/container/components/product-details-modal/product-details-modal.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+import { SharedModule } from '@shared/shared.module';
+import { DeliveryContainerComponent } from './components/delivery-container/delivery-container.component';
 
 
 @NgModule({
@@ -74,6 +81,7 @@ import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
     DeliveryContainerComponent,
     CardOrderComponent,
     ButtonModalOrderDetailsComponent,
+    DeliveryContainerComponent,
 
   ],
   imports: [
