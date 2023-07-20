@@ -48,6 +48,23 @@
 
 
 }
+.modal-body{
+  .title-page{
+    color: #6C757D!important;
+    font-weight: 700!important;
+
+  }
+  .subtitle-page{
+    color: #6C757D!important;
+    font-weight: 500;
+  }
+}
+.modal-footer {
+  justify-content: center;
+  button{
+    width: 200px;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 1199px) {
   .Method-container {
