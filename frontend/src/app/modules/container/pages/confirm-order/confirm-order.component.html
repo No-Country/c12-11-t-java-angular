@@ -22,27 +22,25 @@
       </div>
     </div>
     <app-tabs state="1"></app-tabs>
-    <div class="row mt-3">
-      <div class="col-12 col-md-8 mb-3" *ngIf="cardsRegister">
+    <div class="row">
+      <div class="col">
         <div class="Method-container">
           <ul
             class="list-group list-cards"
-
+            *ngIf="cardsRegister.length > 0 && valueMethod == '0'"
           >
             <li
-              class="list-group-item" *ngIf="cardsRegister"
-
-            > <img class="imgCard" src="assets/icons/image.svg" alt="" />
-
-              <span> {{ cardsRegister.brand }}</span> - ************{{ cardsRegister.last4 }}
-
+              class="list-group-item"
+              *ngFor="let card of cardsRegister; let i = index"
+            >
+              {{ card.numero }}-{{ card.name }}
+              <fa-icon [icon]="faPenToSquare" class="icon-end"></fa-icon>
             </li>
           </ul>
         </div>
       </div>
 
-      <div class="col order-summary
-      ">
+      <div class="col-md-4 mt-3">
         <app-order-summary-container></app-order-summary-container>
       </div>
     </div>
@@ -59,7 +57,7 @@
           <h1 class="title-page text-end  mt-3">Horario estimado:</h1>
         </div>
         <div class="col">
-          <h1 class="title-page mt-3"> {{fechaEstimada}} </h1>
+          <h1 class="title-page mt-3"> 12:30 - 12:45 </h1>
         </div>
       </div>
     </div>
@@ -78,7 +76,6 @@
     <button
       class="btn btn-success btn-lgp"
       type="button"
-      (click)="confirm()"
       (click)="modal.open(contenido, { centered: true })"
     >
       Realizar Pedido
@@ -88,7 +85,6 @@
 
 <app-footer-mobile
   text="Realizar Pedido"
-  (click)="confirm()"
   (click)="modal.open(contenido, { centered: true })"
   path="confirm"
 ></app-footer-mobile>
