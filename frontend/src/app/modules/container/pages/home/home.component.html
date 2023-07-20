@@ -10,10 +10,10 @@
         <div class="mt-5 mb-3 input-search">
           <h5>Que te gustaría comer?</h5>
           <div class="input-group mt-2 mb-4">
-            <input type="text" [formControl]="homeSearch" class="form-control" placeholder="Descubre los mejores menuName">
-            <span class="input-group-text group-text-destop">
+            <input id="input-search-home" type="text" [formControl]="homeSearch" class="form-control" placeholder="Descubre los mejores platos">
+            <button type="button" class="btn btn-success input-group-text group-text-desktop">
               <fa-icon [icon]="faMagnifyingGlass" class="me-2"></fa-icon> Buscar
-            </span>
+            </button>
           </div>
         </div>
 
@@ -21,9 +21,9 @@
           o conoce nuestro <span class="router-menu" routerLink="menuName" routerLinkActive="is-active">menú completo</span>
         </h6>
 
-        <div class="col-12 freepik-creditos mb-1 me-2">
+        <!--div class="col-12 freepik-creditos mb-1 me-2">
           <a target="_blank" href="https://www.freepik.es/foto-gratis/plato-tazon-fuente-buda-verduras-legumbres-vista-superior_13807905.htm#query=comida%20vegana&position=0&from_view=search&track=ais">Imagen de jcomp</a> en Freepik
-        </div>
+        </div-->
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
 
   <h5 class="d-sm-none mt-4 mb-4">Las mejores opciones para ti</h5>
 
-  <div class="row">
+  <div class="row" *ngIf="plateList.length > 0; else elseList" >
     <div *ngFor="let plate of plateList" class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="card">
         <img [src]="'assets/img/plates/' + plate.urlImagen" alt="plato" class="card-img-plate">
@@ -67,6 +67,12 @@
       </div>
     </div>
   </div>
+
+  <ng-template #elseList>
+    <div class="alert alert-primary" role="alert">
+      No hay platos disponibles para mostrar.
+    </div>
+  </ng-template>
 
 </div>
 

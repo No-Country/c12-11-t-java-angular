@@ -55,7 +55,9 @@
         </form>
       </div>
 
-      <a href="" class="text-center">¿Olvidaste tu contraseña?</a>
+      <span class="text-center">
+        <a href="" >¿Olvidaste tu contraseña?</a>
+      </span>
 
       <span class="text-center">¿No tienes cuenta? <button class="changeToRegister" (click)="changeToRegister()">Regístrate</button></span>
     </div>
@@ -119,8 +121,8 @@
 
 </div>
 <div class="modal-footer justify-content-center">
-  <button [disabled]="loginForm.invalid" type="button"
-    (click)="login()" class="btn btn-primary">
+  <button [disabled]="isLogin?loginForm.invalid:registerForm.invalid" type="button"
+    (click)="login()" class="btn btn-success btn-auth">
     {{ isLogin?"Iniciar sesión":"Crear cuenta" }}
   </button>
 </div>
