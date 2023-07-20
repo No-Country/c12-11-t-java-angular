@@ -119,7 +119,7 @@
 
 </div>
 <div class="modal-footer justify-content-center">
-  <button [disabled]="loginForm.invalid" type="button"
+  <button [disabled]="isLogin?loginForm.invalid:registerForm.invalid" type="button"
     (click)="login()" class="btn btn-success btn-auth">
     {{ isLogin?"Iniciar sesión":"Crear cuenta" }}
   </button>
