@@ -1,7 +1,7 @@
-import { Injectable, inject } from '@angular/core';
-import { ApiBaseService } from './api-base.service';
-import { Observable } from 'rxjs';
-import { Plate } from '@shared/interfaces/plate.interface';
+import {inject, Injectable} from '@angular/core';
+import {ApiBaseService} from './api-base.service';
+import {Observable} from 'rxjs';
+import {Plate} from '@shared/interfaces/plate.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ export class PlateService {
 
   listarPlatos(): Observable<Plate[]> {
     return this.apiBase.get<Plate[]>('/listaDePlatos');
+  }
+
+  findById(id: number): Observable<Plate> {
+    return this.apiBase.get<Plate>(`/buscarPlato/${id}`);
   }
 
   /*

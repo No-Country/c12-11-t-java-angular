@@ -3,7 +3,7 @@ import {Plate} from "@shared/interfaces/plate.interface";
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
 import {Store} from "@ngrx/store";
-import {CartActions} from "../../../../store/actions/cart.actions";
+import {CartFacade} from "@shared/services/facades/cart.facade";
 
 @Component({
   selector: 'app-card-plate',
@@ -17,19 +17,20 @@ export class CardPlateMenuComponent {
 
   faPlus = faPlus
 
-  constructor(private appStore: Store) {
+  constructor(private appStore: Store,
+              private cartFacade: CartFacade) {
 
   }
 
 
   addCart() {
-    this.appStore.dispatch(CartActions.addOrder({
-      order: {
-        plate: this.plate,
-        count: 1,
-        totalParcial: this.plate.precio,
-      }
-    }))
+    let order = {
+      id: 0,
+      plate: this.plate,
+      count: 1,
+      totalParcial: this.plate.precio,
+    }
+    this.cartFacade.addOrder(order)
   }
 }
 

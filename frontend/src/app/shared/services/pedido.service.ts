@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PlateService {
+export class PedidoService {
 
   private apiBase = inject(ApiBaseService);
 
@@ -17,15 +17,16 @@ export class PlateService {
     return this.apiBase.post<PedidoRequest>('/crearPedido', body);
   }
 
-  /*
-    actualizarPlatoo(body: PlatoRequest): Observable<Plate> {
-      return this.apiBase.put<Plate>('/plato', body);
-    }
+  modificarPedido(body: PedidoRequest): Observable<PedidoRequest> {
+    return this.apiBase.put<PedidoRequest>('/modificarPedido', body);
+  }
 
-    eliminarPlato(idPlato: number): Observable<any> {
-      return this.apiBase.delete(`/plato/${idPlato}`)
-    }
-    */
+
+  eliminarPlato(id: number): Observable<any> {
+    return this.apiBase.delete(`/plato/${id}`)
+  }
+
+
 }
 
 export interface PedidoRequest {

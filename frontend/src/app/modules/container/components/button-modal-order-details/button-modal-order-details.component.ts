@@ -21,6 +21,7 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   faCartSuccess = faCheckCircle
 
   shoppingCart: Cart = {
+    id: 0,
     orders: [],
     total: 0,
     state: CartState.New

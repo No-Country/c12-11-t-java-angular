@@ -3,9 +3,8 @@ import {CartState} from "./cart-state.model";
 
 
 export interface Cart {
+  id: number;
   orders: Order[];
-  //idPedido:id
-  //detalle:order[]
   total: number;
   state: CartState;
 }

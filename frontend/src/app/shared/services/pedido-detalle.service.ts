@@ -1,21 +1,34 @@
-import {inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ApiBaseService} from './api-base.service';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlateService {
+export class PedidoDetalleService {
 
-  private apiBase = inject(ApiBaseService);
 
-  listarPedidoDetalle(): Observable<PedidoDetalleRequest[]> {
-    return this.apiBase.get<PedidoDetalleRequest[]>('/listaDePedidos');
+  constructor(private apiBase: ApiBaseService) {
   }
 
-  crearPedidoDetalle(body: PedidoDetalleRequest): Observable<PedidoDetalleRequest> {
-    return this.apiBase.post<PedidoDetalleRequest>('/crearPedido', body);
+  public listarPedidoDetalle(): Observable<PedidoDetalleRequest[]> {
+    return this.apiBase.get<PedidoDetalleRequest[]>('/listaDePedidoDetalle');
   }
+
+
+  public crearPedidoDetalle(body: PedidoDetalleRequest): Observable<PedidoDetalleRequest> {
+    return this.apiBase.post<PedidoDetalleRequest>('/crearPedidoDetalle', body);
+  }
+
+  public modificarPedidoDetalle(body: PedidoDetalleRequest): Observable<PedidoDetalleRequest> {
+    return this.apiBase.put<PedidoDetalleRequest>('/modificarPedidoDetalle', body);
+  }
+
+  public eliminarPedidoDetalle(id: number): Observable<PedidoDetalleRequest> {
+
+    return this.apiBase.delete<PedidoDetalleRequest>(`/eliminarPedidoDetalle/${id}`);
+  }
+
 
   /*
     actualizarPlatoo(body: PlatoRequest): Observable<Plate> {
@@ -26,6 +39,8 @@ export class PlateService {
       return this.apiBase.delete(`/plato/${idPlato}`)
     }
     */
+
+
 }
 
 export interface PedidoDetalleRequest {
