@@ -1,6 +1,18 @@
 import {Order} from "../../models/order.model";
 import {CartState} from "../../models/cart-state.model";
 import {AppState} from "../../models/app-state.model";
+import {Cart} from "../../models/cart.model";
+
+
+export const handleInitCart = (state: AppState, {cart}: { cart: Cart }): AppState => {
+  return {
+    ...state,
+    cart: {
+      ...cart
+    }
+  };
+};
+
 
 export const handleAddOrderToCart = (state: AppState, {order}: { order: Order }): AppState => {
   const orders = [...state.cart.orders];

@@ -4,6 +4,7 @@ import {AppState} from "../models/app-state.model";
 
 export const initialState: AppState = {
   cart: {
+    id: 0,
     orders: [],
     total: 0,
     state: CartState.New

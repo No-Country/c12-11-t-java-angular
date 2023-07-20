@@ -2,9 +2,9 @@ import {Component, inject, Input} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {faLeaf, faSlash, faWheatAlt, faWheatAwnCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 import {Plate} from "@shared/interfaces/plate.interface";
-import {CartActions} from "../../../../store/actions/cart.actions";
 import {Store} from "@ngrx/store";
 import {Router} from "@angular/router";
+import {CartFacade} from "@shared/services/facades/cart.facade";
 
 @Component({
   selector: 'app-card-modal-plate-details',
@@ -21,7 +21,10 @@ export class CardModalPlateDetailsComponent {
 
   count: number = 1
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store,
+              private router: Router,
+              private cartFacade: CartFacade
+  ) {
   }
 
   open(content: any) {
@@ -34,13 +37,14 @@ export class CardModalPlateDetailsComponent {
   }
 
   addCart() {
-    this.store.dispatch(CartActions.addOrder({
-      order: {
-        plate: this.plate,
-        count: this.count,
-        totalParcial: this.count * this.plate.precio,
-      }
-    }))
+    let order = {
+      id: 0,
+      plate: this.plate,
+      count: this.count,
+      totalParcial: this.count * this.plate.precio,
+    }
+
+    this.cartFacade.addOrder(order)
     this.router.navigateByUrl('/container/menu');
     this.modalService.dismissAll('Save click');
   }
