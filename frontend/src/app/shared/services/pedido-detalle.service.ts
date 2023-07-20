@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiBaseService} from './api-base.service';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,17 @@ export class PedidoDetalleService {
 
     return this.apiBase.delete<PedidoDetalleRequest>(`/eliminarPedidoDetalle/${id}`);
   }
+
+
+
+
+
+  public filtrarPorPedidoId(pedidoId: number): Observable<PedidoDetalleRequest[]> {
+    return this.listarPedidoDetalle().pipe(
+      map(pedidos => pedidos.filter(pedido => pedido.pedidoId === pedidoId))
+    );
+  }
+
 
 
   /*

@@ -32,7 +32,7 @@ import {BadgeComponent} from "@modules/container/components/badge/badge.componen
 import {StarRatingComponent} from "@modules/container/components/start-rating/star-rating.component";
 import {TabsComponent} from "@modules/container/components/tabs/tabs.component";
 import {ConfirmOrderComponent} from "@modules/container/pages/confirm-order/confirm-order.component";
-import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlert, NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import {StoreModule} from "@ngrx/store";
 import {SharedModule} from "@shared/shared.module";
 
@@ -44,8 +44,11 @@ import {
   ButtonModalOrderDetailsComponent
 } from "@modules/container/components/button-modal-order-details/button-modal-order-details.component";
 import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
-import { OrderSummaryContainerComponent } from './components/order-summary-container/order-summary-container.component';
-import { ProductSelectedContainerComponent } from './components/product-selected-container/product-selected-container.component';
+import {OrderSummaryContainerComponent} from './components/order-summary-container/order-summary-container.component';
+import {
+  ProductSelectedContainerComponent
+} from './components/product-selected-container/product-selected-container.component';
+
 
 
 @NgModule({
@@ -80,6 +83,7 @@ import { ProductSelectedContainerComponent } from './components/product-selected
     OrderSummaryContainerComponent,
     ProductSelectedContainerComponent,
 
+
   ],
   imports: [
     CommonModule,
@@ -93,6 +97,7 @@ import { ProductSelectedContainerComponent } from './components/product-selected
 
     NgbCarouselModule,
     SharedModule,
+    NgbAlert,
   ]
 })
 export class ContainerModule {

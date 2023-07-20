@@ -12,8 +12,7 @@ import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 
 import {StoreModule} from '@ngrx/store';
 import {appReducer} from "./store/reducers/app.reducer";
 import {cartReducer} from "./store/reducers/cart.reducer";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -30,7 +29,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot({app: appReducer, cart: cartReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-       // Restrict extension to log-only mode
+      // Restrict extension to log-only mode
 
 
     }),

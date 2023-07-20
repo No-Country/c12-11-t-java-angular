@@ -2,12 +2,12 @@ import {Component, inject, OnInit} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {faCheckCircle} from "@fortawesome/free-regular-svg-icons";
-import {select, Store} from "@ngrx/store";
+import {Store} from "@ngrx/store";
 import {Router} from "@angular/router";
 import {Cart} from "../../../../store/models/cart.model";
 import {CartState} from "../../../../store/models/cart-state.model";
-import {selectCart} from "../../../../store/selectors/cart.selectors";
 import {CartActions} from "../../../../store/actions/cart.actions";
+import {CartFacade} from "@shared/services/facades/cart.facade";
 
 
 @Component({
@@ -30,13 +30,15 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   private modalService = inject(NgbModal);
 
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store,
+              private cartFacade: CartFacade,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(selectCart)).subscribe(shoppingCart => {
-      this.shoppingCart = shoppingCart
-    });
+    this.cartFacade.getCart().subscribe(cart => {
+      this.shoppingCart = cart
+    })
   }
 
   goToPayment() {

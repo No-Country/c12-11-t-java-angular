@@ -1,20 +1,13 @@
-import {createAction, props} from '@ngrx/store';
+import {createActionGroup, emptyProps, props} from '@ngrx/store';
 import {Plate} from "@shared/interfaces/plate.interface";
-import {MenuActionTypeEnum} from "@modules/container/store/models/menu-action-type.enum";
 
-export const loadMenu = createAction(MenuActionTypeEnum.LoadMenu);
 
-export const loadPlatesSuccess = createAction(
-  MenuActionTypeEnum.LoadPlatesSuccess,
-  props<{ plates: Plate[] }>()
-);
-
-export const loadPlatesFailure = createAction(
-  MenuActionTypeEnum.LoadPlatesFailure,
-  props<{ error: string }>()
-);
-
-export const setPlateSelected = createAction(
-  MenuActionTypeEnum.SetPlateSelected,
-  props<{ plateSelected: Plate }>()
-);
+export const PlateActions = createActionGroup({
+  source: 'Plate',
+  events: {
+    'Load': emptyProps(),
+    'Load Success': props<{ plates: Plate[] }>(),
+    'Load Failure': props<{ error: string }>(),
+    'Set Selected': props<{ plateSelected: Plate }>(),
+  },
+});

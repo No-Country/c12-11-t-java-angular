@@ -1,4 +1,4 @@
-import {MenuState} from "@modules/container/store/state/menu.state";
+import {MenuState} from "@modules/container/store/models/menu-state.model";
 
 
 export function handleRemoveFilters(state: MenuState): MenuState {

@@ -1,15 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import {select, Store} from "@ngrx/store";
-import {
-  removeFilters,
-  toggleFilterSinTacc,
-  toggleFilterVegano,
-  updateFilterByCategory
-} from "@modules/container/store/actions/filters.actions";
+import {FilterActions} from "@modules/container/store/actions/filters.actions";
 import {selectFilters, selectMenu} from "@modules/container/store/selectors/menu.selectors";
-import {MenuState} from "@modules/container/store/state/menu.state";
-import {setMenu} from "@modules/container/store/actions/menu.actions";
+import {MenuActions} from "@modules/container/store/actions/menu.actions";
 
 
 @Component({
@@ -33,16 +27,16 @@ export class GroupButtonFilterMenuComponent implements OnInit {
   }
 
 
-  constructor(private menuStore: Store<MenuState>) {
+  constructor(private store: Store) {
 
   }
 
   ngOnInit(): void {
-    this.menuStore.pipe(select(selectFilters)).subscribe(filters => {
+    this.store.pipe(select(selectFilters)).subscribe(filters => {
       this.filter = filters
       this.category = filters.activateFilterByCategory
     });
-    this.menuStore.pipe(select(selectMenu)).subscribe(menuName => {
+    this.store.pipe(select(selectMenu)).subscribe(menuName => {
       this.menu = menuName
     });
   }
@@ -52,24 +46,24 @@ export class GroupButtonFilterMenuComponent implements OnInit {
   }
 
   toggleMenu(name: string): void {
-    this.menuStore.dispatch(setMenu({menuName: name}));
+    this.store.dispatch(MenuActions.setMenu({menuName: name}));
   }
 
   toggleCategory(name: string): void {
-    this.menuStore.dispatch(updateFilterByCategory({filterNames: name}));
+    this.store.dispatch(FilterActions.updateByCategory({filterNames: name}));
   }
 
   toggleVegano(): void {
-    this.menuStore.dispatch(toggleFilterVegano())
+    this.store.dispatch(FilterActions.toggleVegano())
 
   }
 
   toggleSinTacc(): void {
-    this.menuStore.dispatch(toggleFilterSinTacc())
+    this.store.dispatch(FilterActions.toggleSinTacc())
   }
 
   toggleViewAll(): void {
-    this.menuStore.dispatch(removeFilters())
+    this.store.dispatch(FilterActions.removeAll())
   }
 
 }
