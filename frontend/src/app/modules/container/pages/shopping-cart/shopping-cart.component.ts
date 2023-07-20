@@ -1,6 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Plate } from '@shared/interfaces/plate.interface';
+import { Store } from '@ngrx/store';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { faAngleLeft, faArrowLeft, faCirclePlus, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { CartState } from 'src/app/store/models/cart-state.model';
+import { Cart } from 'src/app/store/models/cart.model';
+import { selectCart } from 'src/app/store/selectors/cart.selectors';
+import { CartActions } from 'src/app/store/actions/cart.actions';
+import { Order } from 'src/app/store/models/order.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,48 +25,39 @@ export class ShoppingCartComponent implements OnInit {
   public state:string="";
   public textAddress:string="";
   public optionsDelivery:string="0";
-  public newAddress:any={
-  }
-  public valueDefaul:number=1;
-  public price:number=4000;
-  public priceCurrent=4000;
+
   public direcciones:any[]=[];
   public hasDireccion:boolean=false;
+  private store=inject(Store);
+  private router=inject(Router);
+
+  shoppingCart: Cart = {
+    orders:[],
+    total: 0,
+    state: CartState.New
+  }
 ngOnInit(): void {
 
-  this.direcciones=[
 
-  ];
-
+this.getShoppingCart();
 
 
 }
-  private router=inject(Router);
-  addAddress(){
+getShoppingCart(){
+  this.store.select(selectCart).subscribe(shoppingCart => {
+    console.log(shoppingCart);
 
-    this.newAddress={
-      title:this.textAddress
-    }
-    if(this.newAddress.title==''){
-      return
-    }
-    this.direcciones.push(this.newAddress);
-
-    this.textAddress='';
+    this.shoppingCart = shoppingCart;
+  });
+}
 
 
-  }
 
-  public addproduct(){
-    this.valueDefaul++;
-    this.price=this.price+this.priceCurrent;
-  }
-  public minusProduct(){
-    if(this.valueDefaul>1){
-      this.valueDefaul--;
-      this.price=this.price-this.priceCurrent;
-    }
-  }
+
+
+
+
+
   public goBack(){
     this.router.navigateByUrl('/container/menu');
 
