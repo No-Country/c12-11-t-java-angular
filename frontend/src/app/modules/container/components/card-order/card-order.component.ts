@@ -6,6 +6,7 @@ import {Order} from "../../../../store/models/order.model";
 import {Plate} from "@shared/interfaces/plate.interface";
 import {CartFacade} from "@shared/services/facades/cart.facade";
 
+
 @Component({
   selector: 'app-card-order',
   templateUrl: './card-order.component.html',
@@ -41,10 +42,10 @@ export class CardOrderComponent implements OnInit {
       this.cartFacade.updateOrder(order)
     } else {
       this.cartFacade.removeOrderToCart(order)
+
     }
-
-
   }
+
 
 }
 
