@@ -39,28 +39,20 @@
     padding-top: 10px;
   }
 
-  .order-summary-container {
-    border: 1px solid gray;
-    padding: 10px;
-    border-radius: 8px;
 
-    .title-page {
-      font-weight: bold !important;
-    }
-  }
 
 
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
   .Method-container {
-    padding-right: 70px;
+    padding-left: 70px;
   }
 
 }
 
 @media (min-width: 1200px) {
   .Method-container {
-    padding-right: 150px;
+    padding-left: 150px;
   }
 }

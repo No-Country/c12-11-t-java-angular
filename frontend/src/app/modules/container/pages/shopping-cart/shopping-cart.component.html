@@ -14,36 +14,9 @@
       </div>
     </div>
     <app-tabs></app-tabs>
-    <div class="product-selected-container d-md-none">
-      <div class="row product-selected">
-        <div class="col-3">
-          <div class="img-container">
-            <img src="assets/img/imgTest.jpg" alt="" />
-          </div>
-        </div>
-        <div class="col-6 no-padding">
-          <p class="text-product-selected text-product-selected-md">
-            Producto Seleccionado
-          </p>
-          <div class="input-group">
-            <button class="btn btn-outline-danger" type="button" id="button-addon1" (click)="minusProduct()">
-              <fa-icon [icon]="faMinus"></fa-icon>
-            </button>
-            <input type="text" class="form-control" [value]="valueDefaul" aria-label="Example text with button addon"
-              aria-describedby="button-addon1" />
-            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addproduct()">
-              <fa-icon [icon]="faPlus"></fa-icon>
-            </button>
-          </div>
-        </div>
-        <div class="col-3 col-md">
-          <p class="text-product-selected text-end text-left">
-            {{ price | currency }}
-          </p>
-        </div>
-      </div>
-      <hr />
-    </div>
+    <div *ngFor="let order of shoppingCart.orders">
+<app-product-selected-container [order]="order"/>
+  </div>
    <app-delivery-container></app-delivery-container>
   </div>
   <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block">

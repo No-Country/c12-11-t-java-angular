@@ -44,6 +44,8 @@ import {
   ButtonModalOrderDetailsComponent
 } from "@modules/container/components/button-modal-order-details/button-modal-order-details.component";
 import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
+import { OrderSummaryContainerComponent } from './components/order-summary-container/order-summary-container.component';
+import { ProductSelectedContainerComponent } from './components/product-selected-container/product-selected-container.component';
 
 
 @NgModule({
@@ -75,6 +77,8 @@ import {menuReducer} from "@modules/container/store/reducers/menu.reducer";
     CardOrderComponent,
     ButtonModalOrderDetailsComponent,
     DeliveryContainerComponent,
+    OrderSummaryContainerComponent,
+    ProductSelectedContainerComponent,
 
   ],
   imports: [
