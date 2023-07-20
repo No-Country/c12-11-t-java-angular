@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {MenuState} from "@modules/container/store/state/menu.state";
+import {MenuState} from "@modules/container/store/models/menu-state.model";
 
 
 export const selectMenuState = createFeatureSelector<MenuState>('menu');
@@ -46,4 +46,7 @@ export const selectPlateSelected = createSelector(
   selectMenuState,
   (state: MenuState) => state.plateSelected
 );
+
+
+
 

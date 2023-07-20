@@ -17,7 +17,7 @@ export class CardPlateMenuComponent {
 
   faPlus = faPlus
 
-  constructor(private appStore: Store,
+  constructor(private store: Store,
               private cartFacade: CartFacade) {
 
   }
@@ -31,7 +31,10 @@ export class CardPlateMenuComponent {
       totalParcial: this.plate.precio,
     }
     this.cartFacade.addOrder(order)
+
   }
+
+
 }
 
 

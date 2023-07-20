@@ -2,15 +2,12 @@ import {Injectable} from '@angular/core';
 import {MenuPlate} from "@shared/interfaces/menu-plate.interface";
 import {Plate} from "@shared/interfaces/plate.interface";
 import {select, Store} from "@ngrx/store";
-import {MenuState} from "@modules/container/store/state/menu.state";
+
 import {selectMenu, selectPlates} from "@modules/container/store/selectors/menu.selectors";
 import {filterPlatesByCategory, filterPlatesByType} from "@shared/utils/helpers/filters.helpers";
 import {PlateService} from "@shared/services/plate.service";
-import {loadMenu, loadPlatesFailure, loadPlatesSuccess} from "@modules/container/store/actions/plates.actions";
+import {PlateActions} from "@modules/container/store/actions/plates.actions";
 
-@Injectable({
-  providedIn: 'root'
-})
 @Injectable({
   providedIn: 'root'
 })
@@ -18,16 +15,14 @@ export class MenuService {
   private plates: Plate[] = [];
   tipoMenu = '';
 
-  constructor(private menuStore: Store<MenuState>, private plateService: PlateService) {
+  constructor(private store: Store, private plateService: PlateService) {
     this.loadPlates();
 
-
-
-    this.menuStore.pipe(select(selectMenu)).subscribe((menuName: string) => {
+    this.store.pipe(select(selectMenu)).subscribe((menuName: string) => {
       this.tipoMenu = menuName;
     });
 
-    this.menuStore.pipe(select(selectPlates)).subscribe((plates: Plate[]) => {
+    this.store.pipe(select(selectPlates)).subscribe((plates: Plate[]) => {
       this.plates = plates;
     });
   }
@@ -40,16 +35,16 @@ export class MenuService {
    * En caso de error, se despacha la acción de carga fallida de los platos con el mensaje de error.
    */
   loadPlates() {
-    this.menuStore.dispatch(loadMenu());
+    this.store.dispatch(PlateActions.load());
 
     this.plateService.listarPlatos().subscribe({
       next: (response: Plate[]) => {
         console.log("response =>", response);
-        this.menuStore.dispatch(loadPlatesSuccess({plates: response}));
+        this.store.dispatch(PlateActions.loadSuccess({plates: response}));
       },
       error: (message: string) => {
         console.log("error =>", message);
-        this.menuStore.dispatch(loadPlatesFailure({error: message}));
+        this.store.dispatch(PlateActions.loadFailure({error: message}));
       }
     });
   }

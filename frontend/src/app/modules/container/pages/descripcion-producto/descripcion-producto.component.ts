@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Plate} from "@shared/interfaces/plate.interface";
-import {MenuState} from "@modules/container/store/state/menu.state";
 import {selectPlateSelected} from "@modules/container/store/selectors/menu.selectors";
 
 import {select, Store} from "@ngrx/store";
@@ -17,11 +16,10 @@ export class DescripcionProductoComponent {
   showPlate: boolean = false
   count: number = 1
 
-  constructor(private menuStore: Store<MenuState>,
-              private appStore: Store,
+  constructor(private store: Store,
               private cartFacade: CartFacade,
               private router: Router) {
-    this.menuStore.pipe(select(selectPlateSelected)).subscribe(plate => {
+    this.store.pipe(select(selectPlateSelected)).subscribe(plate => {
       this.plate = plate ?? undefined;
       this.showPlate = plate !== undefined;
     });

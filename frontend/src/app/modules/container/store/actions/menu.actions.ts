@@ -1,8 +1,12 @@
-import {createAction, props} from '@ngrx/store';
-import {MenuActionTypeEnum} from "@modules/container/store/models/menu-action-type.enum";
+import {createActionGroup, props} from '@ngrx/store';
 
 
-export const setMenu = createAction(
-  MenuActionTypeEnum.SetMenu,
-  props<{ menuName: string }>()
-);
+
+export const MenuActions = createActionGroup({
+  source: 'Menu',
+  events: {
+    'Set Menu': props<{ menuName: string }>(),
+  },
+});
+
+

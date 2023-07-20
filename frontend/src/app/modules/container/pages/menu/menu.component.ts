@@ -3,10 +3,10 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
 import {select, Store} from "@ngrx/store";
-import {setMenu} from "@modules/container/store/actions/menu.actions";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
 import {CartState} from '../../../../store/models/cart-state.model';
 import {selectCart} from "../../../../store/selectors/cart.selectors";
+import {MenuActions} from "@modules/container/store/actions/menu.actions";
 
 @Component({
   selector: 'app-menu',
@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
       this.isLoading = isLoad
     });
 
-    this.store.dispatch(setMenu({menuName: this.menuName}))
+    this.store.dispatch(MenuActions.setMenu({menuName: this.menuName}))
 
     this.store.pipe(select(selectCart)).subscribe(cart => {
       this.cartState = cart.state

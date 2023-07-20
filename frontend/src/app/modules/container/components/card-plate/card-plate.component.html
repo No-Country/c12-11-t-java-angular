@@ -19,6 +19,7 @@
             class=" d-none d-lg-block card-text">{{ plate.descripcion| slice:0:90 }}{{ plate.descripcion.length > 90 ? ' ...' : '' }}</p>
 
           <div class="align-self-end">
+
             <button (click)="addCart()" class="btn btn-dark ">
               <fa-icon [icon]="faPlus"></fa-icon>
             </button>

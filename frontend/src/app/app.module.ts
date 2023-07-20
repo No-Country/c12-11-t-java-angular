@@ -12,6 +12,7 @@ import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 
 import {StoreModule} from '@ngrx/store';
 import {appReducer} from "./store/reducers/app.reducer";
 import {cartReducer} from "./store/reducers/cart.reducer";
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { pedidoReducer } from './store/reducers/pedido.reducer';
 
@@ -19,7 +20,6 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
 
 import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
-
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
     StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer,card:cardReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-       // Restrict extension to log-only mode
+      // Restrict extension to log-only mode
 
 
     }),

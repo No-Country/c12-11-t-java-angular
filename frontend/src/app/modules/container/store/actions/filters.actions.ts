@@ -1,29 +1,13 @@
-import {createAction, props} from '@ngrx/store';
-import {MenuActionTypeEnum} from "@modules/container/store/models/menu-action-type.enum";
+import {createActionGroup, emptyProps, props} from '@ngrx/store';
 
 
-export const removeFilters = createAction(
-  MenuActionTypeEnum.RemoveFilters
-);
-
-/**@Deprecated*/
-export const toggleFilterVegano = createAction(
-  MenuActionTypeEnum.ToggleFilterVegano
-);
-
-/**@Deprecated*/
-export const toggleFilterSinTacc = createAction(
-  MenuActionTypeEnum.ToggleFilterSinTacc
-);
-
-export const updateFilterByCategory = createAction(
-  MenuActionTypeEnum.UpdateFilterByCategory,
-  props<{ filterNames: string }>()
-);
-
-export const updateFilterBySearch = createAction(
-  MenuActionTypeEnum.UpdateFilterBySearch,
-  props<{ searchTerm: string }>()
-)
-
-
+export const FilterActions = createActionGroup({
+  source: 'Filter',
+  events: {
+    'Remove All': emptyProps(),
+    'Toggle Vegano': emptyProps(),
+    'Toggle Sin Tacc': emptyProps(),
+    'Update By Category': props<{ filterNames: string }>(),
+    'Update By Search': props<{ searchTerm: string }>(),
+  },
+});

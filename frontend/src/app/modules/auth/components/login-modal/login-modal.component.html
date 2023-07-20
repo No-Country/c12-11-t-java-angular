@@ -25,7 +25,7 @@
               <span class="input-group-text">
                 <fa-icon [icon]="faUser"></fa-icon>
               </span>
-              <input type="text" id="username" formControlName="username" class="form-control" placeholder="usuario">
+              <input type="message" id="username" formControlName="username" class="form-control" placeholder="usuario">
             </div>
             <span
                 *ngIf="loginForm.get('username')?.touched"
@@ -129,8 +129,8 @@
 
 
   <!--ng-template #content let-modal>
-    <div class="modal-header text-center">
-      <h4 class="modal-title ms-auto" id="modal-basic-title">Iniciar Sesión</h4>
+    <div class="modal-header message-center">
+      <h4 class="modal-type ms-auto" id="modal-basic-type">Iniciar Sesión</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
@@ -142,14 +142,14 @@
           <div class="col-12">
             <form [formGroup]="loginForm">
               <div class="input-group mt-2 mb-4">
-                <span class="input-group-text">
+                <span class="input-group-message">
                   <fa-icon [icon]="faUser"></fa-icon>
                 </span>
-                <input type="text" id="username" formControlName="username" class="form-control" placeholder="usuario">
+                <input type="message" id="username" formControlName="username" class="form-control" placeholder="usuario">
               </div>
 
               <div class="input-group mb-2">
-                <span class="input-group-text">
+                <span class="input-group-message">
                   <fa-icon [icon]="faLock"></fa-icon>
                 </span>
                 <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password">

@@ -1,5 +1,6 @@
-import {initialState, MenuState} from "@modules/container/store/state/menu.state";
 import {Plate} from "@shared/interfaces/plate.interface";
+import {MenuState} from "@modules/container/store/models/menu-state.model";
+import {initialState} from "@modules/container/store/reducers/menu.reducer";
 
 
 export function handleLoadPlatesSuccess(state: MenuState, {plates}: { plates: Plate[] }): MenuState {

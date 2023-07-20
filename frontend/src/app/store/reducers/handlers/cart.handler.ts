@@ -5,6 +5,7 @@ import {Cart} from "../../models/cart.model";
 
 
 export const handleInitCart = (state: AppState, {cart}: { cart: Cart }): AppState => {
+
   return {
     ...state,
     cart: {
