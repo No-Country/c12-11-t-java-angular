@@ -1,3 +1,8 @@
+.header {
+  background-color: #456B42;
+  border-bottom: #456B42;
+}
+
 .nav-item {
   color: rgb(177, 177, 177);
   cursor: pointer;
@@ -7,4 +12,14 @@
     color: white;
     //font-weight: 700;
   }
+}
+
+.btn-login {
+  background-color: white;
+  color: #456B42;
+}
+
+.logo-navbar{
+  height: 40px;
+  color: white;
 }
