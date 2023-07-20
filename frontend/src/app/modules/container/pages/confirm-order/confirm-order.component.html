@@ -24,40 +24,67 @@
     <app-tabs state="1"></app-tabs>
     <div class="row">
       <div class="col">
-
         <div class="Method-container">
-
-
-          <ul class="list-group list-cards " *ngIf="cardsRegister.length > 0&&valueMethod == '0'" >
-            <li class="list-group-item" *ngFor="let card of cardsRegister ;let i =index" >
-                {{card.numero }}-{{card.name}}
+          <ul
+            class="list-group list-cards"
+            *ngIf="cardsRegister.length > 0 && valueMethod == '0'"
+          >
+            <li
+              class="list-group-item"
+              *ngFor="let card of cardsRegister; let i = index"
+            >
+              {{ card.numero }}-{{ card.name }}
               <fa-icon [icon]="faPenToSquare" class="icon-end"></fa-icon>
-
             </li>
-
-
           </ul>
-
-
         </div>
       </div>
 
-        <div class="col-md-4 mt-3">
-          <app-order-summary-container ></app-order-summary-container>
+      <div class="col-md-4 mt-3">
+        <app-order-summary-container></app-order-summary-container>
+      </div>
+    </div>
+  </div>
+  <ng-template #contenido let-modal>
+    <div class="modal-body">
+      <div class="img-modal">
+        <img src="assets/img/imgsuccesPay.png" alt="" />
+      </div>
+      <h1 class="title-page text-center  mt-3">!Tu pedido fue realizado correctamente¡</h1>
+      <h1 class="subtitle-page text-center">Estamos preparando tu plato</h1>
+      <div class="row">
+        <div class="col">
+          <h1 class="title-page text-end  mt-3">Horario estimado:</h1>
+        </div>
+        <div class="col">
+          <h1 class="title-page mt-3"> 12:30 - 12:45 </h1>
         </div>
       </div>
     </div>
-
-    <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block mb-3">
-      <button class="btn btn-primary btn-lgp" routerLink="/container/" type="button">
-      Realizar Pedido
+    <div class="modal-footer text-center">
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="modal.close()"
+        routerLink="/container/"
+      >
+        Ir al menu
       </button>
     </div>
-
+  </ng-template>
+  <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block mb-3">
+    <button
+      class="btn btn-success btn-lgp"
+      type="button"
+      (click)="modal.open(contenido, { centered: true })"
+    >
+      Realizar Pedido
+    </button>
   </div>
+</div>
 
-  <app-footer-mobile path=""
-
-    text="Realizar Pedido"
-  ></app-footer-mobile>
-
+<app-footer-mobile
+  text="Realizar Pedido"
+  (click)="modal.open(contenido, { centered: true })"
+  path="confirm"
+></app-footer-mobile>
