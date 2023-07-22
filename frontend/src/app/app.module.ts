@@ -23,7 +23,7 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

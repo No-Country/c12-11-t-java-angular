@@ -52,6 +52,12 @@ import {OrderSummaryContainerComponent} from './components/order-summary-contain
 import {
   ProductSelectedContainerComponent
 } from './components/product-selected-container/product-selected-container.component';
+import {
+    DeckPurchaseOrderComponent
+} from "@modules/container/components/deck-purchase-order/deck-purchase-order.component";
+import {
+  CardPurchaseOrderComponent
+} from "@modules/container/components/card-purchase-order/card-purchase-order.component";
 
 
 
@@ -86,6 +92,8 @@ import {
     DeliveryContainerComponent,
     OrderSummaryContainerComponent,
     ProductSelectedContainerComponent,
+    DeckPurchaseOrderComponent,
+    CardPurchaseOrderComponent,
 
 
   ],
