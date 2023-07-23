@@ -1,7 +1,11 @@
 .card {
+  //padding: 0 .625rem .625rem .625rem;
+  width: 11.75rem;
+  height: 8.125rem;
+}
+
+.card-body {
   padding: 0 .625rem .625rem .625rem;
-  width: 265px;
-  height: 8.75rem;
 }
 
 .bg-card {
@@ -15,8 +19,12 @@
   font-size: 1.125rem;
 }
 
+.card-address {
+  font-size: .875rem;
+}
+
+
 .card-text {
-  font-weight: 400;
   font-size: .875rem;
 }
 
@@ -30,7 +38,19 @@
   color: white;
   font-size: .875rem;
   font-weight: 600;
+}
 
+@media (min-width: 768px) {
+  .card {
+    width: 15rem;
+    height: 8.75rem;
+  }
+  .card-title {
+    font-size: 1.25rem;
+  }
+  .card-text {
+    font-size: 1rem;
+  }
 }
 
 

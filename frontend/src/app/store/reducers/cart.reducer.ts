@@ -3,24 +3,17 @@ import {CartActions} from "../actions/cart.actions";
 import {
   handleAddOrderToCart,
   handleChangeCartState,
-  handleInitCart,
+  handleLoadCart,
   handleRemoveOrderToCart
 } from "./handlers/cart.handler";
-import {CartState} from "../models/cart-state.model";
-import {AppState} from "../models/app-state.model";
+import {CartStatus} from "../models/cart-state.model";
+import {CartState} from "../models/cart.model";
 
-export const initialState: AppState = {
-  cart: {
-    id: 0,
-    orders: [],
-    total: 0,
-    state: CartState.New
-  },
-  user: {
-    userId: -1,
-    username: '',
-    token: ''
-  },
+export const initialState: CartState = {
+  id: 0,
+  orders: [],
+  total: 0,
+  state: CartStatus.New,
   loading: false,
   error: null
 };
@@ -28,7 +21,7 @@ export const initialState: AppState = {
 
 export const cartReducer = createReducer(
   initialState,
-  on(CartActions.initCart, handleInitCart),
+  on(CartActions.loadCart, handleLoadCart),
   on(CartActions.addOrder, handleAddOrderToCart),
   on(CartActions.removeOrder, handleRemoveOrderToCart),
   on(CartActions.setState, handleChangeCartState),

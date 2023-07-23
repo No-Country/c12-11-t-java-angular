@@ -1,18 +1,13 @@
-
-  <h2>Ordenes en curso</h2>
-  <div class="carousel overflow-x-scroll">
-    <div class="row g-3 flex-nowrap">
-
-
-      <app-card-purchase-order
-        *ngFor="let purchaseOrder of purchaseOrders; let i = index"
-        [address]="purchaseOrder.address"
-        [timeMax]="purchaseOrder.timeMax"
-        [timeMin]="purchaseOrder.timeMin"
-        [title]="purchaseOrder.title"
-        class="col col-lg-4"/>
-
-
-    </div>
+<h2>Ordenes en curso</h2>
+<div class="carousel overflow-x-scroll overflow-x-auto w-100">
+  <div class="row flex-nowrap">
+    <app-card-purchase-order
+      *ngFor="let purchaseOrder of purchaseOrders.slice(0,3); let i = index"
+      [address]="purchaseOrder.address"
+      [timeMax]="purchaseOrder.timeMax"
+      [timeMin]="purchaseOrder.timeMin"
+      [title]="purchaseOrder.title"
+      class="col col-md-6 col-lg-4"/>
   </div>
+</div>
 
