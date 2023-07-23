@@ -1,11 +1,14 @@
 import {Order} from "./order.model";
-import {CartState} from "./cart-state.model";
+import {CartStatus} from "./cart-state.model";
 
 
-export interface Cart {
+export interface CartState {
   id: number;
   orders: Order[];
   total: number;
-  state: CartState;
+  state: CartStatus;
+  loading: boolean;
+  error: string | null;
+
 }
 

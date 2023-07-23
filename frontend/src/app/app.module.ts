@@ -13,6 +13,7 @@ import {StoreModule} from '@ngrx/store';
 import {appReducer} from "./store/reducers/app.reducer";
 import {cartReducer} from "./store/reducers/cart.reducer";
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 
     }),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     {

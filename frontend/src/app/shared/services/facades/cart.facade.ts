@@ -7,12 +7,14 @@ import {PlateService} from "@shared/services/plate.service";
 import {selectCart} from "../../../store/selectors/cart.selectors";
 import {forkJoin, map, Observable, of, switchMap} from "rxjs";
 import {PedidoRequest, PedidoService} from "@shared/services/pedido.service";
-import {Cart} from "../../../store/models/cart.model";
-import {CartState} from "../../../store/models/cart-state.model";
+import {CartState} from "../../../store/models/cart.model";
+import {CartStatus} from "../../../store/models/cart-state.model";
 
 @Injectable({
   providedIn: 'root'
 })
+
+/** @Deprecate*/
 export class CartFacade {
 
   private pedidoRequest: PedidoRequest = {
@@ -27,12 +29,12 @@ export class CartFacade {
   }
 
 
-  private estadoPedidoIdToCartStateMap: CartState[] = [
-    CartState.New,
-    CartState.ReadyToOrder,
-    CartState.ReadyToPay,
-    CartState.PreparingOrder,
-    CartState.Finished
+  private estadoPedidoIdToCartStateMap: CartStatus[] = [
+    CartStatus.New,
+    CartStatus.ReadyToOrder,
+    CartStatus.ReadyToPay,
+    CartStatus.PreparingOrder,
+    CartStatus.Finished
   ]
 
   constructor(private store: Store,
@@ -45,11 +47,11 @@ export class CartFacade {
 
   }
 
-  public getCart(): Observable<Cart> {
+  public getCart(): Observable<CartState> {
     return this.store.pipe(select(selectCart))
   }
 
-  private changeCartState(state: CartState) {
+  private changeCartState(state: CartStatus) {
 
     this.pedidoRequest.estadoPedidoId = this.estadoPedidoIdToCartStateMap.indexOf(state)
     this.pedidoService.modificarPedido(this.pedidoRequest).subscribe(
@@ -71,7 +73,7 @@ export class CartFacade {
           (response) => {
             order.id = response.pedidoDetalleId
             this.store.dispatch(CartActions.addOrder({order}));
-            this.changeCartState(CartState.PreparingOrder)
+            this.changeCartState(CartStatus.PreparingOrder)
           },
           (error) => {
             console.error('Error en la petición:', error);
@@ -125,12 +127,14 @@ export class CartFacade {
     };
   }
 
-  initCart(idUsuario: number = 1): Observable<Cart> {
-    const cart: Cart = {
+  initCart(idUsuario: number = 1): Observable<CartState> {
+    const cart: CartState = {
       id: 0,
       orders: [],
       total: 0,
-      state: CartState.New
+      state: CartStatus.New,
+      loading: false,
+      error: null
     };
 
 
@@ -152,7 +156,7 @@ export class CartFacade {
             map(orders => {
               cart.orders = orders;
               cart.total = orders.reduce((previousValue, currentValue) => currentValue.totalParcial + previousValue, 0)
-              this.store.dispatch(CartActions.initCart({cart}));
+              this.store.dispatch(CartActions.loadCart({cart}));
               return cart;
             })
           );
@@ -182,13 +186,15 @@ export class CartFacade {
     this.pedidoService.crearPedido(pedidoRequest).subscribe(
       (response) => {
         this.pedidoRequest = response
-        const cart: Cart = {
+        const cart: CartState = {
           id: response.pedidoId,
           state: this.estadoPedidoIdToCartStateMap[response.estadoPedidoId],
           orders: [],
-          total: 0
+          total: 0,
+          error: null,
+          loading: false
         }
-        this.store.dispatch(CartActions.initCart({cart}));
+        this.store.dispatch(CartActions.loadCart({cart}));
       },
       (error) => {
         console.error('Error en la petición:', error);

@@ -4,7 +4,7 @@ import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
 import {select, Store} from "@ngrx/store";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
-import {CartState} from '../../../../store/models/cart-state.model';
+import {CartStatus} from '../../../../store/models/cart-state.model';
 import {selectCart} from "../../../../store/selectors/cart.selectors";
 import {MenuActions} from "@modules/container/store/actions/menu.actions";
 
@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   faChevronLeft = faChevronLeft
 
 
-  cartState: CartState = CartState.New
+  cartState: CartStatus = CartStatus.New
   isLoading = true
 
   menuName = 'Desayuno' //TODO: Debe venir del navbar
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
   }
 
   disabledFooter() {
-    return this.cartState === CartState.New
+    return this.cartState === CartStatus.New
   }
 
 }

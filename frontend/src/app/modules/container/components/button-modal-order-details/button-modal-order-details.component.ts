@@ -4,8 +4,8 @@ import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {faCheckCircle} from "@fortawesome/free-regular-svg-icons";
 import {Store} from "@ngrx/store";
 import {Router} from "@angular/router";
-import {Cart} from "../../../../store/models/cart.model";
-import {CartState} from "../../../../store/models/cart-state.model";
+import {CartState} from "../../../../store/models/cart.model";
+import {CartStatus} from "../../../../store/models/cart-state.model";
 import {CartActions} from "../../../../store/actions/cart.actions";
 import {CartFacade} from "@shared/services/facades/cart.facade";
 
@@ -20,11 +20,13 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   faCart = faCartShopping
   faCartSuccess = faCheckCircle
 
-  shoppingCart: Cart = {
+  shoppingCart: CartState = {
     id: 0,
     orders: [],
     total: 0,
-    state: CartState.New
+    state: CartStatus.New,
+    loading: false,
+    error: null
   }
 
   private modalService = inject(NgbModal);
@@ -43,7 +45,7 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
 
   goToPayment() {
     this.modalService.dismissAll();
-    this.store.dispatch(CartActions.setState({state: CartState.ReadyToPay}));
+    this.store.dispatch(CartActions.setState({state: CartStatus.ReadyToPay}));
     this.router.navigateByUrl("/container/shopping");
   }
 

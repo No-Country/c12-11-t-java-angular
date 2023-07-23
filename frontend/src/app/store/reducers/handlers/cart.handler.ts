@@ -1,22 +1,15 @@
 import {Order} from "../../models/order.model";
-import {CartState} from "../../models/cart-state.model";
-import {AppState} from "../../models/app-state.model";
-import {Cart} from "../../models/cart.model";
+import {CartStatus} from "../../models/cart-state.model";
+import {CartState} from "../../models/cart.model";
 
 
-export const handleInitCart = (state: AppState, {cart}: { cart: Cart }): AppState => {
+export const handleLoadCart = (state: CartState, {cart}: { cart: CartState }): CartState => {
 
-  return {
-    ...state,
-    cart: {
-      ...cart
-    }
-  };
-};
+  return cart;
+}
 
-
-export const handleAddOrderToCart = (state: AppState, {order}: { order: Order }): AppState => {
-  const orders = [...state.cart.orders];
+export const handleAddOrderToCart = (state: CartState, {order}: { order: Order }): CartState => {
+  const orders = [...state.orders];
   const existingOrderIndex = orders.findIndex(oneOrder => oneOrder.plate === order.plate);
 
   if (existingOrderIndex !== -1) {
@@ -27,38 +20,31 @@ export const handleAddOrderToCart = (state: AppState, {order}: { order: Order })
 
   return {
     ...state,
-    cart: {
-      ...state.cart,
-      orders,
-      total: calculateTotal(orders),
-      state: CartState.ReadyToOrder
-    }
-  };
-};
+    orders: orders,
+    total: calculateTotal(orders),
+    state: CartStatus.ReadyToOrder
+  }
+}
 
 
-export const handleRemoveOrderToCart = (state: AppState, {order}: { order: Order }): AppState => {
-  const ordersUpdated = [...state.cart.orders.filter(oneOrder => oneOrder.plate.platoId !== order.plate.platoId)];
+export const handleRemoveOrderToCart = (state: CartState, {order}: { order: Order }): CartState => {
+  const ordersUpdated = [...state.orders.filter(oneOrder => oneOrder.plate.platoId !== order.plate.platoId)];
   const totalUpdated = calculateTotal(ordersUpdated);
 
   return {
     ...state,
-    cart: {
-      ...state.cart,
-      orders: ordersUpdated,
-      total: totalUpdated,
-      state: ordersUpdated.length === 0 ? CartState.New : CartState.ReadyToOrder
-    }
-  };
+    orders: ordersUpdated,
+    total: totalUpdated,
+    state: ordersUpdated.length === 0 ? CartStatus.New : CartStatus.ReadyToOrder
+  }
 };
 
-export const handleChangeCartState = (state: AppState, {state: cartState}: { state: CartState }): AppState => ({
-  ...state,
-  cart: {
-    ...state.cart,
+export const handleChangeCartState = (state: CartState, {state: cartState}: { state: CartStatus }): CartState => {
+  return {
+    ...state,
     state: cartState
   }
-});
+}
 
 
 function calculateTotal(orders: Order[]) {
