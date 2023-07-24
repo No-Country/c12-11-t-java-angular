@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiBaseService} from './api-base.service';
 import {map, Observable} from 'rxjs';
+import {Order} from "../../store/models/order.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,10 @@ export class PedidoDetalleService {
     return this.apiBase.delete<PedidoDetalleRequest>(`/eliminarPedidoDetalle/${id}`);
   }
 
+  public consultarPedidosDetalleSegunPedido(id: number): Observable<Order[]> {
 
-
+    return this.apiBase.get<Order[]>(`/consultarPedidosDetalleSegunPedido/${id}`);
+  }
 
 
   public filtrarPorPedidoId(pedidoId: number): Observable<PedidoDetalleRequest[]> {
@@ -38,7 +41,6 @@ export class PedidoDetalleService {
       map(pedidos => pedidos.filter(pedido => pedido.pedidoId === pedidoId))
     );
   }
-
 
 
   /*

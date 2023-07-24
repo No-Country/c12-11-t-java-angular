@@ -6,7 +6,7 @@
       <h2 class="subtitle-page">Subtotal</h2>
     </div>
     <div class="col text-end">
-      <h2 class="subtitle-page">{{ shoppingCart.total| currency }}</h2>
+      <h2 class="subtitle-page">{{ shoppingCart.cart.total| currency }}</h2>
     </div>
   </div>
   <div class="row mb-2">
@@ -25,7 +25,7 @@
     </div>
     <div class="col text-end">
       <h2 class="subtitle-page-bold">
-        {{  shoppingCart.total + 2000 | currency }}
+        {{  shoppingCart.cart.total + 2000 | currency }}
       </h2>
     </div>
   </div>

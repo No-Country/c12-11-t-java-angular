@@ -25,7 +25,7 @@ export class CardPlateMenuComponent {
 
   addCart() {
     let order = {
-      id: 0,
+      id: -1,
       plate: this.plate,
       count: 1,
       totalParcial: this.plate.precio,

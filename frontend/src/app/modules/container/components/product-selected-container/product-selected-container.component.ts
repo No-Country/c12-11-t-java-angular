@@ -25,7 +25,7 @@ export class ProductSelectedContainerComponent implements OnInit{
   onCountChange(newValue: number) {
     this.count = newValue;
     if (newValue >= 1) {
-      this.appStore.dispatch(CartActions.addOrder({
+      this.appStore.dispatch(CartActions.addOrderToCart({
         order: {
           ...this.order,
           count: this.count,

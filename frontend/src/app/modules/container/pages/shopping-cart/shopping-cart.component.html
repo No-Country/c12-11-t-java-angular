@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="shopping-cart-container">
+  <div class="shopping-cartState-container">
     <div class="row mb-3">
       <div class="col-4 icon-back">
         <button type="button" class="btn btn-light d-md-none d-block" (click)="goBack()">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <app-tabs></app-tabs>
-    <div *ngFor="let order of shoppingCart.orders">
+    <div *ngFor="let order of shoppingCart.cart.orders">
 <app-product-selected-container [order]="order"/>
   </div>
    <app-delivery-container></app-delivery-container>

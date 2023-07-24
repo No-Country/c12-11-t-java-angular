@@ -1,48 +1,111 @@
 import {Order} from "../../models/order.model";
-import {CartStatus} from "../../models/cart-state.model";
+import {CartStatus} from "../../models/cart-status.model";
 import {CartState} from "../../models/cart.model";
 
 
-export const handleLoadCart = (state: CartState, {cart}: { cart: CartState }): CartState => {
+const estadoPedidoIdToCartStateMap: CartStatus[] = [
+  CartStatus.New,
+  CartStatus.ReadyToOrder,
+  CartStatus.ReadyToPay,
+  CartStatus.PreparingOrder,
+  CartStatus.Finished
+]
 
-  return cart;
+
+export const handleLoadCart = (state: CartState): CartState => {
+  return {
+    ...state,
+    loading: true
+  }
 }
 
-export const handleAddOrderToCart = (state: CartState, {order}: { order: Order }): CartState => {
-  const orders = [...state.orders];
+export const handleSetId = (state: CartState, {id, status}: { id: number, status: number }): CartState => {
+  return {
+    ...state,
+    cart: {
+      ...state.cart,
+      id,
+      state: estadoPedidoIdToCartStateMap[status]
+    }
+  }
+}
+
+export const handleNewCart = (state: CartState): CartState => {
+  return {
+    ...state,
+    loading: true
+  }
+}
+
+
+export const handleCartLoadedSuccess = (state: CartState, {orders}: { orders: Order[] }): CartState => {
+  return {
+    cart: {
+      ...state.cart,
+      total: calculateTotal(orders),
+      orders: orders
+    },
+    loading: false,
+    error: null
+  };
+}
+export const handleCartError = (state: CartState, {error}: { error: string }): CartState => {
+  return {
+    ...state,
+    error
+  };
+}
+
+
+export const handleAddOrderToCartSuccess = (state: CartState, { order }: { order: Order }): CartState => {
+  const orders = [...state.cart.orders];
   const existingOrderIndex = orders.findIndex(oneOrder => oneOrder.plate === order.plate);
 
   if (existingOrderIndex !== -1) {
-    orders[existingOrderIndex] = order;
+    orders[existingOrderIndex] = { ...order, id: orders[existingOrderIndex].id }; // Ensure to preserve the existing id
   } else {
     orders.push(order);
   }
 
   return {
     ...state,
-    orders: orders,
-    total: calculateTotal(orders),
-    state: CartStatus.ReadyToOrder
+    cart: {
+      ...state.cart,
+      orders: orders,
+      total: calculateTotal(orders),
+      state: CartStatus.ReadyToOrder
+    }
   }
 }
 
 
+
+
+
 export const handleRemoveOrderToCart = (state: CartState, {order}: { order: Order }): CartState => {
-  const ordersUpdated = [...state.orders.filter(oneOrder => oneOrder.plate.platoId !== order.plate.platoId)];
+  const ordersUpdated = [...state.cart.orders.filter(oneOrder => oneOrder.plate.platoId !== order.plate.platoId)];
   const totalUpdated = calculateTotal(ordersUpdated);
 
   return {
     ...state,
-    orders: ordersUpdated,
-    total: totalUpdated,
-    state: ordersUpdated.length === 0 ? CartStatus.New : CartStatus.ReadyToOrder
+    cart: {
+      ...state.cart,
+      orders: ordersUpdated,
+      total: totalUpdated,
+      state: ordersUpdated.length === 0 ? CartStatus.New : CartStatus.ReadyToOrder
+    }
   }
 };
 
 export const handleChangeCartState = (state: CartState, {state: cartState}: { state: CartStatus }): CartState => {
   return {
     ...state,
-    state: cartState
+    ...state,
+    cart: {
+      ...state.cart,
+      state: cartState
+    }
+
   }
 }
 

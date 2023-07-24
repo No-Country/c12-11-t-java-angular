@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {CartStatus} from 'src/app/store/models/cart-state.model';
+import {CartStatus} from 'src/app/store/models/cart-status.model';
 import {CartState} from 'src/app/store/models/cart.model';
 import {selectCart} from 'src/app/store/selectors/cart.selectors';
 
@@ -14,10 +14,12 @@ export class OrderSummaryContainerComponent implements OnInit {
   private store = inject(Store);
   private router = inject(Router);
   shoppingCart: CartState = {
-    id: 0,
-    orders: [],
-    total: 0,
-    state: CartStatus.New,
+    cart: {
+      id: 0,
+      orders: [],
+      total: 0,
+      state: CartStatus.New,
+    },
     loading: false,
     error: null
   }

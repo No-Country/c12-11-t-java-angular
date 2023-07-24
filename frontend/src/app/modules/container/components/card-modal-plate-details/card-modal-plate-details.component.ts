@@ -38,7 +38,7 @@ export class CardModalPlateDetailsComponent {
 
   addCart() {
     let order = {
-      id: 0,
+      id: -1,
       plate: this.plate,
       count: this.count,
       totalParcial: this.count * this.plate.precio,

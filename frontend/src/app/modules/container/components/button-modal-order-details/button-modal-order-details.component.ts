@@ -5,7 +5,7 @@ import {faCheckCircle} from "@fortawesome/free-regular-svg-icons";
 import {Store} from "@ngrx/store";
 import {Router} from "@angular/router";
 import {CartState} from "../../../../store/models/cart.model";
-import {CartStatus} from "../../../../store/models/cart-state.model";
+import {CartStatus} from "../../../../store/models/cart-status.model";
 import {CartActions} from "../../../../store/actions/cart.actions";
 import {CartFacade} from "@shared/services/facades/cart.facade";
 
@@ -21,10 +21,12 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   faCartSuccess = faCheckCircle
 
   shoppingCart: CartState = {
-    id: 0,
-    orders: [],
-    total: 0,
-    state: CartStatus.New,
+    cart: {
+      id: 0,
+      orders: [],
+      total: 0,
+      state: CartStatus.New,
+    },
     loading: false,
     error: null
   }
@@ -38,6 +40,7 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.cartFacade.getCart().subscribe(cart => {
       this.shoppingCart = cart
     })
