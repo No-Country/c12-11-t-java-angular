@@ -7,6 +7,7 @@ import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
 import {CartStatus} from '../../../../store/models/cart-status.model';
 import {selectCart} from "../../../../store/selectors/cart.selectors";
 import {MenuActions} from "@modules/container/store/actions/menu.actions";
+import {CartActions} from "../../../../store/actions/cart.actions";
 
 @Component({
   selector: 'app-menu',
@@ -27,6 +28,7 @@ export class MenuComponent implements OnInit {
   constructor(private location: Location,
               private store: Store,
               public menuService: MenuService) {
+    this.store.dispatch(CartActions.loadCart())
 
   }
 
