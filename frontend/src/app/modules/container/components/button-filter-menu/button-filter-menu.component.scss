@@ -7,6 +7,25 @@
   margin-right: 14px;
 }
 
+
+.btn-light {
+  &:hover {
+    background-color: #638C63 !important;
+    color: #ffffff !important;
+
+  }
+}
+
+.btn-primary {
+  background-color: #456B42;
+
+  &:hover {
+    background-color: #638C63 !important;
+    color: #ffffff !important;
+  }
+}
+
+
 @media (min-width: 768px) {
   .btn {
     padding: 0.5rem 1rem;

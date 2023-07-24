@@ -16,6 +16,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { pedidoReducer } from './store/reducers/pedido.reducer';
+import {EffectsModule} from '@ngrx/effects';
+import {CartEffects} from "./store/effects/cart.effects";
 
 import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
@@ -42,6 +44,7 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
     }),
     EffectsModule.forRoot([]),
 
+    EffectsModule.forRoot([CartEffects]),
   ],
   providers: [
     {

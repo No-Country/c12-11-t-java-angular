@@ -4,9 +4,10 @@ import {Location} from "@angular/common";
 import {MenuService} from "@shared/services/menu-service/menu.service";
 import {select, Store} from "@ngrx/store";
 import {selectLoading} from "@modules/container/store/selectors/menu.selectors";
-import {CartStatus} from '../../../../store/models/cart-state.model';
+import {CartStatus} from '../../../../store/models/cart-status.model';
 import {selectCart} from "../../../../store/selectors/cart.selectors";
 import {MenuActions} from "@modules/container/store/actions/menu.actions";
+import {CartActions} from "../../../../store/actions/cart.actions";
 
 @Component({
   selector: 'app-menu',
@@ -27,6 +28,7 @@ export class MenuComponent implements OnInit {
   constructor(private location: Location,
               private store: Store,
               public menuService: MenuService) {
+    this.store.dispatch(CartActions.loadCart())
 
   }
 
@@ -38,7 +40,7 @@ export class MenuComponent implements OnInit {
     this.store.dispatch(MenuActions.setMenu({menuName: this.menuName}))
 
     this.store.pipe(select(selectCart)).subscribe(cart => {
-      this.cartState = cart.state
+      this.cartState = cart.cart.state
     });
   }
 

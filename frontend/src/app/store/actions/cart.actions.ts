@@ -1,14 +1,19 @@
-import {createActionGroup, props} from "@ngrx/store";
+import {createActionGroup, emptyProps, props} from "@ngrx/store";
 import {Order} from "../models/order.model";
-import {CartStatus} from "../models/cart-state.model";
-import {CartState} from "../models/cart.model";
+import {CartStatus} from "../models/cart-status.model";
 
 
 export const CartActions = createActionGroup({
   source: 'Cart',
   events: {
-    'LoadCart': props<{ cart: CartState }>(),
-    'Add Order': props<{ order: Order }>(),
+    'Load Cart': emptyProps(),
+    'Set Id': props<{ id: number, status: number }>(),
+    'New Cart': emptyProps(),
+    'Cart Loaded Success': props<{ orders: Order[] }>(),
+    'Cart Loaded Error': props<{ error: string }>(),
+    'Add Order To Cart': props<{ order: Order }>(),
+    'Add Order To Cart Success': props<{ order: Order }>(),
+    'Add Order To Cart Failure': props<{ error: string }>(),
     'Remove Order': props<{ order: Order }>(),
     'Set State': props<{ state: CartStatus }>(),
   },
