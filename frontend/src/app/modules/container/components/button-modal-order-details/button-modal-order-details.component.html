@@ -1,9 +1,10 @@
 <ng-template #content let-modal>
   <header class="modal-header justify-content-start">
-    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close mx-0" type="button"></button>
-    <h4 class="modal-title mx-3" id="modal-basic-title">Tu pedido</h4>
+    <h4 class="modal-title" id="modal-basic-title">Tu pedido</h4>
+    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close justify-content-end"
+            type="button"></button>
   </header>
-  <main class="modal-body ">
+  <main class="modal-body vh-100">
 
     <div *ngIf="shoppingCart.cart.orders.length===0" class="text-dark-emphasis">
       <p> No has seleccionado comidas...</p>
@@ -21,7 +22,7 @@
       <p>Total:</p>
       <p>{{shoppingCart.cart.total|currency}}</p>
     </div>
-    <button (click)="goToPayment()" *ngIf="shoppingCart.cart.orders.length>0" class="btn btn-dark m-auto"
+    <button (click)="goToPayment()" *ngIf="shoppingCart.cart.orders.length>0" class="btn btn-primary m-auto"
             id="button"
             routerLink="/container/shopping">
       <fa-icon [icon]="faCartSuccess"/>
@@ -30,8 +31,7 @@
   </div>
 </ng-template>
 
-<button (click)="open(content)" class="btn btn-dark">
+<button (click)="open(content)" class="btn btn-primary">
   <fa-icon [icon]="faCart"/>
-  Ver mi pedido
 </button>
 

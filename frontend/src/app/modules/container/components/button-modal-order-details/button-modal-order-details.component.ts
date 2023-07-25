@@ -55,7 +55,7 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, {
       scrollable: true,
-      modalDialogClass: 'me-0 my-0',
+      modalDialogClass: 'me-0 my-0 vh-100'
     })
   }
 

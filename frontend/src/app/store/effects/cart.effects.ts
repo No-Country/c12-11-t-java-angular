@@ -123,8 +123,8 @@ export class CartEffects {
 
 
   private toPedidoDetalleRequest(order: Order): PedidoDetalleRequest {
-    const pedidoDetalleId = order.id !== undefined ? order.id : -1;
-    const platoId = order.plate.platoId !== undefined ? order.plate.platoId : -1;
+    const pedidoDetalleId = order.id ?? -1;
+    const platoId = order.plate.platoId ?? -1;
     let pedidoId = 0
 
     this.store.pipe(select(selectCart)).subscribe(state => {
@@ -159,6 +159,42 @@ export class CartEffects {
       )
     )
   );
+
+    updateOrder$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(CartActions.updateOrderToCart),
+        exhaustMap(action =>
+          this.pedidoDetalleService.modificarPedidoDetalle(this.toPedidoDetalleRequest(action.order)).pipe(
+            map((response) => {
+              const orderWithId: Order = { ...action.order, id: response.pedidoDetalleId };
+              return CartActions.addOrderToCart({ order: orderWithId });
+            }),
+            catchError((error) => {
+              console.error('Error en la petición:', error);
+              return of();
+            })
+          )
+        )
+      )
+    );
+
+  removeOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.removeOrderFromCart),
+      exhaustMap(action =>
+        this.pedidoDetalleService.eliminarPedidoDetalle(action.order.id).pipe(
+          map(() => {
+            return CartActions.removeOrderFromCart({order: action.order});
+          }),
+          catchError((error) => {
+            console.error('Error en la petición:', error);
+            return of(); // Otra acción para manejar el error si lo deseas
+          })
+        )
+      )
+    )
+  );
+
 
   orderExistsInCart(order: Order, cartOrders: Order[]): boolean {
     return cartOrders.some(cartOrder => cartOrder.plate.platoId === order.plate.platoId);
