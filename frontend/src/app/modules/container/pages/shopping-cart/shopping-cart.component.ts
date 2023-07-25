@@ -19,14 +19,14 @@ export class ShoppingCartComponent implements OnInit {
   faMinus = faMinus;
 
 
-  public state: string = "";
-  public textAddress: string = "";
-  public optionsDelivery: string = "0";
-
-  public direcciones: any[] = [];
-  public hasDireccion: boolean = false;
-  private store = inject(Store);
-  private router = inject(Router);
+  public state:string="";
+  public textAddress:string="";
+  public optionsDelivery:string="0";
+  public idAddress:number=0;
+  public direcciones:any[]=[];
+  public hasDireccion:boolean=false;
+  private store=inject(Store);
+  private router=inject(Router);
 
   shoppingCart: CartState = {
     cart: {
@@ -55,6 +55,10 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
+getIdAddress(id:number){
+this.idAddress=id;
+
+}
 
   public goBack() {
     this.router.navigateByUrl('/container/menu');

@@ -23,12 +23,12 @@
       </div>
       <ul class="list-group list-address mt-3 " *ngIf="direcciones.length > 0&& optionsDelivery=='0'">
         <li class="list-group-item" *ngFor="let direccion of direcciones">
-          <input type="radio" name="radios" [value]="direccion.zona" />
+          <input type="radio" name="listAdressrdbtns"  [(ngModel)]="addressId" [value]="direccion.direccionId" (change)="sendId()" />
           {{ direccion.zona }}
           <fa-icon [icon]="faTrashCan" class="icon-end" (click)="deleteAddress(direccion.direccionId)"></fa-icon>
         </li>
 
-        <button type="button" class="btn btn-secondary btn-sm  btn-lgp mt-2" (click)=" hasDireccion = !hasDireccion">
+        <button type="button" class="btn btn-secondary  btn-sm  btn-lgp mt-2" (click)=" hasDireccion = !hasDireccion">
           <img src="assets/icons/circlePlus.svg" alt="" /> Nueva dirreccion
         </button>
       </ul>
@@ -59,6 +59,7 @@
           <button type="submit" class="btn btn-secondary btn-sm btn-lgp mt-2">
             Agregar
           </button>
+
         </form>
       </div>
 

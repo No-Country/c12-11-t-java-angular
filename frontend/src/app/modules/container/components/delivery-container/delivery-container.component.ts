@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnChanges, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -11,14 +11,13 @@ import { AddressService } from '@shared/services/address.service';
   styleUrls: ['./delivery-container.component.scss']
 })
 export class DeliveryContainerComponent implements OnInit{
+
   faTrashCan=faTrashCan;
   public textAddress:string="";
   public optionsDelivery:string="0";
-  public newAddress:any={
-  }
-  public valueDefaul:number=1;
-  public price:number=4000;
-  public priceCurrent=4000;
+
+  public addressId!:number|undefined;
+  @Output() sendIdAddress = new EventEmitter<number>;
   public direcciones:Address[]=[];
   public hasDireccion:boolean=false;
   public addressform!:FormGroup;
@@ -27,6 +26,8 @@ export class DeliveryContainerComponent implements OnInit{
   private fb=inject(FormBuilder);
 
   ngOnInit(): void {
+
+
       this.addressform = this.fb.group({
         zona:['',Validators.required],
         nombreCalle:['',Validators.required],
@@ -39,6 +40,7 @@ export class DeliveryContainerComponent implements OnInit{
 
   addAddress(){
 
+
     this.addressService.crearDirreccion(this.addressform.value).subscribe(resp=>{
       console.log(resp);
       this.listAddress();
@@ -48,6 +50,9 @@ export class DeliveryContainerComponent implements OnInit{
 
 
   }
+  sendId(){
+    this.sendIdAddress.emit(this.addressId as number);
+  }
   public listAddress(){
     this.addressService.listarDirecciones().subscribe(direcciones=>{
       this.direcciones=direcciones;
@@ -55,21 +60,13 @@ export class DeliveryContainerComponent implements OnInit{
     })
   }
 
-  public addproduct(){
-    this.valueDefaul++;
-    this.price=this.price+this.priceCurrent;
-  }
-  public minusProduct(){
-    if(this.valueDefaul>1){
-      this.valueDefaul--;
-      this.price=this.price-this.priceCurrent;
-    }
-  }
+
   public goBack(){
     this.router.navigateByUrl('/container/menu');
 
   }
   public deleteAddress(id?:number){
+
    this.addressService.eliminarDirreccion(id as number).subscribe(resp=>{
     this.listAddress();
    }
