@@ -71,28 +71,12 @@ export class CartFacade {
   }
 
   public updateOrder(order: Order): void {
-    let req = this.toPedidoDetalleRequest(order)
-
-    this.pedidoDetalleService.modificarPedidoDetalle(req).subscribe(
-      (response) => {
-        order.id = response.pedidoDetalleId
-        this.store.dispatch(CartActions.addOrderToCart({order}));
-      },
-      (error) => {
-        console.error('Error en la petición:', error);
-      })
+    this.store.dispatch(CartActions.updateOrderToCart({order}))
   }
 
 
   public removeOrderToCart(order: Order): void {
-    let req = order.id
-    this.pedidoDetalleService.eliminarPedidoDetalle(req).subscribe(
-      (response) => {
-        this.store.dispatch(CartActions.removeOrder({order}));
-      },
-      (error) => {
-        console.error('Error en la petición:', error);
-      })
+    this.store.dispatch(CartActions.removeOrderFromCart({order}));
   }
 
   private toPedidoDetalleRequest(order: Order): PedidoDetalleRequest {

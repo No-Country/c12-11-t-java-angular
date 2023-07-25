@@ -2,12 +2,15 @@
   padding: 1px 6px;
 }
 
+.border {
+  border: 0.5px solid #252525;
+}
+
 .card {
   margin: 20px 0;
   cursor: pointer;
   opacity: 95%;
   transition: opacity .2s ease-in-out;
-  //width: 24.75rem;
 
   &:hover {
     opacity: 100%;
@@ -25,7 +28,7 @@
 }
 
 .card-body {
-  padding: 0.8125rem;
+  padding: 0.8125rem 1rem 0.8125rem 0.8125rem;
 }
 
 
@@ -75,6 +78,10 @@
   .card-title {
     font-size: 1.25rem;
     font-weight: 500;
+
+  }
+  .card-body {
+    padding: 1rem;
   }
 }
 

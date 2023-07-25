@@ -14,7 +14,8 @@ export const CartActions = createActionGroup({
     'Add Order To Cart': props<{ order: Order }>(),
     'Add Order To Cart Success': props<{ order: Order }>(),
     'Add Order To Cart Failure': props<{ error: string }>(),
-    'Remove Order': props<{ order: Order }>(),
+    'Update Order To Cart': props<{ order: Order }>(),
+    'Remove Order From Cart': props<{ order: Order }>(),
     'Set State': props<{ state: CartStatus }>(),
   },
 });
