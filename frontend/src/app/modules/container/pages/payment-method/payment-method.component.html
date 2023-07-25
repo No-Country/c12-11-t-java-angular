@@ -24,10 +24,8 @@
     <app-tabs state="1"></app-tabs>
     <div class="row">
       <div class="col">
-
         <div class="Method-container">
-
-          <div class="select-Method-container" >
+          <div class="select-Method-container">
             <h2 class="title-page">Selecciona el metodo</h2>
             <div class="form-check form-check-inline">
               <input
@@ -57,17 +55,33 @@
               </label>
             </div>
           </div>
-          <ul class="list-group list-cards  mt-3" *ngIf="cardsRegister.length > 0&&valueMethod == '0'" >
-            <li class="list-group-item" *ngFor="let card of cardsRegister ;let i =index" >
-              <input type="radio" name="radios" [value]="card.numero"  />  <img class="imgCard" src="assets/icons/image.svg" alt="">  {{card.numero }}-{{card.name}}
-              <fa-icon [icon]="faTrashCan" class="icon-end" (click)="deleteCard(i)"></fa-icon>
+          <ul
+            class="list-group list-cards mt-3"
+            *ngIf="cardsRegister.length > 0 && valueMethod == '0'"
+          >
+            <li
+              class="list-group-item"
+              *ngFor="let card of cardsRegister; let i = index"
+            >
+              <input type="radio" name="radios" [value]="card.numero" />
+              <img class="imgCard" src="assets/icons/image.svg" alt="" />
+              {{ card.numero }}-{{ card.name }}
+              <fa-icon
+                [icon]="faTrashCan"
+                class="icon-end"
+                (click)="deleteCard(i)"
+              ></fa-icon>
             </li>
 
-            <button type="button" class="btn btn-secondary btn-sm mt-2 btn-add" (click)="isnewCard=!isnewCard">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm mt-2 btn-add"
+              (click)="isnewCard = !isnewCard"
+            >
               <img src="assets/icons/circlePlus.svg" alt="" /> Nueva tarjeta
             </button>
           </ul>
-          <div class="add-card-container  " *ngIf="(valueMethod == '0'&&cardsRegister.length==0)||isnewCard &&valueMethod == '0'">
+          <!--  <div class="add-card-container  " *ngIf="(valueMethod == '0'&&cardsRegister.length==0)||isnewCard &&valueMethod == '0'">
             <h1 class="subtitle-page mt-3">Numero</h1>
             <input
               class="form-control form-control-sm"
@@ -96,9 +110,48 @@
               placeholder="example"
               aria-label=".form-control-sm example"
             />
-          </div>
+          </div> -->
+          <form
+            novalidate
+            (ngSubmit)="createToken()"
+            class="mt-4"
+            [formGroup]="stripeTest"
+            *ngIf="
+              (valueMethod == '0' && cardsRegister.length == 0) ||
+              (isnewCard && valueMethod == '0')
+            "
+          >
+            <div class="row">
+              <div class="col col-md-8">
+                <input
+                  class="form-control form-control-sm"
+                  type="text"
+                  formControlName="name"
+                  placeholder="Nombre de la tarjeta"
+                  aria-label=".form-control-sm example"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <ngx-stripe-card
+                class="mt-4"
+                [options]="cardOptions"
+                [elementsOptions]="elementsOptions"
+              ></ngx-stripe-card>
+            </div>
+            <div class="error-message">
+              <div class="alert alert-danger" *ngIf="error">
+                {{ error }}
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lgp mt-4">
+              Agregar tarjeta
+            </button>
+          </form>
           <div class="effective-method-container" *ngIf="valueMethod == '1'">
-            <h1 class="subtitle-page mt-3">Con cuantos vas a pagar (opcional)</h1>
+            <h1 class="subtitle-page mt-3">
+              Con cuantos vas a pagar (opcional)
+            </h1>
             <input
               class="form-control form-control-sm"
               type="text"
@@ -109,22 +162,25 @@
         </div>
       </div>
 
-        <div class="col-md-4 d-none d-md-block">
-          <app-order-summary-container></app-order-summary-container>
-        </div>
+      <div class="col-md-4 d-none d-md-block">
+        <app-order-summary-container></app-order-summary-container>
       </div>
     </div>
-
-    <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block mb-3">
-      <button class="btn btn-success btn-lgp" routerLink="/container/confirm" type="button">
-        Continuar
-      </button>
-    </div>
-
   </div>
 
-  <app-footer-mobile path="confirm"
-    *ngIf="verificarRadio()"
-    text="{{ textButtom }}"
-  ></app-footer-mobile>
+  <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block mb-3">
+    <button
+      class="btn btn-success btn-lgp"
+      routerLink="/container/confirm"
+      type="button"
+    >
+      Continuar
+    </button>
+  </div>
+</div>
 
+<app-footer-mobile
+  path="confirm"
+  *ngIf="verificarRadio()"
+  text="Continuar"
+></app-footer-mobile>

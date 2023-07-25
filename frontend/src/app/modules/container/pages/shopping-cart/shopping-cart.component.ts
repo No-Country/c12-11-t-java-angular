@@ -25,7 +25,7 @@ export class ShoppingCartComponent implements OnInit {
   public state:string="";
   public textAddress:string="";
   public optionsDelivery:string="0";
-
+  public idAddress:number=0;
   public direcciones:any[]=[];
   public hasDireccion:boolean=false;
   private store=inject(Store);
@@ -51,7 +51,10 @@ getShoppingCart(){
   });
 }
 
+getIdAddress(id:number){
+this.idAddress=id;
 
+}
 
 
 

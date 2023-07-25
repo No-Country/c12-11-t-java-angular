@@ -21,6 +21,8 @@ export class MenuService {
   constructor(private menuStore: Store<MenuState>, private plateService: PlateService) {
     this.loadPlates();
 
+
+
     this.menuStore.pipe(select(selectMenu)).subscribe((menuName: string) => {
       this.tipoMenu = menuName;
     });

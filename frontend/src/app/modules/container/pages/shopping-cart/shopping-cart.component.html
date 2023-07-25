@@ -17,7 +17,7 @@
     <div *ngFor="let order of shoppingCart.orders">
 <app-product-selected-container [order]="order"/>
   </div>
-   <app-delivery-container></app-delivery-container>
+   <app-delivery-container (sendIdAddress)="getIdAddress($event)"></app-delivery-container>
   </div>
   <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block">
     <button class="btn btn-success btn-lgp" routerLink="/container/pay" type="button">
@@ -25,4 +25,4 @@
     </button>
   </div>
 </div>
-<app-footer-mobile text="Ir a pagar" path="pay"></app-footer-mobile>
+<app-footer-mobile text="Ir a pagar" [idAddress]="idAddress" path="pay"></app-footer-mobile>
