@@ -12,6 +12,10 @@ import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 
 import {StoreModule} from '@ngrx/store';
 import {appReducer} from "./store/reducers/app.reducer";
 import {cartReducer} from "./store/reducers/cart.reducer";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { pedidoReducer } from './store/reducers/pedido.reducer';
+
+import { NgxStripeModule } from 'ngx-stripe';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -38,13 +42,15 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
     SocialLoginModule,
     HttpClientModule,
     StoreModule.forRoot({app: appReducer, cart: cartReducer, user: userReducer}),
+    StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer}),
     StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer,card:cardReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-      // Restrict extension to log-only mode
+       // Restrict extension to log-only mode
 
 
     }),
+    NgxStripeModule.forRoot('pk_test_51NXSCVGOZk6s2DM2ZIs3a7LDjStAPHKpQwsRWvyvzR6uLaSs8Vzm3CyBxghm5ORZqO6HuGq6eGMlTkzxmNScCkvi00vJuexg0O'),
     EffectsModule.forRoot([CartEffects, UserEffects]),
   ],
   providers: [
