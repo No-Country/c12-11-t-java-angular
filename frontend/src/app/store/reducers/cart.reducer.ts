@@ -37,8 +37,7 @@ export const cartReducer = createReducer(
   on(CartActions.addOrderToCartSuccess, handleAddOrderToCartSuccess),
   on(CartActions.addOrderToCartFailure, handleCartError),
 
-  on(CartActions.updateOrderToCart, state => state),
-
+  on(CartActions.updateOrderToCart, handleAddOrderToCartSuccess),
   on(CartActions.removeOrderFromCart, handleRemoveOrderToCart),
   on(CartActions.setState, handleChangeCartState),
 );

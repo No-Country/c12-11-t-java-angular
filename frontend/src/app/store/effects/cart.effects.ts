@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {CartFacade} from "@shared/services/facades/cart.facade";
 import {select, Store} from "@ngrx/store";
 import {PedidoDetalleRequest, PedidoDetalleService} from "@shared/services/pedido-detalle.service";
-import {catchError, exhaustMap, filter, map, of, withLatestFrom} from "rxjs";
+import {catchError, exhaustMap, filter, map, of, tap, withLatestFrom} from "rxjs";
 import {PedidoRequest, PedidoService} from "@shared/services/pedido.service";
 import {CartActions} from "../actions/cart.actions";
 import {selectCart} from "../selectors/cart.selectors";
@@ -23,7 +23,7 @@ export class CartEffects {
     CartStatus.PreparingOrder,
     CartStatus.Finished
   ]
-  private idUsuario = 1;//TODO: DEBE VENIR DE OTRO LADOR!
+
 
   constructor(
     private actions$: Actions,
@@ -54,7 +54,6 @@ export class CartEffects {
           map((data) => {
             if (data.length > 0) {
               const lastOrder = this.getLastPedidoRequestFromData(data)
-              console.log("lastOrder", lastOrder)
               if (!this.pedidoRequestIsFinished(lastOrder)) {
                 return CartActions.setId({id: lastOrder.pedidoId, status: lastOrder.estadoPedidoId})
               }
@@ -91,7 +90,7 @@ export class CartEffects {
       exhaustMap(([action, store]) =>
         this.pedidoService.crearPedido(this.newCartRequest(store.userId)).pipe(
           map((data) => {
-            console.log("newCart", data)
+
             return CartActions.setId({id: data.pedidoId, status: 0})
           }),
           catchError((error) => {
@@ -170,6 +169,7 @@ export class CartEffects {
         this.pedidoDetalleService.modificarPedidoDetalle(this.toPedidoDetalleRequest(action.order)).pipe(
           map((response) => {
             const orderWithId: Order = {...action.order, id: response.pedidoDetalleId};
+
             return CartActions.addOrderToCart({order: orderWithId});
           }),
           catchError((error) => {
