@@ -28,11 +28,13 @@ export class MenuComponent implements OnInit {
   constructor(private location: Location,
               private store: Store,
               public menuService: MenuService) {
+
     this.store.dispatch(CartActions.loadCart())
 
   }
 
   ngOnInit(): void {
+
     this.store.pipe(select(selectLoading)).subscribe(isLoad => {
       this.isLoading = isLoad
     });
@@ -42,6 +44,7 @@ export class MenuComponent implements OnInit {
     this.store.pipe(select(selectCart)).subscribe(cart => {
       this.cartState = cart.cart.state
     });
+
   }
 
   disabledFooter() {

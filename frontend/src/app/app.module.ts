@@ -15,6 +15,8 @@ import {cartReducer} from "./store/reducers/cart.reducer";
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {CartEffects} from "./store/effects/cart.effects";
+import {userReducer} from "./store/reducers/user.reducer";
+import {UserEffects} from "./store/effects/user.effects";
 
 
 @NgModule({
@@ -28,14 +30,14 @@ import {CartEffects} from "./store/effects/cart.effects";
     FontAwesomeModule,
     SocialLoginModule,
     HttpClientModule,
-    StoreModule.forRoot({app: appReducer, cart: cartReducer}),
+    StoreModule.forRoot({app: appReducer, cart: cartReducer, user: userReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       // Restrict extension to log-only mode
 
 
     }),
-    EffectsModule.forRoot([CartEffects]),
+    EffectsModule.forRoot([CartEffects, UserEffects]),
   ],
   providers: [
     {

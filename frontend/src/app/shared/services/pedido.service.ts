@@ -26,8 +26,14 @@ export class PedidoService {
     return this.apiBase.delete(`/plato/${id}`)
   }
 
+  //TODO: A RESOLVER
   listarPedidosDeUsuario(idUsuario: number): Observable<PedidoRequest[]> {
     return this.apiBase.get<PedidoRequest[]>(`/pedidosDeUsuario/${idUsuario}`);
+  }
+
+  //TODO: A RESOLVER
+  listarPedidosDeUsuario2(idUsuario: number) {
+    return this.apiBase.get<PedidoRequest[]>(`/pedidosDeUsuario2/${idUsuario}`);
   }
 
 

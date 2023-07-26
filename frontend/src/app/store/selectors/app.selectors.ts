@@ -5,11 +5,6 @@ import {AppState} from "../models/app-state.model";
 export const selectAppState = createFeatureSelector<AppState>('app');
 
 
-export const selectUser = createSelector(
-  selectAppState,
-  (state: AppState) => state.user
-);
-
 
 export const selectAppLoading = createSelector(
   selectAppState,

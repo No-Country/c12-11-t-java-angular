@@ -1,14 +1,25 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserFacade} from "@shared/services/facades/user.facade";
+import {Order} from "../../../../store/models/order.model";
 
 @Component({
   selector: 'app-deck-purchase-order',
   templateUrl: './deck-purchase-order.component.html',
   styleUrls: ['./deck-purchase-order.component.scss']
 })
-export class DeckPurchaseOrderComponent {
-  purchaseOrders;
+export class DeckPurchaseOrderComponent implements OnInit {
 
-  constructor() {
+  purchaseOrders;
+  orders: Order[] = [];
+
+  ngOnInit(): void {
+    this.userFacade.getOrders().subscribe(value => {
+      this.orders = value
+    })
+  }
+
+
+  constructor(private userFacade: UserFacade) {
     this.purchaseOrders = [
       {
         title: "Hamburguesa de garbanzos",

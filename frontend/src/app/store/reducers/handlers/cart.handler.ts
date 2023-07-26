@@ -12,7 +12,7 @@ const estadoPedidoIdToCartStateMap: CartStatus[] = [
 ]
 
 
-export const handleLoadCart = (state: CartState): CartState => {
+export const handleLoad = (state: CartState): CartState => {
   return {
     ...state,
     loading: true
@@ -33,7 +33,6 @@ export const handleSetId = (state: CartState, {id, status}: { id: number, status
 export const handleNewCart = (state: CartState): CartState => {
   return {
     ...state,
-    loading: true
   }
 }
 
@@ -52,17 +51,18 @@ export const handleCartLoadedSuccess = (state: CartState, {orders}: { orders: Or
 export const handleCartError = (state: CartState, {error}: { error: string }): CartState => {
   return {
     ...state,
+    loading: false,
     error
   };
 }
 
 
-export const handleAddOrderToCartSuccess = (state: CartState, { order }: { order: Order }): CartState => {
+export const handleAddOrderToCartSuccess = (state: CartState, {order}: { order: Order }): CartState => {
   const orders = [...state.cart.orders];
   const existingOrderIndex = orders.findIndex(oneOrder => oneOrder.plate === order.plate);
 
   if (existingOrderIndex !== -1) {
-    orders[existingOrderIndex] = { ...order, id: orders[existingOrderIndex].id }; // Ensure to preserve the existing id
+    orders[existingOrderIndex] = {...order, id: orders[existingOrderIndex].id}; // Ensure to preserve the existing id
   } else {
     orders.push(order);
   }
@@ -77,9 +77,6 @@ export const handleAddOrderToCartSuccess = (state: CartState, { order }: { order
     }
   }
 }
-
-
-
 
 
 export const handleRemoveOrderToCart = (state: CartState, {order}: { order: Order }): CartState => {
