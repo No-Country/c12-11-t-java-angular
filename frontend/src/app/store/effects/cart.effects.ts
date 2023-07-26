@@ -3,12 +3,13 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {CartFacade} from "@shared/services/facades/cart.facade";
 import {select, Store} from "@ngrx/store";
 import {PedidoDetalleRequest, PedidoDetalleService} from "@shared/services/pedido-detalle.service";
-import {catchError, exhaustMap, filter, map, of, tap, withLatestFrom} from "rxjs";
+import {catchError, exhaustMap, filter, map, of, withLatestFrom} from "rxjs";
 import {PedidoRequest, PedidoService} from "@shared/services/pedido.service";
 import {CartActions} from "../actions/cart.actions";
 import {selectCart} from "../selectors/cart.selectors";
 import {CartStatus} from "../models/cart-status.model";
 import {Order} from "../models/order.model";
+import {selectUser} from "../selectors/user.selectors";
 
 @Injectable({
   providedIn: "root"
@@ -34,7 +35,8 @@ export class CartEffects {
   }
 
   private getLastPedidoRequestFromData(data: PedidoRequest[]) {
-    return data[0]
+    const id = data.reduce((max, elemento) => (elemento.pedidoId > max ? elemento.pedidoId : max), 0)
+    return data.filter(data => data.pedidoId === id)[0]
   }
 
   private pedidoRequestIsFinished(pedido: PedidoRequest) {
@@ -46,11 +48,13 @@ export class CartEffects {
   loadCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.loadCart),
-      exhaustMap(() =>
-        this.pedidoService.listarPedidosDeUsuario(this.idUsuario).pipe(
+      withLatestFrom(this.store.select(selectUser)),
+      exhaustMap(([action, store]) =>
+        this.pedidoService.listarPedidosDeUsuario(store.userId).pipe(
           map((data) => {
             if (data.length > 0) {
               const lastOrder = this.getLastPedidoRequestFromData(data)
+              console.log("lastOrder", lastOrder)
               if (!this.pedidoRequestIsFinished(lastOrder)) {
                 return CartActions.setId({id: lastOrder.pedidoId, status: lastOrder.estadoPedidoId})
               }
@@ -83,8 +87,9 @@ export class CartEffects {
   newCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.newCart),
-      exhaustMap(() =>
-        this.pedidoService.crearPedido(this.newCartRequest(this.idUsuario)).pipe(
+      withLatestFrom(this.store.select(selectUser)),
+      exhaustMap(([action, store]) =>
+        this.pedidoService.crearPedido(this.newCartRequest(store.userId)).pipe(
           map((data) => {
             console.log("newCart", data)
             return CartActions.setId({id: data.pedidoId, status: 0})
@@ -105,10 +110,6 @@ export class CartEffects {
       withLatestFrom(this.store.select(selectCart)),
       exhaustMap(([action, store]) =>
         this.pedidoDetalleService.consultarPedidosDetalleSegunPedido(store.cart.id).pipe(
-          tap((data) => {
-            console.log("orders", data);
-            //TODO: Magia nuevo pedido
-          }),
           map((data) =>
             CartActions.cartLoadedSuccess({orders: data})
           ),
@@ -140,6 +141,7 @@ export class CartEffects {
     };
   }
 
+  // noinspection TypeScriptValidateTypes
   addOrderToCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.addOrderToCart),
@@ -160,24 +162,26 @@ export class CartEffects {
     )
   );
 
-    updateOrder$ = createEffect(() =>
-      this.actions$.pipe(
-        ofType(CartActions.updateOrderToCart),
-        exhaustMap(action =>
-          this.pedidoDetalleService.modificarPedidoDetalle(this.toPedidoDetalleRequest(action.order)).pipe(
-            map((response) => {
-              const orderWithId: Order = { ...action.order, id: response.pedidoDetalleId };
-              return CartActions.addOrderToCart({ order: orderWithId });
-            }),
-            catchError((error) => {
-              console.error('Error en la petición:', error);
-              return of();
-            })
-          )
+  // noinspection TypeScriptValidateTypes
+  updateOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.updateOrderToCart),
+      exhaustMap(action =>
+        this.pedidoDetalleService.modificarPedidoDetalle(this.toPedidoDetalleRequest(action.order)).pipe(
+          map((response) => {
+            const orderWithId: Order = {...action.order, id: response.pedidoDetalleId};
+            return CartActions.addOrderToCart({order: orderWithId});
+          }),
+          catchError((error) => {
+            console.error('Error en la petición:', error);
+            return of();
+          })
         )
       )
-    );
+    )
+  );
 
+  // noinspection TypeScriptValidateTypes
   removeOrder$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.removeOrderFromCart),

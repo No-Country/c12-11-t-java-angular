@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiBaseService} from './api-base.service';
-import {map, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Order} from "../../store/models/order.model";
 
 @Injectable({
@@ -33,13 +33,6 @@ export class PedidoDetalleService {
   public consultarPedidosDetalleSegunPedido(id: number): Observable<Order[]> {
 
     return this.apiBase.get<Order[]>(`/consultarPedidosDetalleSegunPedido/${id}`);
-  }
-
-
-  public filtrarPorPedidoId(pedidoId: number): Observable<PedidoDetalleRequest[]> {
-    return this.listarPedidoDetalle().pipe(
-      map(pedidos => pedidos.filter(pedido => pedido.pedidoId === pedidoId))
-    );
   }
 
 

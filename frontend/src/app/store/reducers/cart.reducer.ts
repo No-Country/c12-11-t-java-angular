@@ -5,7 +5,8 @@ import {
   handleCartError,
   handleCartLoadedSuccess,
   handleChangeCartState,
-  handleLoadCart, handleNewCart,
+  handleLoad,
+  handleNewCart,
   handleRemoveOrderToCart,
   handleSetId
 } from "./handlers/cart.handler";
@@ -26,13 +27,13 @@ export const initialState: CartState = {
 
 export const cartReducer = createReducer(
   initialState,
-  on(CartActions.loadCart, handleLoadCart),
+  on(CartActions.loadCart, handleLoad),
   on(CartActions.setId, handleSetId),
   on(CartActions.newCart, handleNewCart),
   on(CartActions.cartLoadedSuccess, handleCartLoadedSuccess),
   on(CartActions.cartLoadedError, handleCartError),
 
-  on(CartActions.addOrderToCart, state => state),
+  on(CartActions.addOrderToCart, handleLoad),
   on(CartActions.addOrderToCartSuccess, handleAddOrderToCartSuccess),
   on(CartActions.addOrderToCartFailure, handleCartError),
 

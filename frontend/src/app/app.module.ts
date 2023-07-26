@@ -18,6 +18,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { pedidoReducer } from './store/reducers/pedido.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {CartEffects} from "./store/effects/cart.effects";
+import {userReducer} from "./store/reducers/user.reducer";
+import {UserEffects} from "./store/effects/user.effects";
 
 import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
@@ -35,6 +37,7 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
     FontAwesomeModule,
     SocialLoginModule,
     HttpClientModule,
+    StoreModule.forRoot({app: appReducer, cart: cartReducer, user: userReducer}),
     StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer,card:cardReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -42,9 +45,7 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
 
 
     }),
-    EffectsModule.forRoot([]),
-
-    EffectsModule.forRoot([CartEffects]),
+    EffectsModule.forRoot([CartEffects, UserEffects]),
   ],
   providers: [
     {
