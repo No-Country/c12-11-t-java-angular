@@ -34,12 +34,12 @@ export const userReducer = createReducer(
   on(UserActions.loadUserSuccess, handleUserLoadedSuccess),
   on(UserActions.loadUserFailure, handleLoadedError),
 
-  on(UserActions.loadCustomer, handleLoad),
+  on(UserActions.loadCustomer, store => store),
   on(UserActions.loadCustomerSuccess, handleCustomerLoadedSuccess),
   on(UserActions.loadCustomerFailure, handleLoadedError),
 
 
-  on(UserActions.loadOrder, handleLoad),
+  on(UserActions.loadOrder, store => store),
   on(UserActions.loadOrderSuccess, handleOrderLoadedSuccess),
   on(UserActions.loadOrderFailure, handleLoadedError),
 );

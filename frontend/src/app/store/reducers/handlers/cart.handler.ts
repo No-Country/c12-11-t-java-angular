@@ -62,7 +62,12 @@ export const handleAddOrderToCartSuccess = (state: CartState, {order}: { order: 
   const existingOrderIndex = orders.findIndex(oneOrder => oneOrder.plate === order.plate);
 
   if (existingOrderIndex !== -1) {
-    orders[existingOrderIndex] = {...order, id: orders[existingOrderIndex].id}; // Ensure to preserve the existing id
+    orders[existingOrderIndex] = {
+      ...order,
+      count: order.count,
+      totalParcial: order.count * order.plate.precio,
+      id: orders[existingOrderIndex].id
+    };
   } else {
     orders.push(order);
   }
@@ -81,14 +86,12 @@ export const handleAddOrderToCartSuccess = (state: CartState, {order}: { order: 
 
 export const handleRemoveOrderToCart = (state: CartState, {order}: { order: Order }): CartState => {
   const ordersUpdated = [...state.cart.orders.filter(oneOrder => oneOrder.plate.platoId !== order.plate.platoId)];
-  const totalUpdated = calculateTotal(ordersUpdated);
-
   return {
     ...state,
     cart: {
       ...state.cart,
       orders: ordersUpdated,
-      total: totalUpdated,
+      total: calculateTotal(ordersUpdated),
       state: ordersUpdated.length === 0 ? CartStatus.New : CartStatus.ReadyToOrder
     }
   }

@@ -9,13 +9,12 @@ import {selectUser} from "../selectors/user.selectors";
 import {AddressService} from "@shared/services/address.service";
 import {CustomerService} from "@shared/services/customer.service";
 import {UserService} from "@shared/services/user.service";
+import {CartActions} from "../actions/cart.actions";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserEffects {
-
-  private idUsuario = 1;//TODO: DEBE VENIR DE OTRO LADOR!
 
   constructor(
     private actions$: Actions,
@@ -55,7 +54,8 @@ export class UserEffects {
       exhaustMap(([action, store]) =>
         this.customerService.consultarCliente(store.userId).pipe(
           map((data) => {
-            return UserActions.loadCustomerSuccess({customer: data})
+            UserActions.loadCustomerSuccess({customer: data})
+            return UserActions.loadOrder()
           }),
           catchError((error) => {
             console.error('Error al cargar cliente:', error);
@@ -74,7 +74,8 @@ export class UserEffects {
         this.pedidoService.listarPedidosDeUsuario(store.userId).pipe(
           map((data) => {
             console.log("ordenes", data)
-            return UserActions.loadOrderSuccess({orders: []})
+            UserActions.loadOrderSuccess({orders: []})
+            return CartActions.loadCart()
           }),
           catchError((error) => {
             console.error('Error al cargar las ordenes:', error);

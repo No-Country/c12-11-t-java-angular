@@ -4,9 +4,13 @@ import {Customer} from "@shared/services/customer.service";
 import {UserAPI} from "@shared/services/user.service";
 
 
-export const handleLoad = (state: UserState): UserState => {
+export const handleLoad = (state: UserState, {id}: { id: number }): UserState => {
   return {
     ...state,
+    user: {
+      ...state.user,
+      userId: id
+    },
     loading: true
   }
 }

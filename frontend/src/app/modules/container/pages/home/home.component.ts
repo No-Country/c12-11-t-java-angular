@@ -1,10 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {Component, inject, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Plate } from '@shared/interfaces/plate.interface';
-import { SliderItem } from '@shared/interfaces/slider-item.interface';
-import { PlateService } from '@shared/services/plate.service';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {Plate} from '@shared/interfaces/plate.interface';
+import {SliderItem} from '@shared/interfaces/slider-item.interface';
+import {PlateService} from '@shared/services/plate.service';
+import {PlateActions} from "@modules/container/store/actions/plates.actions";
+import {Store} from "@ngrx/store";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -19,9 +22,12 @@ export class HomeComponent implements OnInit {
 
   faMagnifyingGlass = faMagnifyingGlass;
 
-  plateList:Plate[] = [];
+  plateList: Plate[] = [];
 
   slides: SliderItem[] = [];
+
+  constructor(private store: Store, private router: Router) {
+  }
 
   ngOnInit() {
     this.getPlateList();
@@ -101,6 +107,13 @@ export class HomeComponent implements OnInit {
         imageUrl: "https://picsum.photos/id/984/900/500"
       }
     ];
+  }
+
+  selectedPlate(plate: Plate) {
+
+    this.store.dispatch(PlateActions.setSelected({plateSelected: plate}))
+    this.router.navigateByUrl('/container/descripcion');
+
   }
 
 }

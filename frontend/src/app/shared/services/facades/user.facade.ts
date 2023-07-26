@@ -15,7 +15,7 @@ export class UserFacade {
 
   constructor(private store: Store) {
 
-    this.store.dispatch(UserActions.loadUser({id: 1}))
+    this.store.dispatch(UserActions.loadUser({id: 3}))
 
   }
 
