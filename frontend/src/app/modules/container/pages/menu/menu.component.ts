@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
   constructor(private location: Location,
               private store: Store,
               public menuService: MenuService) {
+
     this.store.dispatch(CartActions.loadCart())
 
     this.store.dispatch(CartActions.loadCart())
