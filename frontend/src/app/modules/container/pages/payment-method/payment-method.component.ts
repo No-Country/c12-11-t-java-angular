@@ -1,28 +1,53 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faAngleLeft, faArrowLeft, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleLeft,
+  faArrowLeft,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import { PaymentIntentDto } from '@shared/interfaces/paymentIntentDto.interface';
-import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import {
+  StripeCardElementOptions,
+  StripeElementsOptions,
+} from '@stripe/stripe-js';
 import { StripeCardComponent, StripeService } from 'ngx-stripe';
 import { PaymentService } from '../../../../shared/services/payment.service';
+import { Store } from '@ngrx/store';
+import { AddIdPago, AddIdStripe } from 'src/app/store/actions/pedido.actions';
+import Swal from 'sweetalert2';
+import { ICard } from 'src/app/store/models/card.interface';
+import { AddCard } from 'src/app/store/actions/card.actions';
+import { Pay } from '../../../../shared/interfaces/pay.interface';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-payment-method',
   templateUrl: './payment-method.component.html',
-  styleUrls: ['./payment-method.component.scss']
+  styleUrls: ['./payment-method.component.scss'],
 })
 export class PaymentMethodComponent implements OnInit {
   faAngleLeft = faAngleLeft;
-  faArrowLeft=faArrowLeft;
-faTrashCan=faTrashCan;
-  public valueMethod:string="0";
-  public textButtom:string="";
-  isnewCard:boolean=false;
-  error:string="";
-  public cardsRegister:any[]=[]
-  @ViewChild(StripeCardComponent) card!: StripeCardComponent;
+  faArrowLeft = faArrowLeft;
+  faTrashCan = faTrashCan;
+  public valueMethod: string = '0';
+  public typeMethod: string = '';
+  public montoTotal:number=0;
+  public isnewCard: boolean = false;
+  public pagoId: number = 0;
+  public stripeId: string = '';
+  public error: string = '';
+  messageError: string = '';
+  public cardsRegister: any[] = [];
 
+  public stripeTest!: FormGroup;
+  private router = inject(Router);
+  private stripeService = inject(StripeService);
+  private fb = inject(FormBuilder);
+  private store = inject(Store);
+  private paymentService = inject(PaymentService);
+
+  @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -33,62 +58,105 @@ faTrashCan=faTrashCan;
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSize: '18px',
         '::placeholder': {
-          color: '#CFD7E0'
-        }
-      }
-    }
+          color: '#CFD7E0',
+        },
+      },
+    },
   };
 
   elementsOptions: StripeElementsOptions = {
-    locale: 'es'
+    locale: 'es',
   };
 
-  stripeTest!: FormGroup;
-  private router= inject( Router );
-  private stripeService= inject(StripeService);
- private fb= inject (FormBuilder);
-  private paymentService = inject(PaymentService);
   ngOnInit(): void {
+    const envio=2000;
     this.stripeTest = this.fb.group({
-      name: ['', [Validators.required]]
+      name: ['', [Validators.required]],
     });
+    this.store.select('cart').subscribe((cart) => {
+      if(cart.total){
+       this.montoTotal=cart.total + envio;
+      }
+      else{
+        this.montoTotal=envio;
+        console.log(this.montoTotal);
+      }
+
+    })
   }
   createToken(): void {
     const name = this.stripeTest.get('name')?.value;
     this.stripeService
       .createToken(this.card.element, { name })
       .subscribe((result) => {
+        console.log(result);
+
+        // If creating the token was successful
         if (result.token) {
+          const { card } = result.token;
+          const cardRegister: ICard = {
+            name: card?.name as string,
+            exp_month: card?.exp_month as number,
+            exp_year: card?.exp_year as number,
+            last4: card?.last4  as string,
+            brand: card?.brand as string,
+          };
+          this.store.dispatch(AddCard({ card: cardRegister }));
+
           const paymentIntentDto: PaymentIntentDto = {
             token: result.token.id,
-            amount:2000,
+            amount: 2000,
             currency: 'cop',
-            description: "plato 3"
+            description: 'plato 3',
           };
-          this.paymentService.pagar(paymentIntentDto).subscribe(resp=>{
+
+          this.paymentService.pagar(paymentIntentDto).subscribe((resp: any) => {
             console.log(resp);
-          })
-          this.error = "";
-          console.log(result.token.id);
+
+            Swal.fire('Success', 'Tarjeta Agregada Correctamente', 'success');
+
+            this.stripeId = resp.id;
+            this.store.dispatch(AddIdStripe({ stripeId: this.stripeId }));
+          });
+
         } else if (result.error) {
           // Error creating the token
-          this.error=result.error.message as string;
+          this.error = result.error.message as string;
 
-          console.log(result.error.message);
+          Swal.fire('Error', this.error, 'error');
         }
       });
   }
 
-  verificarRadio(){
-    return this.valueMethod=='0'?this.textButtom='Agregar Tarjeta':this.valueMethod=='1'?this.textButtom='Confirmar Pedido':'';
-  }
-  goBack(){
-    this.router.navigateByUrl('/container/shopping');
+
+  sgtePage() {
+    this.valueMethod == '0'? (this.typeMethod = 'Tarjeta'): this.valueMethod == '1'? (this.typeMethod = 'Efectivo'): '';
+    const pay:Pay={
+      monto:this.montoTotal,
+      medioDePago:this.typeMethod
+    }
+    this.paymentService.CrearPago(pay).subscribe((resp) => {
+      console.log(resp);
+
+      this.pagoId = resp.pagoId as number;
+
+    if (this.stripeId !=="" || this.valueMethod == '1') {
+      this.store.dispatch(AddIdPago({ pagoId: this.pagoId }));
+      this.router.navigateByUrl('/container/confirm');
+    } else {
+      this.messageError = 'Debe agregar una tarjeta';
+
+    }
+      console.log(this.pagoId);
+    });
 
   }
-  deleteCard(index:number){
+
+  goBack() {
+    this.router.navigateByUrl('/container/shopping');
+  }
+  deleteCard(index: number) {
     this.cardsRegister.splice(index, 1);
     console.log(this.cardsRegister);
   }
-
 }

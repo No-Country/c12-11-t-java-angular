@@ -10,9 +10,11 @@ import {selectCart} from 'src/app/store/selectors/cart.selectors';
   templateUrl: './order-summary-container.component.html',
   styleUrls: ['./order-summary-container.component.scss']
 })
-export class OrderSummaryContainerComponent implements OnInit {
-  private store = inject(Store);
-  private router = inject(Router);
+export class OrderSummaryContainerComponent implements OnInit{
+  private store=inject(Store);
+  private router=inject(Router);
+  public envio:number=2000;
+  public total:number=0;
   shoppingCart: CartState = {
     cart: {
       id: 0,
@@ -25,14 +27,16 @@ export class OrderSummaryContainerComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
 
 
     this.store.select(selectCart).subscribe(shoppingCart => {
       console.log(shoppingCart);
 
-      this.shoppingCart = shoppingCart;
-    });
+    this.shoppingCart = shoppingCart;
+    this.total=shoppingCart.cart.total+this.envio;
+  });
 
 
   }

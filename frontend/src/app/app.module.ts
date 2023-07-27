@@ -21,6 +21,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {CartEffects} from "./store/effects/cart.effects";
 import {userReducer} from "./store/reducers/user.reducer";
 import {UserEffects} from "./store/effects/user.effects";
+import { cardReducer } from './store/reducers/card.reducer';
 
 
 @NgModule({
@@ -36,12 +37,14 @@ import {UserEffects} from "./store/effects/user.effects";
     HttpClientModule,
     StoreModule.forRoot({app: appReducer, cart: cartReducer, user: userReducer}),
     StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer}),
+    StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer,card:cardReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
        // Restrict extension to log-only mode
 
 
     }),
+
     NgxStripeModule.forRoot('pk_test_51NXSCVGOZk6s2DM2ZIs3a7LDjStAPHKpQwsRWvyvzR6uLaSs8Vzm3CyBxghm5ORZqO6HuGq6eGMlTkzxmNScCkvi00vJuexg0O'),
     EffectsModule.forRoot([CartEffects, UserEffects]),
   ],

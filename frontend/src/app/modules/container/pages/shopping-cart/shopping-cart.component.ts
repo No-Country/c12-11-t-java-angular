@@ -1,3 +1,14 @@
+import { Plate } from '@shared/interfaces/plate.interface';
+import { Store } from '@ngrx/store';
+import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { faAngleLeft, faArrowLeft, faCirclePlus, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { CartState } from 'src/app/store/models/cart-state.model';
+import { Cart } from 'src/app/store/models/cart.model';
+import { selectCart } from 'src/app/store/selectors/cart.selectors';
+import { CartActions } from 'src/app/store/actions/cart.actions';
+import { Order } from 'src/app/store/models/order.model';
+import { AddIdAddress } from 'src/app/store/actions/pedido.actions';
 import {Store} from '@ngrx/store';
 import {Component, inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
@@ -60,7 +71,19 @@ this.idAddress=id;
 
 }
 
-  public goBack() {
+
+sgtePage(){
+  if(this.idAddress>0){
+
+
+    this.store.dispatch(AddIdAddress({direccionId:this.idAddress}));
+    this.router.navigateByUrl('/container/pay');
+     }
+}
+
+
+
+  public goBack(){
     this.router.navigateByUrl('/container/menu');
 
   }

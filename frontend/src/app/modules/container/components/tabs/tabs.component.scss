@@ -6,6 +6,10 @@
 
  border-radius :40px;
 }
+.nav-pills .nav-link.active{
+  background-color: var(--color-green-1);
+
+}
 .tab-nav{
   display: flex;
 }
