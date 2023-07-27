@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
-import {ApiBaseService} from './api-base.service';
-import {Observable} from 'rxjs';
+import {ApiBaseService} from "@shared/services/api-base.service";
+import {map, Observable} from "rxjs";
+
+import {Injectable} from "@angular/core";
 import {Order} from "../../store/models/order.model";
-import {map, Observable} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,29 +37,11 @@ export class PedidoDetalleService {
     return this.apiBase.get<Order[]>(`/consultarPedidosDetalleSegunPedido/${id}`);
   }
 
-
-
-
-
   public filtrarPorPedidoId(pedidoId: number): Observable<PedidoDetalleRequest[]> {
     return this.listarPedidoDetalle().pipe(
       map(pedidos => pedidos.filter(pedido => pedido.pedidoId === pedidoId))
     );
   }
-
-
-
-  /*
-    actualizarPlatoo(body: PlatoRequest): Observable<Plate> {
-      return this.apiBase.put<Plate>('/plato', body);
-    }
-
-    eliminarPlato(idPlato: number): Observable<any> {
-      return this.apiBase.delete(`/plato/${idPlato}`)
-    }
-    */
-
-
 }
 
 export interface PedidoDetalleRequest {

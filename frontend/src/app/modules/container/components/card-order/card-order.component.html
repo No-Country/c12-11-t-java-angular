@@ -1,13 +1,12 @@
 <div class="card rounded border-black">
   <div class="row g-0">
-    <div class="col-4 bg-dark rounded-start  d-flex align-items-center ">
-      <img [src]="getPlate().urlImagen" alt="{{getPlate().nombre}}" class="img-fluid rounded-start">
+    <div [style.background-image]="'url(' + getPlate().urlImagen + ')'"
+         class="col-4 bg-dark rounded-start  d-flex align-items-center img-bg">
     </div>
-
     <div class="col-8 card-body align-self-center">
       <div class="row">
         <div class="col-6 align-self-center">
-          <h6 class="card-title">{{getPlate().nombre| titlecase}}</h6>
+          <h6 class="card-title text-truncate">{{getPlate().nombre| titlecase}}</h6>
           <h6 class="card-price"><small>{{getPlate().precio|currency}}</small></h6>
         </div>
         <div class="col-6 align-self-center text-end">

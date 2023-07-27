@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserFacade} from "@shared/services/facades/user.facade";
-import {Order} from "../../../../store/models/order.model";
+import {HistorialRequest} from "@shared/services/pedido.service";
 
 @Component({
   selector: 'app-deck-purchase-order',
@@ -9,43 +9,16 @@ import {Order} from "../../../../store/models/order.model";
 })
 export class DeckPurchaseOrderComponent implements OnInit {
 
-  purchaseOrders;
-  orders: Order[] = [];
-
-  ngOnInit(): void {
-    this.userFacade.getOrders().subscribe(value => {
-      this.orders = value
-    })
-  }
-
+  historial: HistorialRequest[] = [];
 
   constructor(private userFacade: UserFacade) {
-    this.purchaseOrders = [
-      {
-        title: "Hamburguesa de garbanzos",
-        address: "Matheu 1669",
-        timeMin: "12:30",
-        timeMax: "12:45"
-      },
-      {
-        title: "Hamburguesa de garbanzos",
-        address: "Matheu 1669",
-        timeMin: "12:30",
-        timeMax: "12:45"
-      },
-      {
-        title: "Hamburguesa de garbanzos",
-        address: "Matheu 1669",
-        timeMin: "12:30",
-        timeMax: "12:45"
-      },
-      {
-        title: "Hamburguesa de garbanzos",
-        address: "Matheu 1669",
-        timeMin: "12:30",
-        timeMax: "12:45"
-      },
-    ]
+
+  }
+
+  ngOnInit(): void {
+    this.userFacade.getHistorial().subscribe(historial => {
+      this.historial = historial
+    })
   }
 
 

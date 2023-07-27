@@ -1,13 +1,11 @@
-<h2 class="deck-title">Ordenes en curso</h2>
-<div class="carousel overflow-x-scroll overflow-x-auto ">
-  <div class="row row-cols-2 row-cols-md-3 g-3 flex-nowrap">
-    <app-card-purchase-order
-      *ngFor="let purchaseOrder of purchaseOrders.slice(0,4); let i = index"
-      [address]="purchaseOrder.address"
-      [timeMax]="purchaseOrder.timeMax"
-      [timeMin]="purchaseOrder.timeMin"
-      [title]="purchaseOrder.title"
-    />
+<ng-container *ngIf="historial.length>0">
+  <h2 class="deck-title">Ordenes en curso</h2>
+  <div class="carousel overflow-x-auto ">
+    <div class="row row-cols-2 row-cols-md-3 g-3 flex-nowrap">
+      <app-card-purchase-order *ngFor="let OneHistorial of historial let i = index"
+                               [historial]="OneHistorial"
+      />
+    </div>
   </div>
-</div>
+</ng-container>
 

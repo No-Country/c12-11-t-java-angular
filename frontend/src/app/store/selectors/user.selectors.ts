@@ -14,9 +14,14 @@ export const selectCustomer = createSelector(
   (state: UserState) => state.customer
 );
 
-export const selectOrders = createSelector(
+export const selectHistorial = createSelector(
   selectUserState,
-  (state: UserState) => state.orders
+  (state: UserState) => state.historial
+);
+
+export const selectOrdersInProgress = createSelector(
+  selectUserState,
+  (state: UserState) => state.ordersInProgress
 );
 
 export const selectLoading = createSelector(

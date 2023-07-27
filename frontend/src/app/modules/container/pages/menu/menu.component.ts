@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
   cartState: CartStatus = CartStatus.New
   isLoading = true
 
-  menuName = 'Desayuno' //TODO: Debe venir del navbar
+  menuName = 'Principal'
 
   constructor(private location: Location,
               private store: Store,

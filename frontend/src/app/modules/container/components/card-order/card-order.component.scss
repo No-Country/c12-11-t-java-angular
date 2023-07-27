@@ -10,6 +10,14 @@
   }
 }
 
+.img-bg {
+  background-color: #343a40;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 93px;
+}
+
 .card-body {
   padding: 0.8125rem;
 }
@@ -48,11 +56,11 @@
     font-weight: 700;
   }
   .card-text, .card-price {
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1.05rem;
   }
   .card-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
   }
 }

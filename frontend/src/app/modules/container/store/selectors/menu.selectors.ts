@@ -12,6 +12,7 @@ export const selectFilters = createSelector(
       activateFilterSinTacc: state.activateFilterSinTacc,
       activateFilterVegano: state.activateFilterVegano,
       activateFilterByCategory: state.activateFilterByCategory,
+      activateFilterByType: state.activateFilterByType,
       activateFilterSearchTerm: state.activateFilterSearchTerm,
       activateFilters: state.activateFilters,
     }

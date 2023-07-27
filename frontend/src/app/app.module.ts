@@ -13,17 +13,14 @@ import {StoreModule} from '@ngrx/store';
 import {appReducer} from "./store/reducers/app.reducer";
 import {cartReducer} from "./store/reducers/cart.reducer";
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { pedidoReducer } from './store/reducers/pedido.reducer';
-
-import { NgxStripeModule } from 'ngx-stripe';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
+import {pedidoReducer} from './store/reducers/pedido.reducer';
+import {NgxStripeModule} from 'ngx-stripe';
 import {CartEffects} from "./store/effects/cart.effects";
 import {userReducer} from "./store/reducers/user.reducer";
 import {UserEffects} from "./store/effects/user.effects";
-import { cardReducer } from './store/reducers/card.reducer';
+import {cardReducer} from './store/reducers/card.reducer';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -37,9 +34,8 @@ import { cardReducer } from './store/reducers/card.reducer';
     FontAwesomeModule,
     SocialLoginModule,
     HttpClientModule,
-    StoreModule.forRoot({app: appReducer, cart: cartReducer, user: userReducer}),
-    StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer}),
-    StoreModule.forRoot({app: appReducer, cart: cartReducer,pedido:pedidoReducer,card:cardReducer}),
+    BrowserAnimationsModule,
+    StoreModule.forRoot({app: appReducer, user: userReducer , cart: cartReducer, pedido: pedidoReducer, card: cardReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       // Restrict extension to log-only mode

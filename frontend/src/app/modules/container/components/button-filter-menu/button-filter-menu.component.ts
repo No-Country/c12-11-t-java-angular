@@ -8,6 +8,7 @@ import {Component, Input} from '@angular/core';
 export class ButtonFilterMenuComponent {
   @Input() name!: string;
   @Input() isActive: boolean = false;
+  @Input() secondary: boolean = false;
 
   toggleActive() {
     this.isActive = !this.isActive;

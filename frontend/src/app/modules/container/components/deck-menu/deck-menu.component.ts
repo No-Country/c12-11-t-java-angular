@@ -12,6 +12,7 @@ import {
   filterPlatesByCategory,
   filterPlatesBySinTACC,
   filterPlatesByTerm,
+  filterPlatesByType,
   filterPlatesByVegan
 } from "@shared/utils/helpers/filters.helpers";
 import {PlateActions} from "@modules/container/store/actions/plates.actions";
@@ -29,6 +30,7 @@ export class DeckMenuComponent {
     activateFilterSinTacc: false,
     activateFilterVegano: false,
     activateFilterByCategory: '',
+    activateFilterByType: '',
     activateFilters: true,
     activateFilterSearchTerm: ''
   }
@@ -59,6 +61,10 @@ export class DeckMenuComponent {
     let platosFiltered = plates;
 
     if (this.filters.activateFilters) {
+
+      if (this.filters.activateFilterByType.length > 0) {
+        platosFiltered = filterPlatesByType(platosFiltered, this.filters.activateFilterByType);
+      }
       if (this.filters.activateFilterSearchTerm.length > 0) {
         platosFiltered = filterPlatesByTerm(platosFiltered, this.filters.activateFilterSearchTerm);
       }

@@ -3,11 +3,11 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {CartFacade} from "@shared/services/facades/cart.facade";
 import {select, Store} from "@ngrx/store";
 import {PedidoDetalleRequest, PedidoDetalleService} from "@shared/services/pedido-detalle.service";
-import {catchError, exhaustMap, filter, map, of, tap, withLatestFrom} from "rxjs";
+import {catchError, exhaustMap, filter, map, of, withLatestFrom} from "rxjs";
 import {PedidoRequest, PedidoService} from "@shared/services/pedido.service";
 import {CartActions} from "../actions/cart.actions";
 import {selectCart} from "../selectors/cart.selectors";
-import {CartStatus} from "../models/cart-status.model";
+import {CartStatus, estadoPedidoIdToCartStateMap} from "../models/cart-status.model";
 import {Order} from "../models/order.model";
 import {selectUser} from "../selectors/user.selectors";
 
@@ -16,13 +16,7 @@ import {selectUser} from "../selectors/user.selectors";
 })
 export class CartEffects {
 
-  private estadoPedidoIdToCartStateMap: CartStatus[] = [
-    CartStatus.New,
-    CartStatus.ReadyToOrder,
-    CartStatus.ReadyToPay,
-    CartStatus.PreparingOrder,
-    CartStatus.Finished
-  ]
+
 
 
   constructor(
@@ -40,7 +34,7 @@ export class CartEffects {
   }
 
   private pedidoRequestIsFinished(pedido: PedidoRequest) {
-    return this.estadoPedidoIdToCartStateMap[pedido.estadoPedidoId] === CartStatus.Finished
+    return estadoPedidoIdToCartStateMap[pedido.estadoPedidoId] === CartStatus.Finished
   }
 
 
@@ -49,6 +43,7 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.loadCart),
       withLatestFrom(this.store.select(selectUser)),
+      filter(([action, store]) => store.userId > 0),
       exhaustMap(([action, store]) =>
         this.pedidoService.listarPedidosDeUsuario(store.userId).pipe(
           map((data) => {
@@ -90,7 +85,6 @@ export class CartEffects {
       exhaustMap(([action, store]) =>
         this.pedidoService.crearPedido(this.newCartRequest(store.userId)).pipe(
           map((data) => {
-
             return CartActions.setId({id: data.pedidoId, status: 0})
           }),
           catchError((error) => {
@@ -109,8 +103,10 @@ export class CartEffects {
       withLatestFrom(this.store.select(selectCart)),
       exhaustMap(([action, store]) =>
         this.pedidoDetalleService.consultarPedidosDetalleSegunPedido(store.cart.id).pipe(
-          map((data) =>
-            CartActions.cartLoadedSuccess({orders: data})
+          map((data) => {
+
+              return CartActions.cartLoadedSuccess({orders: data})
+            }
           ),
           catchError((error) => {
             console.error('Error al cargar el carrito:', error);
