@@ -3,17 +3,17 @@ import {UserState} from "../models/user.model";
 import {UserActions} from "../actions/user.actions";
 import {
   handleCustomerLoadedSuccess,
+  handleHistoryLoadedSuccess,
   handleLoad,
   handleLoadedError,
-  handleOrderLoadedSuccess,
   handleUserLoadedSuccess
 } from "./handlers/user.handler";
 
 export const initialState: UserState = {
   user: {
-    userId: 1,
+    userId: -1,
     token: '',
-    username: 'dani'
+    username: ''
   },
   customer: {
     clienteId: -1,
@@ -22,7 +22,8 @@ export const initialState: UserState = {
     email: "",
     numeroCelular: ""
   },
-  orders: [],
+  historial: [],
+  ordersInProgress: [],
   loading: false,
   error: null
 };
@@ -39,7 +40,7 @@ export const userReducer = createReducer(
   on(UserActions.loadCustomerFailure, handleLoadedError),
 
 
-  on(UserActions.loadOrder, store => store),
-  on(UserActions.loadOrderSuccess, handleOrderLoadedSuccess),
-  on(UserActions.loadOrderFailure, handleLoadedError),
+  on(UserActions.loadHistory, store => store),
+  on(UserActions.loadHistorySuccess, handleHistoryLoadedSuccess),
+  on(UserActions.loadHistoryFailure, handleLoadedError),
 );

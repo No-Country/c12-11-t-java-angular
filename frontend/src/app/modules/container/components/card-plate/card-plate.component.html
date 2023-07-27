@@ -19,8 +19,11 @@
             class=" d-none d-lg-block card-text">{{ plate.descripcion| slice:0:90 }}{{ plate.descripcion.length > 90 ? ' ...' : '' }}</p>
         </div>
         <div class="align-self-end">
-          <button (click)="addCart()" class="btn btn-outline-primary">
-            <fa-icon [icon]="faPlus" ></fa-icon>
+          <button (click)="addCart()" *ngIf="plate.stock>0" class="btn btn-outline-primary">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+          <button *ngIf="plate.stock<1" class="btn btn-outline-danger">
+            sin stock
           </button>
         </div>
       </div>

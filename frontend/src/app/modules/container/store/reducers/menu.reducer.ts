@@ -11,6 +11,7 @@ import {
 import {
   handleFilterByCategory,
   handleFilterBySearchTerm,
+  handleFilterByType,
   handleFilterSinTacc,
   handleFilterVegano,
   handleRemoveFilters
@@ -234,6 +235,7 @@ export const initialState: MenuState = {
   activateFilterSearchTerm: '',
   activateFilterSinTacc: false,
   activateFilterVegano: false,
+  activateFilterByType: '',
   activateFilterByCategory: '',
   loading: false,
   error: null
@@ -253,6 +255,7 @@ export const menuReducer = createReducer(
   on(FilterActions.toggleSinTacc, handleFilterSinTacc),
   on(FilterActions.toggleVegano, handleFilterVegano),
   on(FilterActions.updateByCategory, handleFilterByCategory),
+  on(FilterActions.updateByType, handleFilterByType),
   on(FilterActions.updateBySearch, handleFilterBySearchTerm),
   on(PlateActions.setSelected, handleSetPlateSelected),
 )

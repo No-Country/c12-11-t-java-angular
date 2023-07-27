@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {ApiBaseService} from './api-base.service';
 import {Observable} from 'rxjs';
+import {Plate} from "@shared/interfaces/plate.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +32,33 @@ export class PedidoService {
     return this.apiBase.get<PedidoRequest[]>(`/pedidosDeUsuario/${idUsuario}`);
   }
 
-  //TODO: A RESOLVER
-  listarPedidosDeUsuario2(idUsuario: number) {
-    return this.apiBase.get<PedidoRequest[]>(`/pedidosDeUsuario2/${idUsuario}`);
+  historialPedidos(idUsuario: number): Observable<HistorialRequest[]> {
+    return this.apiBase.get<HistorialRequest[]>(`/historialPedido/${idUsuario}`);
   }
 
+}
 
+export interface HistorialRequest {
+  id: number;
+  direccion: {
+    altura: number
+    direccionId: number
+    nombreCalle: string
+    tipoVivienda: string,
+    zona: string
+  };
+  pedidos: {
+    pedidoDetalleId: number;
+    pedidoId: number;
+    plate: Plate;
+    cantidad: number;
+    subTotal: number;
+  }[];
+  pagoId: number;
+  fechaPedido: Date;
+  fechaEntrega: Date;
+  fechaEntregaEstimada: Date;
+  estadoPedidoId: number;
 }
 
 export interface PedidoRequest {

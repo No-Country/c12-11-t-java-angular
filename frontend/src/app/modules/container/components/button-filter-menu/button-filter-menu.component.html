@@ -1,6 +1,8 @@
 <button
-  [class]="isActive? 'btn-primary':'btn-light'"
-  class="btn border-black"
+  [class]="isActive?
+  secondary?'btn-secondary-active':'btn-primary':
+  secondary?'btn-secondary':'btn-light'"
+  class="btn"
   type="button"
 >{{name}}</button>
 

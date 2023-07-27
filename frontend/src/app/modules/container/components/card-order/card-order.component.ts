@@ -6,8 +6,6 @@ import {Order} from "../../../../store/models/order.model";
 import {Plate} from "@shared/interfaces/plate.interface";
 import {CartFacade} from "@shared/services/facades/cart.facade";
 
-import {CartFacade} from "@shared/services/facades/cart.facade";
-
 @Component({
   selector: 'app-card-order',
   templateUrl: './card-order.component.html',

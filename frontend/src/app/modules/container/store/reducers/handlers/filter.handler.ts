@@ -28,6 +28,18 @@ export function handleFilterVegano(state: MenuState): MenuState {
   };
 }
 
+export function handleFilterByType(state: MenuState, {filterType}: { filterType: string }): MenuState {
+  return {
+    ...state,
+    activateFilterByType: state.activateFilterByType !== filterType ? filterType : '',
+    activateFilterByCategory: '',
+    activateFilterSinTacc: false,
+    activateFilterVegano: false,
+    activateFilterSearchTerm: '',
+    activateFilters: filterType !== ''
+  };
+}
+
 export function handleFilterByCategory(state: MenuState, {filterNames}: { filterNames: string }): MenuState {
   return {
     ...state,

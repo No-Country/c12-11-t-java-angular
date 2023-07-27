@@ -9,6 +9,7 @@ export interface MenuState {
   activateFilterSinTacc: boolean;
   activateFilterVegano: boolean;
   activateFilterByCategory: string;
+  activateFilterByType: string;
   activateFilters: boolean;
   loading: boolean;
   error: string | null;

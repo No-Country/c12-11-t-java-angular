@@ -53,23 +53,12 @@ import {
   ProductSelectedContainerComponent
 } from './components/product-selected-container/product-selected-container.component';
 import {
-    DeckPurchaseOrderComponent
+  DeckPurchaseOrderComponent
 } from "@modules/container/components/deck-purchase-order/deck-purchase-order.component";
 import {
   CardPurchaseOrderComponent
 } from "@modules/container/components/card-purchase-order/card-purchase-order.component";
-
-import { OrderSummaryContainerComponent } from './components/order-summary-container/order-summary-container.component';
-import { ProductSelectedContainerComponent } from './components/product-selected-container/product-selected-container.component';
-import { NgxStripeModule } from 'ngx-stripe';
-import {OrderSummaryContainerComponent} from './components/order-summary-container/order-summary-container.component';
-import {
-    DeckPurchaseOrderComponent
-} from "@modules/container/components/deck-purchase-order/deck-purchase-order.component";
-import {
-  CardPurchaseOrderComponent
-} from "@modules/container/components/card-purchase-order/card-purchase-order.component";
-
+import {NgxStripeModule} from 'ngx-stripe';
 
 
 @NgModule({
@@ -124,6 +113,7 @@ import {
     SharedModule,
     NgxStripeModule.forRoot('pk_test_51NXSCVGOZk6s2DM2ZIs3a7LDjStAPHKpQwsRWvyvzR6uLaSs8Vzm3CyBxghm5ORZqO6HuGq6eGMlTkzxmNScCkvi00vJuexg0O'),
     NgbAlert,
+
   ]
 })
 export class ContainerModule {

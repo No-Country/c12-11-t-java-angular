@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {HistorialRequest} from "@shared/services/pedido.service";
 
 @Component({
   selector: 'app-card-purchase-order',
@@ -6,10 +7,20 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./card-purchase-order.component.scss']
 })
 export class CardPurchaseOrderComponent {
-  @Input() title: string = "Hamburguesa de garbanzos";
-  @Input() address: string = "Matheu 1669";
-  @Input() timeMin: string = "12:30";
-  @Input() timeMax: string = "12:45";
+  @Input() historial!: HistorialRequest
 
+  getTitle() {
+    return this.historial.pedidos[0].plate.nombre
+  }
+
+  getAddress() {
+    const direccion = this.historial.direccion
+    return `${direccion.nombreCalle}  ${direccion.altura}`
+  }
+
+  getTime() {
+    //return `${this.historial.fechaPedido}  ${this.historial.fechaEntrega}`
+    return `${this.historial.fechaPedido}`
+  }
 
 }

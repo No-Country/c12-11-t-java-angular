@@ -3,6 +3,7 @@ import {Order} from "../models/order.model";
 import {User} from "@shared/interfaces/user.interface";
 import {Customer} from "@shared/services/customer.service";
 import {UserAPI} from "@shared/services/user.service";
+import {HistorialRequest} from "@shared/services/pedido.service";
 
 export const UserActions = createActionGroup({
   source: 'User',
@@ -16,8 +17,8 @@ export const UserActions = createActionGroup({
     'Load Customer Failure': props<{ error: string }>(),
 
 
-    'Load Order': emptyProps(),
-    'Load Order Success': props<{ orders: Order[] }>(),
-    'Load Order Failure': props<{ error: string }>(),
+    'Load History': emptyProps(),
+    'Load History Success': props<{ historial: HistorialRequest[] }>(),
+    'Load History Failure': props<{ error: string }>(),
   },
 });

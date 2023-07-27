@@ -2,11 +2,10 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {CartFacade} from "@shared/services/facades/cart.facade";
 import {Store} from "@ngrx/store";
-import {catchError, exhaustMap, map, of, withLatestFrom} from "rxjs";
+import {catchError, exhaustMap, map, mergeMap, of, withLatestFrom} from "rxjs";
 import {PedidoService} from "@shared/services/pedido.service";
 import {UserActions} from "../actions/user.actions";
 import {selectUser} from "../selectors/user.selectors";
-import {AddressService} from "@shared/services/address.service";
 import {CustomerService} from "@shared/services/customer.service";
 import {UserService} from "@shared/services/user.service";
 import {CartActions} from "../actions/cart.actions";
@@ -22,21 +21,23 @@ export class UserEffects {
     private store: Store,
     private pedidoService: PedidoService,
     private customerService: CustomerService,
-    private userService: UserService,
-    private addressService: AddressService
+    private userService: UserService
   ) {
   }
+
 
   // noinspection TypeScriptValidateTypes
   loadUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loadUser),
-      exhaustMap((action) =>
+      mergeMap((action) =>
         this.userService.consultarUsuario(action.id).pipe(
-          map((data) => {
-            UserActions.loadUserSuccess({user: data})
-            return UserActions.loadCustomer({id: data.clienteId})
-          }),
+          mergeMap((data) => [
+            UserActions.loadCustomer({id: data.clienteId}),
+            CartActions.loadCart(),
+            UserActions.loadHistory(),
+            UserActions.loadUserSuccess({user: data}),
+          ]),
           catchError((error) => {
             console.error('Error al cargar usuario:', error);
             return of(UserActions.loadCustomerFailure({error: 'Error al cargar usuario'}));
@@ -46,6 +47,7 @@ export class UserEffects {
     )
   );
 
+
 // noinspection TypeScriptValidateTypes
   loadCustomer$ = createEffect(() =>
     this.actions$.pipe(
@@ -54,8 +56,7 @@ export class UserEffects {
       exhaustMap(([action, store]) =>
         this.customerService.consultarCliente(store.userId).pipe(
           map((data) => {
-            UserActions.loadCustomerSuccess({customer: data})
-            return UserActions.loadOrder()
+            return UserActions.loadCustomerSuccess({customer: data})
           }),
           catchError((error) => {
             console.error('Error al cargar cliente:', error);
@@ -68,18 +69,16 @@ export class UserEffects {
   // noinspection TypeScriptValidateTypes
   loadOrder$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UserActions.loadOrder),
+      ofType(UserActions.loadHistory),
       withLatestFrom(this.store.select(selectUser)),
       exhaustMap(([action, store]) =>
-        this.pedidoService.listarPedidosDeUsuario(store.userId).pipe(
+        this.pedidoService.historialPedidos(store.userId).pipe(
           map((data) => {
-            console.log("ordenes", data)
-            UserActions.loadOrderSuccess({orders: []})
-            return CartActions.loadCart()
+            return UserActions.loadHistorySuccess({historial: data})
           }),
           catchError((error) => {
             console.error('Error al cargar las ordenes:', error);
-            return of(UserActions.loadOrderFailure({error: 'Error al cargar ordenes'}));
+            return of(UserActions.loadHistoryFailure({error: 'Error al cargar ordenes'}));
           })
         )
       )

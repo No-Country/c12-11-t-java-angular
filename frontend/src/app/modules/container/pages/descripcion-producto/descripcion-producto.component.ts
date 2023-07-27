@@ -32,15 +32,6 @@ export class DescripcionProductoComponent {
       count: this.count,
       totalParcial: this.count * this.plate!.precio,
     }
-    /*
-    this.appStore.dispatch(CartActions.addOrder({
-      order: {
-        id: 0,
-        plate: this.plate!,
-        count: this.count,
-        totalParcial: this.count * this.plate!.precio,
-      }
-    }))*/
     this.cartFacade.addOrder(order)
     this.router.navigateByUrl('/container/menu');
 
