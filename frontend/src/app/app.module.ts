@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from '@abacritt/angularx-social-login';
 
 /*NgRx*/
@@ -17,6 +17,8 @@ import { pedidoReducer } from './store/reducers/pedido.reducer';
 
 import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
+
+import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
 
 
 @NgModule({
@@ -45,16 +47,23 @@ import { cardReducer } from './store/reducers/card.reducer';
       useValue: {
         autoLogin: false,
         providers: [
+
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('2222756371259035')
-          }
+          },
+
         ],
         onError: (err) => {
           console.log("err =>", err);
         }
       } as SocialAuthServiceConfig,
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InteceptorInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
