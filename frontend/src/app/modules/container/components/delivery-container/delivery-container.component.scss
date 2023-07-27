@@ -7,14 +7,14 @@
   cursor: pointer;
 }
 @media (min-width: 768px) and (max-width: 1199px) {
-  .list-address  {
+  .delivery-container{
     padding-left: 70px;
   }
 
 }
 
 @media (min-width: 1200px) {
-  .list-address {
+  .delivery-container {
     padding-left: 150px;
   }
 }

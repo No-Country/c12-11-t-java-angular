@@ -1,10 +1,11 @@
 export interface Pedido {//PedidoDetalle
   pedidoId?: number;//idPedidoDetalle
   usuarioId?: number;
+  stripeId?:string;
   direccionId?: number;
   pagoId?: number;
-  fechaPedido?: string;
-  fechaEntrega?:string;
-  fechaEntregaEstimada?:string;
-  estadoPedidoId?:string;
+  fechaPedido?: Date;
+  fechaEntrega?:Date;
+  fechaEntregaEstimada?:Date;
+  estadoPedidoId?:number;
 }

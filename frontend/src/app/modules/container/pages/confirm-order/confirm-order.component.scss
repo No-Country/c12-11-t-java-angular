@@ -31,20 +31,17 @@
 .imgCard{
   margin-left: 10px;
 }
+.order-summary{
+max-width: 400px;
+margin: 0 auto;
+}
+
 @media (min-width: 768px) {
   .payment-method-container {
     padding-top: 10px;
   }
 
-  .order-summary-container {
-    border: 1px solid gray;
-    padding: 10px;
-    border-radius: 8px;
 
-    .title-page {
-      font-weight: bold !important;
-    }
-  }
 
 
 }

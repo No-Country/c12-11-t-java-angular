@@ -13,6 +13,8 @@ import { selectCart } from 'src/app/store/selectors/cart.selectors';
 export class OrderSummaryContainerComponent implements OnInit{
   private store=inject(Store);
   private router=inject(Router);
+  public envio:number=2000;
+  public total:number=0;
   shoppingCart: Cart = {
     orders:[],
     total: 0,
@@ -30,6 +32,7 @@ ngOnInit(): void {
     console.log(shoppingCart);
 
     this.shoppingCart = shoppingCart;
+    this.total=shoppingCart.total+this.envio;
   });
 
 

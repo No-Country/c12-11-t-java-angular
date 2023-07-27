@@ -18,14 +18,7 @@ ngOnInit(): void {
 @Input()public text:string="text";
 @Input() path:string="";
 @Input() idAddress:number=0;
-private router= inject( Router );
 isButtonSuccessDisabled = false;
 private store= inject(Store);
-sgtePage(){
 
- if(this.idAddress>0){
-  this.store.dispatch(AddIdAddress({direccionId:this.idAddress}));
-   }
-   this.router.navigateByUrl(`/container/${this.path}`);
-}
 }

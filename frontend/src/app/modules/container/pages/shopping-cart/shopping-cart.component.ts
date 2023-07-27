@@ -8,6 +8,7 @@ import { Cart } from 'src/app/store/models/cart.model';
 import { selectCart } from 'src/app/store/selectors/cart.selectors';
 import { CartActions } from 'src/app/store/actions/cart.actions';
 import { Order } from 'src/app/store/models/order.model';
+import { AddIdAddress } from 'src/app/store/actions/pedido.actions';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -57,7 +58,14 @@ this.idAddress=id;
 }
 
 
+sgtePage(){
+  if(this.idAddress>0){
 
+
+    this.store.dispatch(AddIdAddress({direccionId:this.idAddress}));
+    this.router.navigateByUrl('/container/pay');
+     }
+}
 
 
 

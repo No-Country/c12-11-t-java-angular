@@ -20,9 +20,9 @@
    <app-delivery-container (sendIdAddress)="getIdAddress($event)"></app-delivery-container>
   </div>
   <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block">
-    <button class="btn btn-success btn-lgp" routerLink="/container/pay" type="button">
+    <button class="btn btn-success btn-lgp"  (click)="sgtePage()" type="button">
       Continuar
     </button>
   </div>
 </div>
-<app-footer-mobile text="Ir a pagar" [idAddress]="idAddress" path="pay"></app-footer-mobile>
+<app-footer-mobile text="Ir a pagar" (click)="sgtePage()"></app-footer-mobile>
