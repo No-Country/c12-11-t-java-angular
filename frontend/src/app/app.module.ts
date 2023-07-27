@@ -34,6 +34,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {InteceptorInterceptor} from '@shared/interceptors/inteceptor.interceptor';
 
+import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
+
 import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
 
