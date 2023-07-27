@@ -1,5 +1,5 @@
 import { PlateService } from './../../../../shared/services/pedido.service';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { faAngleLeft, faArrowLeft, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,7 @@ import { PedidoRequest } from '@shared/services/pedido.service';
   styleUrls: ['./confirm-order.component.scss']
 })
 export class ConfirmOrderComponent implements OnInit{
-
+  @ViewChild('contenido', { static: false }) contenidoTemplateRef!: TemplateRef<any>;
   faAngleLeft = faAngleLeft;
   faArrowLeft=faArrowLeft;
   faPenToSquare=faPenToSquare;
@@ -75,7 +75,9 @@ export class ConfirmOrderComponent implements OnInit{
     this.pedidoService.crearPedido(this.pedido).subscribe(()=>{
 
       this.paymentService.confirmar(this.stripeId).subscribe(confirm=>{
-        console.log(confirm);
+
+        this.modal.open(this.contenidoTemplateRef, { centered: true });
+        console.log("compra exitosa");
 
       })
     })
