@@ -24,6 +24,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {CartEffects} from "./store/effects/cart.effects";
 import {userReducer} from "./store/reducers/user.reducer";
 import {UserEffects} from "./store/effects/user.effects";
+import { cardReducer } from './store/reducers/card.reducer';
 
 import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
@@ -50,6 +51,7 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
 
 
     }),
+
     NgxStripeModule.forRoot('pk_test_51NXSCVGOZk6s2DM2ZIs3a7LDjStAPHKpQwsRWvyvzR6uLaSs8Vzm3CyBxghm5ORZqO6HuGq6eGMlTkzxmNScCkvi00vJuexg0O'),
     EffectsModule.forRoot([CartEffects, UserEffects]),
   ],
