@@ -55,32 +55,6 @@
               </label>
             </div>
           </div>
-          <ul
-            class="list-group list-cards mt-3"
-            *ngIf="cardsRegister.length > 0 && valueMethod == '0'"
-          >
-            <li
-              class="list-group-item"
-              *ngFor="let card of cardsRegister; let i = index"
-            >
-              <input type="radio" name="radios" [value]="card.numero" />
-              <img class="imgCard" src="assets/icons/image.svg" alt="" />
-              {{ card.numero }}-{{ card.name }}
-              <fa-icon
-                [icon]="faTrashCan"
-                class="icon-end"
-                (click)="deleteCard(i)"
-              ></fa-icon>
-            </li>
-
-            <button
-              type="button"
-              class="btn btn-secondary btn-sm mt-2 btn-add"
-              (click)="isnewCard = !isnewCard"
-            >
-              <img src="assets/icons/circlePlus.svg" alt="" /> Nueva tarjeta
-            </button>
-          </ul>
 
           <form
             novalidate

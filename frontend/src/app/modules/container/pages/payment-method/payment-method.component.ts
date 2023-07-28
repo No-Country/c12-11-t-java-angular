@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 import { ICard } from 'src/app/store/models/card.interface';
 import { AddCard } from 'src/app/store/actions/card.actions';
 import { Pay } from '../../../../shared/interfaces/pay.interface';
-import { tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-payment-method',
@@ -32,12 +32,12 @@ export class PaymentMethodComponent implements OnInit {
   faTrashCan = faTrashCan;
   public valueMethod: string = '0';
   public typeMethod: string = '';
-  public montoTotal:number=0;
+  public montoTotal: number = 0;
   public isnewCard: boolean = false;
   public pagoId: number = 0;
   public stripeId: string = '';
   public error: string = '';
-  messageError: string = '';
+  public messageError: string = '';
   public cardsRegister: any[] = [];
 
   public stripeTest!: FormGroup;
@@ -69,17 +69,17 @@ export class PaymentMethodComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const envio=2000;
+    const envio = 2000;
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]],
     });
     this.store.select('cart').subscribe((cart) => {
-      if(cart.total){
-       this.montoTotal=cart.total + envio;
+      if (cart.total) {
+        this.montoTotal = cart.total + envio;
       }
-      else{
-        this.montoTotal=envio;
-        console.log(this.montoTotal);
+      else {
+        this.montoTotal = envio;
+
       }
 
     })
@@ -89,7 +89,7 @@ export class PaymentMethodComponent implements OnInit {
     this.stripeService
       .createToken(this.card.element, { name })
       .subscribe((result) => {
-        console.log(result);
+
 
         // If creating the token was successful
         if (result.token) {
@@ -98,7 +98,7 @@ export class PaymentMethodComponent implements OnInit {
             name: card?.name as string,
             exp_month: card?.exp_month as number,
             exp_year: card?.exp_year as number,
-            last4: card?.last4  as string,
+            last4: card?.last4 as string,
             brand: card?.brand as string,
           };
           this.store.dispatch(AddCard({ card: cardRegister }));
@@ -111,7 +111,6 @@ export class PaymentMethodComponent implements OnInit {
           };
 
           this.paymentService.pagar(paymentIntentDto).subscribe((resp: any) => {
-            console.log(resp);
 
             Swal.fire('Success', 'Tarjeta Agregada Correctamente', 'success');
 
@@ -130,24 +129,22 @@ export class PaymentMethodComponent implements OnInit {
 
 
   sgtePage() {
-    this.valueMethod == '0'? (this.typeMethod = 'Tarjeta'): this.valueMethod == '1'? (this.typeMethod = 'Efectivo'): '';
-    const pay:Pay={
-      monto:this.montoTotal,
-      medioDePago:this.typeMethod
+    this.valueMethod == '0' ? (this.typeMethod = 'Tarjeta') : this.valueMethod == '1' ? (this.typeMethod = 'Efectivo') : '';
+    const pay: Pay = {
+      monto: this.montoTotal,
+      medioDePago: this.typeMethod
     }
     this.paymentService.CrearPago(pay).subscribe((resp) => {
-      console.log(resp);
 
       this.pagoId = resp.pagoId as number;
 
-    if (this.stripeId !=="" || this.valueMethod == '1') {
-      this.store.dispatch(AddIdPago({ pagoId: this.pagoId }));
-      this.router.navigateByUrl('/container/confirm');
-    } else {
-      this.messageError = 'Debe agregar una tarjeta';
+      if (this.stripeId !== "" || this.valueMethod == '1') {
+        this.store.dispatch(AddIdPago({ pagoId: this.pagoId }));
+        this.router.navigateByUrl('/container/confirm');
+      } else {
+        this.messageError = 'Debe agregar una tarjeta';
 
-    }
-      console.log(this.pagoId);
+      }
     });
 
   }
@@ -155,8 +152,5 @@ export class PaymentMethodComponent implements OnInit {
   goBack() {
     this.router.navigateByUrl('/container/shopping');
   }
-  deleteCard(index: number) {
-    this.cardsRegister.splice(index, 1);
-    console.log(this.cardsRegister);
-  }
+
 }
