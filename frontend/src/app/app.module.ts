@@ -32,7 +32,7 @@ import {UserEffects} from "./store/effects/user.effects";
 import {cardReducer} from './store/reducers/card.reducer';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
+import {InteceptorInterceptor} from '@shared/interceptors/inteceptor.interceptor';
 
 import { NgxStripeModule } from 'ngx-stripe';
 import { cardReducer } from './store/reducers/card.reducer';
@@ -51,7 +51,13 @@ import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.intercept
     SocialLoginModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({app: appReducer, user: userReducer , cart: cartReducer, pedido: pedidoReducer, card: cardReducer}),
+    StoreModule.forRoot({
+      app: appReducer,
+      user: userReducer,
+      cart: cartReducer,
+      pedido: pedidoReducer,
+      card: cardReducer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       // Restrict extension to log-only mode
