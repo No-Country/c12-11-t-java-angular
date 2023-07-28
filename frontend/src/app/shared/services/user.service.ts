@@ -11,7 +11,7 @@ export class UserService {
 
 
   consultarUsuario(id: number): Observable<UserAPI> {
-    return this.apiBase.get<UserAPI>(`/consultarUsuario/${id}`);
+    return this.apiBase.get<UserAPI>(`/VeggieDelivery/consultarUsuario/${id}`);
   }
 
 

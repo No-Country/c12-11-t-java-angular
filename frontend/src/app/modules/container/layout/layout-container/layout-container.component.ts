@@ -6,6 +6,7 @@ import { faBars} from '@fortawesome/free-solid-svg-icons';
 import { LoginModalComponent } from '@modules/auth/components/login-modal/login-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MenuItem } from '@shared/interfaces/menu-item.interface';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'app-layout-container',
@@ -16,7 +17,7 @@ export class LayoutContainerComponent implements OnInit {
 
   private modalService = inject(NgbModal);
 
-  private authService = inject(SocialAuthService);
+  private authService = inject(AuthService);
 
   mostrarElementos: boolean = true;
 
@@ -53,7 +54,7 @@ export class LayoutContainerComponent implements OnInit {
   }
 
   login() {
-    console.log("holaaaaaaaa")
+
     const modalAgregarRef = this.modalService.open(LoginModalComponent,
       { size: 'md', backdrop: 'static', fullscreen: 'xs', scrollable: true });
 
@@ -62,11 +63,37 @@ export class LayoutContainerComponent implements OnInit {
 
           console.log("result => ", result)
 
-          /*
-          this.servicePedido.crearPedido(result).subscribe(rpta => {
-            this.actualizarTabla();
-          })
-          */
+          let path: string = 'login';
+
+          // TODO: refactorizar código cochino
+          if(result.isLogin){
+            this.authService.login(result.payload)
+              .subscribe({
+                next: () => {
+                  this.router.navigateByUrl('/container')
+                },
+                error: (error) => {
+                  //Swal.fire('Error', message, 'error' )
+                  console.log("error =>", error)
+                },
+            })
+          }else {
+            this.authService.registro({
+              ...result.payload,
+              usuario: result.payload.email,
+              idRol: 1
+            })
+              .subscribe({
+                next: () => {
+                  this.router.navigateByUrl('/container')
+                },
+                error: (error) => {
+                  //Swal.fire('Error', message, 'error' )
+                  console.log("error =>", error)
+                },
+              })
+          }
+
         } ,
         (reason) => {
           console.log("reason =>", reason)

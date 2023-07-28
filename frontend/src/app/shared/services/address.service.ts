@@ -16,13 +16,13 @@ export class AddressService {
   private apiBase = inject(ApiBaseService);
 
   listarDirecciones(): Observable<Address[]> {
-    return this.apiBase.get<Address[]>('/listaDeDirecciones');
+    return this.apiBase.get<Address[]>('/VeggieDelivery/listaDeDirecciones');
   }
 
   crearDirreccion(body: Address): Observable<Address> {
-    return this.http.post<Address>(`${this._urlBase}/crearDireccion`, body);
+    return this.http.post<Address>(`${this._urlBase}/VeggieDelivery/crearDireccion`, body);
   }
   eliminarDirreccion(id: number) {
-    return this.apiBase.delete(`/eliminarDireccion/${id}`);
+    return this.apiBase.delete(`/VeggieDelivery/eliminarDireccion/${id}`);
   }
 }

@@ -21,8 +21,8 @@ import {userReducer} from "./store/reducers/user.reducer";
 import {UserEffects} from "./store/effects/user.effects";
 import {cardReducer} from './store/reducers/card.reducer';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AuthInterceptor } from '@core/interceptors/auth.interceptor';
 
-import {InteceptorInterceptor} from '@shared/interceptors/inteceptor.interceptor';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import {InteceptorInterceptor} from '@shared/interceptors/inteceptor.interceptor
       card: cardReducer
     }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
+      maxAge: 999999, // Retains last 25 states
       // Restrict extension to log-only mode
 
 
@@ -72,11 +72,8 @@ import {InteceptorInterceptor} from '@shared/interceptors/inteceptor.interceptor
         }
       } as SocialAuthServiceConfig,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InteceptorInterceptor,
-      multi: true
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    //{ provide: APP_BASE_HREF, useValue: '/restaurante/' }
   ],
   bootstrap: [AppComponent]
 })

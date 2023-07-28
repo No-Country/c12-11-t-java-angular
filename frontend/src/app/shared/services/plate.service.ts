@@ -11,11 +11,11 @@ export class PlateService {
   private apiBase = inject(ApiBaseService);
 
   listarPlatos(): Observable<Plate[]> {
-    return this.apiBase.get<Plate[]>('/listaDePlatos');
+    return this.apiBase.get<Plate[]>('/VeggieDelivery/listaDePlatos');
   }
 
   findById(id: number): Observable<Plate> {
-    return this.apiBase.get<Plate>(`/buscarPlato/${id}`);
+    return this.apiBase.get<Plate>(`/VeggieDelivery/buscarPlato/${id}`);
   }
 
   /*

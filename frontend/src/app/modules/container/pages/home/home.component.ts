@@ -46,47 +46,6 @@ export class HomeComponent implements OnInit {
           console.log("error =>", message);
         }
       })
-
-
-    /*
-    this.plateList = [
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      },
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      },
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      },
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      },
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      },
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      },
-      {
-        nombre: "Nombre del plato",
-        descripcion: "Descripción rápida del plato y sus ingredientes.",
-        urlImagen: "assets/img/plates/gourmet.jpg"
-      }
-    ]
-    */
   }
 
   getHomeSlides() {

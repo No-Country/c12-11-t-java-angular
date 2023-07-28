@@ -11,29 +11,29 @@ export class PedidoService {
   private apiBase = inject(ApiBaseService);
 
   listarPedidos(): Observable<PedidoRequest[]> {
-    return this.apiBase.get<PedidoRequest[]>('/listaDePedidos');
+    return this.apiBase.get<PedidoRequest[]>('/VeggieDelivery/listaDePedidos');
   }
 
   crearPedido(body: PedidoRequest): Observable<PedidoRequest> {
-    return this.apiBase.post<PedidoRequest>('/crearPedido', body);
+    return this.apiBase.post<PedidoRequest>('/VeggieDelivery/crearPedido', body);
   }
 
   modificarPedido(body: PedidoRequest): Observable<PedidoRequest> {
-    return this.apiBase.put<PedidoRequest>('/modificarPedido', body);
+    return this.apiBase.put<PedidoRequest>('/VeggieDelivery/modificarPedido', body);
   }
 
 
   eliminarPlato(id: number): Observable<any> {
-    return this.apiBase.delete(`/plato/${id}`)
+    return this.apiBase.delete(`/VeggieDelivery/plato/${id}`)
   }
 
   //TODO: A RESOLVER
   listarPedidosDeUsuario(idUsuario: number): Observable<PedidoRequest[]> {
-    return this.apiBase.get<PedidoRequest[]>(`/pedidosDeUsuario/${idUsuario}`);
+    return this.apiBase.get<PedidoRequest[]>(`/VeggieDelivery/pedidosDeUsuario/${idUsuario}`);
   }
 
   historialPedidos(idUsuario: number): Observable<HistorialRequest[]> {
-    return this.apiBase.get<HistorialRequest[]>(`/historialPedido/${idUsuario}`);
+    return this.apiBase.get<HistorialRequest[]>(`/VeggieDelivery/historialPedido/${idUsuario}`);
   }
 
 }

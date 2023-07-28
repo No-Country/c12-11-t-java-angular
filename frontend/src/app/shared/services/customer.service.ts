@@ -11,7 +11,7 @@ export class CustomerService {
 
 
   consultarCliente(id: number): Observable<Customer> {
-    return this.apiBase.get<Customer>(`/consultarCliente/${id}`);
+    return this.apiBase.get<Customer>(`/VeggieDelivery/consultarCliente/${id}`);
   }
 
 

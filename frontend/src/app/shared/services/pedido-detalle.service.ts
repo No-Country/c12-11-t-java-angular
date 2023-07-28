@@ -15,26 +15,26 @@ export class PedidoDetalleService {
   }
 
   public listarPedidoDetalle(): Observable<PedidoDetalleRequest[]> {
-    return this.apiBase.get<PedidoDetalleRequest[]>('/listaDePedidoDetalle');
+    return this.apiBase.get<PedidoDetalleRequest[]>('/VeggieDelivery/listaDePedidoDetalle');
   }
 
 
   public crearPedidoDetalle(body: PedidoDetalleRequest): Observable<PedidoDetalleRequest> {
-    return this.apiBase.post<PedidoDetalleRequest>('/crearPedidoDetalle', body);
+    return this.apiBase.post<PedidoDetalleRequest>('/VeggieDelivery/crearPedidoDetalle', body);
   }
 
   public modificarPedidoDetalle(body: PedidoDetalleRequest): Observable<PedidoDetalleRequest> {
-    return this.apiBase.put<PedidoDetalleRequest>('/modificarPedidoDetalle', body);
+    return this.apiBase.put<PedidoDetalleRequest>('/VeggieDelivery/modificarPedidoDetalle', body);
   }
 
   public eliminarPedidoDetalle(id: number): Observable<PedidoDetalleRequest> {
 
-    return this.apiBase.delete<PedidoDetalleRequest>(`/eliminarPedidoDetalle/${id}`);
+    return this.apiBase.delete<PedidoDetalleRequest>(`/VeggieDelivery/eliminarPedidoDetalle/${id}`);
   }
 
   public consultarPedidosDetalleSegunPedido(id: number): Observable<Order[]> {
 
-    return this.apiBase.get<Order[]>(`/consultarPedidosDetalleSegunPedido/${id}`);
+    return this.apiBase.get<Order[]>(`/VeggieDelivery/consultarPedidosDetalleSegunPedido/${id}`);
   }
 
   public filtrarPorPedidoId(pedidoId: number): Observable<PedidoDetalleRequest[]> {

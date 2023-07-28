@@ -10,6 +10,7 @@ import {
   DescripcionProductoComponent
 } from "@modules/container/pages/descripcion-producto/descripcion-producto.component";
 import { ConfirmOrderComponent } from './pages/confirm-order/confirm-order.component';
+import { isAuthenticatedGuard, isNotAuthenticatedGuard } from '@core/guards';
 
 const routes: Routes = [
   {
@@ -20,17 +21,19 @@ const routes: Routes = [
         path: 'home', component: HomeComponent
       },
       {
-        path: 'menu', component: MenuComponent
+        path: 'menu', component: MenuComponent,
       },
 
       {
         path: 'descripcion', component: DescripcionProductoComponent
       },
       {
-        path: 'shopping', component: ShoppingCartComponent
+        path: 'shopping', component: ShoppingCartComponent,
+        canActivate: [ isAuthenticatedGuard ],
       },
       {
-        path: 'pay', component: PaymentMethodComponent
+        path: 'pay', component: PaymentMethodComponent,
+        canActivate: [ isAuthenticatedGuard ],
       },
       {
         path: 'confirm', component: ConfirmOrderComponent

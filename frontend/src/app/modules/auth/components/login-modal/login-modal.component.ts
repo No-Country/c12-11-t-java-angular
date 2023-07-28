@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angula
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { faUser, faKey, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faKey, faLock, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -33,6 +33,8 @@ export class LoginModalComponent implements AfterViewInit {
   faKey = faKey;
   faLock = faLock;
   faFacebook = faFacebook;
+  faPhone = faPhone;
+  faEnvelope = faEnvelope;
 
   closeResult = '';
 
@@ -71,17 +73,20 @@ export class LoginModalComponent implements AfterViewInit {
   }
 
   public loginForm: FormGroup = this.fb.group({
-    username:    ['', [ Validators.required ]],
-    password: ['', [ Validators.required, Validators.minLength(6) ]],
+    usuario:    ['', [ Validators.required ]],
+    contrasena: ['', [ Validators.required, Validators.minLength(6) ]],
   });
 
   public registerForm: FormGroup = this.fb.group({
     email:    ['', [ Validators.required, Validators.email ]],
-    password1: ['', [ Validators.required, Validators.minLength(6) ]],
-    password2: ['', [ Validators.required]],
+    contrasena: ['', [ Validators.required, Validators.minLength(6) ]],
+    contrasena2: ['', [ Validators.required]],
+    nombre: ['', [ Validators.required]],
+    apellido: ['', [ Validators.required]],
+    numeroCelular: ['', [ Validators.required]],
   }, {
     validators: [
-      this.validatePasswords('password1', 'password2')
+      this.validatePasswords('contrasena1', 'contrasena2')
     ]
   });
 
@@ -122,8 +127,29 @@ export class LoginModalComponent implements AfterViewInit {
   */
 
   login(){
-    console.log("login =>", this.loginForm.value)
-    this.activeModal.close(this.loginForm.value);
+    //console.log("login =>", this.loginForm.value)
+    //this.activeModal.close(this.loginForm.value);
+    console.log("isLogin =>", this.isLogin)
+
+    let payload;
+
+    if(this.isLogin){
+      payload = {
+        ...this.loginForm.value
+      }
+    }else{
+      payload = {
+        ...this.registerForm.value
+      }
+    }
+
+    payload = {
+      payload,
+      isLogin: this.isLogin,
+    }
+
+    this.activeModal.close(payload);
+
   }
 
   signInWithFB(): void {
@@ -143,7 +169,7 @@ export class LoginModalComponent implements AfterViewInit {
   }
   */
 
-  changeToRegister(){
-    this.isLogin = false;
+  changeModal(){
+    this.isLogin = !this.isLogin;
   }
 }

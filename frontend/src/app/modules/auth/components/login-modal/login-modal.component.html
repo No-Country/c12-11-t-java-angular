@@ -25,12 +25,12 @@
               <span class="input-group-text">
                 <fa-icon [icon]="faUser"></fa-icon>
               </span>
-              <input type="message" id="username" formControlName="username" class="form-control" placeholder="usuario">
+              <input type="message" id="usuario" formControlName="usuario" class="form-control" placeholder="usuario">
             </div>
             <span
-                *ngIf="loginForm.get('username')?.touched"
+                *ngIf="loginForm.get('usuario')?.touched"
                 messageError
-                [errors]="loginForm.get('username')?.errors"
+                [errors]="loginForm.get('usuario')?.errors"
                 fieldName="usuario"
                 >
             </span>
@@ -41,12 +41,12 @@
               <span class="input-group-text">
                 <fa-icon [icon]="faLock"></fa-icon>
               </span>
-              <input type="password" id="password" formControlName="password" class="form-control" placeholder="contraseña">
+              <input type="password" id="contrasena" formControlName="contrasena" class="form-control" placeholder="contraseña">
             </div>
             <span
-                *ngIf="loginForm.get('password')?.touched"
+                *ngIf="loginForm.get('contrasena')?.touched"
                 messageError
-                [errors]="loginForm.get('password')?.errors"
+                [errors]="loginForm.get('contrasena')?.errors"
                 fieldName="contraseña"
                 >
             </span>
@@ -59,7 +59,7 @@
         <a href="" >¿Olvidaste tu contraseña?</a>
       </span>
 
-      <span class="text-center">¿No tienes cuenta? <button class="changeToRegister" (click)="changeToRegister()">Regístrate</button></span>
+      <span class="text-center">¿No tienes cuenta? <button class="changeToRegister" (click)="changeModal()">Regístrate</button></span>
     </div>
   </div>
 
@@ -72,7 +72,55 @@
               <span class="input-group-text">
                 <fa-icon [icon]="faUser"></fa-icon>
               </span>
-              <input type="email" id="email" formControlName="email" class="form-control" placeholder="usuario">
+              <input type="text" id="nombre" formControlName="nombre" class="form-control" placeholder="nombre">
+            </div>
+            <span
+                *ngIf="registerForm.get('nombre')?.touched"
+                messageError
+                [errors]="registerForm.get('nombre')?.errors"
+                fieldName="nombre"
+                >
+            </span>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <fa-icon [icon]="faUser"></fa-icon>
+              </span>
+              <input type="text" id="apellido" formControlName="apellido" class="form-control" placeholder="apellido">
+            </div>
+            <span
+                *ngIf="registerForm.get('apellido')?.touched"
+                messageError
+                [errors]="registerForm.get('apellido')?.errors"
+                fieldName="apellido"
+                >
+            </span>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <fa-icon [icon]="faPhone"></fa-icon>
+              </span>
+              <input type="text" id="numeroCelular" formControlName="numeroCelular" class="form-control" placeholder="telefono">
+            </div>
+            <span
+                *ngIf="registerForm.get('numeroCelular')?.touched"
+                messageError
+                [errors]="registerForm.get('numeroCelular')?.errors"
+                fieldName="telefono"
+                >
+            </span>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+              </span>
+              <input type="email" id="email" formControlName="email" class="form-control" placeholder="email">
             </div>
             <span
                 *ngIf="registerForm.get('email')?.touched"
@@ -88,12 +136,12 @@
               <span class="input-group-text">
                 <fa-icon [icon]="faLock"></fa-icon>
               </span>
-              <input type="password1" id="password1" formControlName="password1" class="form-control" placeholder="contraseña">
+              <input type="password" id="contrasena" formControlName="contrasena" class="form-control" placeholder="contraseña">
             </div>
             <span
-                *ngIf="registerForm.get('password1')?.touched"
+                *ngIf="registerForm.get('contrasena')?.touched"
                 messageError
-                [errors]="registerForm.get('password1')?.errors"
+                [errors]="registerForm.get('contrasena')?.errors"
                 fieldName="contraseña"
                 >
             </span>
@@ -104,17 +152,22 @@
               <span class="input-group-text">
                 <fa-icon [icon]="faLock"></fa-icon>
               </span>
-              <input type="password2" id="password2" formControlName="password2" class="form-control" placeholder="Volver a escribir su contraseña">
+              <input type="password" id="contrasena2" formControlName="contrasena2" class="form-control" placeholder="Confirmar contraseña">
             </div>
             <span
-                *ngIf="registerForm.get('password2')?.touched"
+                *ngIf="registerForm.get('contrasena2')?.touched"
                 messageError
-                [errors]="registerForm.get('password2')?.errors"
+                [errors]="registerForm.get('contrasena2')?.errors"
                 fieldName="contraseña"
                 >
             </span>
           </div>
+
         </form>
+
+      </div>
+      <div class="row">
+        <span class="text-center">¿Ya tienes cuenta? <button class="changeToRegister" (click)="changeModal()">Inicia sesión</button></span>
       </div>
     </div>
   </ng-template>
@@ -126,49 +179,3 @@
     {{ isLogin?"Iniciar sesión":"Crear cuenta" }}
   </button>
 </div>
-
-
-  <!--ng-template #content let-modal>
-    <div class="modal-header message-center">
-      <h4 class="modal-type ms-auto" id="modal-basic-type">Iniciar Sesión</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="col-12" id="google-button"></div>
-          </div>
-          <div class="col-12">
-            <form [formGroup]="loginForm">
-              <div class="input-group mt-2 mb-4">
-                <span class="input-group-message">
-                  <fa-icon [icon]="faUser"></fa-icon>
-                </span>
-                <input type="message" id="username" formControlName="username" class="form-control" placeholder="usuario">
-              </div>
-
-              <div class="input-group mb-2">
-                <span class="input-group-message">
-                  <fa-icon [icon]="faLock"></fa-icon>
-                </span>
-                <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="modal-footer justify-content-center">
-      <button [disabled]="loginForm.invalid" type="button"
-        (click)="modal.close('Save click')" class="btn btn-primary">
-        Iniciar sesión
-      </button>
-    </div>
-  </ng-template>
-
-  <button class="btn btn-secondary ms-md-4" type="button" (click)="open(content)">
-    Iniciar sesión
-  </button-->
-
