@@ -2,11 +2,12 @@
   <div class="shopping-cartState-container">
     <div class="row mb-3">
       <div class="col-4 icon-back">
-        <button type="button" class="btn btn-light d-md-none d-block" (click)="goBack()">
+        <button (click)="goBack()" class="btn btn-light d-md-none d-block" type="button">
           <fa-icon [icon]="faAngleLeft" class="fa-lg"></fa-icon>
         </button>
-        <button type="button" class="btn btn-light d-none d-md-block" (click)="goBack()">
-          <fa-icon [icon]="faArrowLeft"></fa-icon> Menu
+        <button (click)="goBack()" class="btn btn-light d-none d-md-block" type="button">
+          <fa-icon [icon]="faArrowLeft"></fa-icon>
+          Menu
         </button>
       </div>
       <div class="col d-md-none">
@@ -15,14 +16,14 @@
     </div>
     <app-tabs></app-tabs>
     <div *ngFor="let order of shoppingCart.cart.orders">
-<app-product-selected-container [order]="order"/>
-  </div>
-   <app-delivery-container (sendIdAddress)="getIdAddress($event)"></app-delivery-container>
+      <app-product-selected-container [order]="order"/>
+    </div>
+    <app-delivery-container (sendIdAddress)="getIdAddress($event)"></app-delivery-container>
   </div>
   <div class="d-grid gap-2 col-2 mx-auto d-none d-md-block">
-    <button class="btn btn-success btn-lgp"  (click)="sgtePage()" type="button">
+    <button (click)="sgtePage()" class="btn btn-success btn-lgp" type="button">
       Continuar
     </button>
   </div>
 </div>
-<app-footer-mobile text="Ir a pagar" (click)="sgtePage()"></app-footer-mobile>
+<app-footer-mobile (click)="sgtePage()" text="Ir a pagar"></app-footer-mobile>
