@@ -74,10 +74,21 @@ export class MenuService {
    * @note Este método utiliza el método `getCategories()` para obtener las categorías de menú disponibles y crea un objeto MenuPlate por cada categoría de menú.
    */
   createMenu(tipoPlato: string = ''): MenuPlate[] {
-
+    this.createMenuAll()
     return this.getCategories().map((name: string) => this.createMenuPlate(name));
   }
 
+
+  createMenuAll() {
+    const allCategories = [...new Set(this.plates.map(value => value.categoria))]
+
+    return allCategories.map(category => {
+      return {
+        category: category,
+        plates: filterPlatesByCategory(this.plates, category)
+      }
+    });
+  }
 
 
   /**

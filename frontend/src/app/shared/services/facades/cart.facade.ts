@@ -15,9 +15,11 @@ export class CartFacade {
 
   constructor(private store: Store) {
 
+
   }
 
   public getCart(): Observable<CartState> {
+    this.store.dispatch(CartActions.loadCart())
     return this.store.pipe(select(selectCart))
   }
 

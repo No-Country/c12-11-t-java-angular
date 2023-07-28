@@ -44,10 +44,12 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.loadCart),
       withLatestFrom(this.store.select(selectUser)),
-      switchMap(([action, store]) => {
+      switchMap(([_, store]) => {
         if (store.userId > 0) {
+          console.log("Cargo desde el backend")
           return this.loadCartFromService(store.userId);
         } else {
+          console.log("Cargo desde local storage")
           return this.loadCartFromLocalStorage();
         }
       })
@@ -95,7 +97,7 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.newCart),
       withLatestFrom(this.store.select(selectUser)),
-      switchMap(([action, store]) => {
+      switchMap(([_, store]) => {
         if (store.userId > 0) {
           return this.newOrderToService(store.userId);
         } else {
@@ -144,7 +146,7 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.setId),
       withLatestFrom(this.store.select(selectCart)),
-      switchMap(([action, store]) => {
+      switchMap(([_, store]) => {
         if (store.cart.id > 0) {//Si no es una orden
           return this.loadOrdersFromService(store.cart.id);
         } else {

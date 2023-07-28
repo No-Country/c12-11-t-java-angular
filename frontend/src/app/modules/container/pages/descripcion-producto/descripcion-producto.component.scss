@@ -1,5 +1,5 @@
 main {
-  height: calc(100vh - 98px - 83px);
+  height: calc(100vh - 98px - 66px);
 
 }
 
@@ -7,6 +7,7 @@ main {
   height: 306px;
   width: 100vw;
   background-image: url("https://placehold.co/600x400?text=Hero");
+  background-color: black;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -51,6 +52,9 @@ main {
     height: auto;
 
   }
+  .text-title{
+    font-size: 20px;
+  }
   .hero {
     width: 100%;
     background-image: url("https://placehold.co/600x400?text=Hero");
@@ -59,7 +63,7 @@ main {
     background-size: contain;
   }
   .container {
-    width: 800px;
+    width: 900px;
     margin: 0 auto;
 
   }

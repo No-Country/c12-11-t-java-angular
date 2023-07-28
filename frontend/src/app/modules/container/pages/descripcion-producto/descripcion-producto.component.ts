@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Plate} from "@shared/interfaces/plate.interface";
 import {selectPlateSelected} from "@modules/container/store/selectors/menu.selectors";
 
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+
 import {select, Store} from "@ngrx/store";
 import {Router} from "@angular/router";
 import {CartFacade} from "@shared/services/facades/cart.facade";
@@ -15,6 +17,8 @@ export class DescripcionProductoComponent {
   plate?: Plate
   showPlate: boolean = false
   count: number = 1
+
+  faChevronLeft = faChevronLeft
 
   constructor(private store: Store,
               private cartFacade: CartFacade,
