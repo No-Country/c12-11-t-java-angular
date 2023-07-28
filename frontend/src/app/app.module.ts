@@ -16,16 +16,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {pedidoReducer} from './store/reducers/pedido.reducer';
 import {NgxStripeModule} from 'ngx-stripe';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { pedidoReducer } from './store/reducers/pedido.reducer';
-
-import { NgxStripeModule } from 'ngx-stripe';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { pedidoReducer } from './store/reducers/pedido.reducer';
-import {EffectsModule} from '@ngrx/effects';
 import {CartEffects} from "./store/effects/cart.effects";
 import {userReducer} from "./store/reducers/user.reducer";
 import {UserEffects} from "./store/effects/user.effects";
@@ -33,16 +23,6 @@ import {cardReducer} from './store/reducers/card.reducer';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {InteceptorInterceptor} from '@shared/interceptors/inteceptor.interceptor';
-
-import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
-
-import { NgxStripeModule } from 'ngx-stripe';
-import { cardReducer } from './store/reducers/card.reducer';
-
-import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
-import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
-
-import { InteceptorInterceptor } from '@shared/interceptors/inteceptor.interceptor';
 
 
 @NgModule({

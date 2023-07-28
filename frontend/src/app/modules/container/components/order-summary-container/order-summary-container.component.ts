@@ -1,41 +1,39 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { CartState } from 'src/app/store/models/cart-state.model';
-import { Cart } from 'src/app/store/models/cart.model';
-import { selectCart } from 'src/app/store/selectors/cart.selectors';
+import {Component, inject, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {Cart} from 'src/app/store/models/cart.model';
+import {selectCart} from 'src/app/store/selectors/cart.selectors';
+import {CartStatus} from "../../../../store/models/cart-status.model";
 
 @Component({
   selector: 'app-order-summary-container',
   templateUrl: './order-summary-container.component.html',
   styleUrls: ['./order-summary-container.component.scss']
 })
-export class OrderSummaryContainerComponent implements OnInit{
-  private store=inject(Store);
-  private router=inject(Router);
-  public envio:number=2000;
-  public total:number=0;
+export class OrderSummaryContainerComponent implements OnInit {
+  private store = inject(Store);
+  private router = inject(Router);
+  public envio: number = 2000;
+  public total: number = 0;
   shoppingCart: Cart = {
-    orders:[],
+    id: 0,
+    orders: [],
     total: 0,
-    state: CartState.New
+    state: CartStatus.New
   }
 
 
+  ngOnInit(): void {
 
 
-ngOnInit(): void {
+    this.store.select(selectCart).subscribe(shoppingCart => {
+      console.log(shoppingCart);
+
+      this.shoppingCart = shoppingCart.cart;
+      this.total = shoppingCart.cart.total + this.envio;
+    });
 
 
-
-  this.store.select(selectCart).subscribe(shoppingCart => {
-    console.log(shoppingCart);
-
-    this.shoppingCart = shoppingCart;
-    this.total=shoppingCart.total+this.envio;
-  });
-
-
-}
+  }
 
 }
