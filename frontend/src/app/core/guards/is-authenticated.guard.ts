@@ -4,6 +4,7 @@ import { LoginModalComponent } from '@modules/auth/components/login-modal/login-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthStatus } from '@shared/enums/auth-status.enum';
 import { AuthService } from '@shared/services/auth.service';
+import Swal from 'sweetalert2';
 
 export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
   const authService = inject( AuthService );
@@ -20,6 +21,7 @@ export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
   // const url = state.url;
   // localStorage.setItem('url', url);
 
+
   //router.navigateByUrl('/container/shopping');
   //return false;
 
@@ -30,14 +32,41 @@ export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
 
     modalAgregarRef.result.then(
       (result) => {
+        const authService = inject(AuthService);
+        const router = inject(Router);
 
         console.log("result => ", result)
 
-        /*
-        this.servicePedido.crearPedido(result).subscribe(rpta => {
-          this.actualizarTabla();
-        })
-        */
+        // TODO: refactorizar código cochino
+        if(result.isLogin){
+          authService.login(result.payload)
+            .subscribe({
+              next: () => {
+                router.navigateByUrl('/container')
+                Swal.fire('Inicio de sesión exitosa', "Usted inició sesión correctamente", 'success' )
+              },
+              error: (error) => {
+                Swal.fire('Error', "Algo salió mal", 'error' )
+                console.log("error =>", error)
+              },
+          })
+        }else {
+          authService.registro({
+            ...result.payload,
+            usuario: result.payload.email,
+            idRol: 1
+          })
+            .subscribe({
+              next: () => {
+                router.navigateByUrl('/container')
+                Swal.fire('Registro exitosa', "Usted se registró correctamente", 'success' )
+              },
+              error: (error) => {
+                Swal.fire('Error', "Algo salió mal", 'error' )
+                console.log("error =>", error)
+              },
+            })
+        }
       } ,
       (reason) => {
         console.log("reason =>", reason)
