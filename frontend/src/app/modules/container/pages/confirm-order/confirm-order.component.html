@@ -67,8 +67,8 @@
       <button
         type="button"
         class="btn btn-success"
-        (click)="modal.close()"
-        routerLink="/container/"
+        (click)="confirm()"
+
       >
         Ir al menu
       </button>
@@ -78,7 +78,7 @@
     <button
       class="btn btn-success btn-lgp"
       type="button"
-      (click)="confirm()"
+      (click)="openModal()"
 
     >
       Realizar Pedido
@@ -88,7 +88,7 @@
 
 <app-footer-mobile
   text="Realizar Pedido"
-  (click)="confirm()"
+  (click)="openModal()"
 
   path="confirm"
 ></app-footer-mobile>

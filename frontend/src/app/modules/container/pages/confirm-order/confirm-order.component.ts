@@ -1,7 +1,7 @@
 import {Component, inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {faAngleLeft, faArrowLeft, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {Store} from '@ngrx/store';
 import {PaymentService} from '../../../../shared/services/payment.service';
 import {PedidoRequest, PedidoService} from '@shared/services/pedido.service';
@@ -20,6 +20,7 @@ export class ConfirmOrderComponent implements OnInit {
   public stripeId: string = "";
   public valueMethod: string = "0";
   public textButtom: string = "";
+  modalref !: NgbModalRef;
   public modal = inject(NgbModal);
   public fecha: string = new Date().toLocaleString();
   public fechaEstimada: string = "";
@@ -39,7 +40,7 @@ export class ConfirmOrderComponent implements OnInit {
 
     this.getFechas();
     this.getPedido();
-    console.log(this.fecha, this.fechaEstimada);
+
     this.store.select("card").subscribe(resp => {
 
       if (!resp) {
@@ -69,19 +70,27 @@ export class ConfirmOrderComponent implements OnInit {
       this.pedido = pedido;
 
     })
+
+  }
+  openModal(){
+    this.modalref=this.modal.open(this.contenidoTemplateRef, {centered: true});
   }
 
   confirm() {
 
-    this.pedidoService.crearPedido(this.pedido).subscribe(() => {
+    this.pedidoService.crearPedido(this.pedido).subscribe((res) => {
+      localStorage.removeItem("cart");
+      this.modalref.close();
+      this.router.navigateByUrl('/container/');
+      if(this.stripeId){
+      this.paymentService.confirmar(this.stripeId).subscribe(() => {
 
-      this.paymentService.confirmar(this.stripeId).subscribe(confirm => {
+        console.log("compra exitosa con pasarela");
+      });
 
-        this.modal.open(this.contenidoTemplateRef, {centered: true});
-        console.log("compra exitosa");
 
-      })
-    })
+    }}
+    )
 
   }
 

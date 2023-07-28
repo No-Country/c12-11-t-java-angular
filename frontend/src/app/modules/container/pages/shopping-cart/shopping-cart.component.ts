@@ -23,7 +23,7 @@ export class ShoppingCartComponent implements OnInit {
   public state: string = "";
   public textAddress: string = "";
   public optionsDelivery: string = "0";
-  public idAddress: number = 0;
+  public idAddress: number = 1;
   public direcciones: any[] = [];
   public hasDireccion: boolean = false;
   private store = inject(Store);
@@ -50,7 +50,6 @@ export class ShoppingCartComponent implements OnInit {
 
   getShoppingCart() {
     this.store.select(selectCart).subscribe(shoppingCart => {
-      console.log(shoppingCart);
 
       this.shoppingCart = shoppingCart;
     });
@@ -63,12 +62,11 @@ export class ShoppingCartComponent implements OnInit {
 
 
   sgtePage() {
-    if (this.idAddress > 0) {
 
 
       this.store.dispatch(AddIdAddress({direccionId: this.idAddress}));
       this.router.navigateByUrl('/container/pay');
-    }
+
   }
 
 

@@ -75,11 +75,12 @@ export class PaymentMethodComponent implements OnInit {
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]],
     });
+    this.store.subscribe(resp=>{
+      console.log(resp);
+    })
     this.store.select(selectCart).subscribe(({cart}) => {
-      console.log(cart);
-      this.pedidoId = cart.id;
-      console.log(this.pedidoId);
 
+      this.pedidoId = cart.id;
 
       if (cart.total) {
 
@@ -117,9 +118,9 @@ export class PaymentMethodComponent implements OnInit {
             token: result.token.id,
             amount: this.montoTotal,
             currency: 'usd',
-            description: `pedido ${this.pedidoId}`,
+            description: `pago ${result.token.id}`,
           };
-          console.log(paymentIntentDto);
+
 
           this.paymentService.pagar(paymentIntentDto).subscribe((resp: any) => {
 

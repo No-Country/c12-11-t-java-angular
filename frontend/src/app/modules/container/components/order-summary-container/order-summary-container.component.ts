@@ -12,7 +12,6 @@ import {CartStatus} from "../../../../store/models/cart-status.model";
 })
 export class OrderSummaryContainerComponent implements OnInit {
   private store = inject(Store);
-  private router = inject(Router);
   public envio: number = 2;
   public total: number = 0;
   shoppingCart: Cart = {
@@ -27,8 +26,6 @@ export class OrderSummaryContainerComponent implements OnInit {
 
 
     this.store.select(selectCart).subscribe(shoppingCart => {
-      console.log(shoppingCart);
-
       this.shoppingCart = shoppingCart.cart;
       this.total = shoppingCart.cart.total + this.envio;
     });
