@@ -7,6 +7,7 @@ import { LoginModalComponent } from '@modules/auth/components/login-modal/login-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MenuItem } from '@shared/interfaces/menu-item.interface';
 import { AuthService } from '@shared/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-layout-container',
@@ -63,17 +64,16 @@ export class LayoutContainerComponent implements OnInit {
 
           console.log("result => ", result)
 
-          let path: string = 'login';
-
           // TODO: refactorizar código cochino
           if(result.isLogin){
             this.authService.login(result.payload)
               .subscribe({
                 next: () => {
                   this.router.navigateByUrl('/container')
+                  Swal.fire('Inicio de sesión exitosa', "Usted inició sesión correctamente", 'success' )
                 },
                 error: (error) => {
-                  //Swal.fire('Error', message, 'error' )
+                  Swal.fire('Error', "Algo salió mal", 'error' )
                   console.log("error =>", error)
                 },
             })
@@ -86,9 +86,10 @@ export class LayoutContainerComponent implements OnInit {
               .subscribe({
                 next: () => {
                   this.router.navigateByUrl('/container')
+                  Swal.fire('Registro exitosa', "Usted se registró correctamente", 'success' )
                 },
                 error: (error) => {
-                  //Swal.fire('Error', message, 'error' )
+                  Swal.fire('Error', "Algo salió mal", 'error' )
                   console.log("error =>", error)
                 },
               })
