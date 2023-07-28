@@ -43,9 +43,9 @@
         <app-deck-purchase-order/>
       </div>
       <div class="col-12 col-md-10">
-        <ng-container *ngFor="let menu of menuService.createMenu()">
+        <div *ngFor="let menu of menuService.createMenu()">
           <app-deck-menu [menu]="menu"/>
-        </ng-container>
+        </div>
       </div>
     </section>
   </section>

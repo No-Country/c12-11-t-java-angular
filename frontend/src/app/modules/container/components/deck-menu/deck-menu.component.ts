@@ -31,7 +31,7 @@ export class DeckMenuComponent {
     activateFilterVegano: false,
     activateFilterByCategory: '',
     activateFilterByType: '',
-    activateFilters: true,
+    activateFilters: false,
     activateFilterSearchTerm: ''
   }
   plates: Plate[] = []

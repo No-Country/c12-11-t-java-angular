@@ -38,11 +38,19 @@ export const handleNewCart = (state: CartState): CartState => {
 
 
 export const handleCartLoadedSuccess = (state: CartState, {orders}: { orders: Order[] }): CartState => {
+  const ordersVerify: Order[] = orders.map(value => {
+      return {
+        ...value,
+        totalParcial: value.count * value.plate.precio
+      }
+    }
+  )
+
   return {
     cart: {
       ...state.cart,
-      total: calculateTotal(orders),
-      orders: orders
+      total: calculateTotal(ordersVerify),
+      orders: ordersVerify
     },
     loading: false,
     error: null

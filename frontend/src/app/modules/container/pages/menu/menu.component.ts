@@ -23,17 +23,11 @@ export class MenuComponent implements OnInit {
   cartState: CartStatus = CartStatus.New
   isLoading = true
 
-  menuName = 'Principal'
+  menuName = ''
 
   constructor(private location: Location,
               private store: Store,
               public menuService: MenuService) {
-
-    this.store.dispatch(CartActions.loadCart())
-
-    this.store.dispatch(CartActions.loadCart())
-
-    this.store.dispatch(CartActions.loadCart())
 
   }
 

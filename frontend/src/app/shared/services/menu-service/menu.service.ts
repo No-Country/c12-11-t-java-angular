@@ -12,7 +12,7 @@ import {PlateActions} from "@modules/container/store/actions/plates.actions";
   providedIn: 'root'
 })
 export class MenuService {
-  private plates: Plate[] = [];
+  plates: Plate[] = [];
   tipoMenu = '';
 
   constructor(private store: Store, private plateService: PlateService) {
@@ -39,11 +39,9 @@ export class MenuService {
 
     this.plateService.listarPlatos().subscribe({
       next: (response: Plate[]) => {
-        console.log("response =>", response);
         this.store.dispatch(PlateActions.loadSuccess({plates: response}));
       },
       error: (message: string) => {
-        console.log("error =>", message);
         this.store.dispatch(PlateActions.loadFailure({error: message}));
       }
     });
@@ -76,8 +74,10 @@ export class MenuService {
    * @note Este método utiliza el método `getCategories()` para obtener las categorías de menú disponibles y crea un objeto MenuPlate por cada categoría de menú.
    */
   createMenu(tipoPlato: string = ''): MenuPlate[] {
+
     return this.getCategories().map((name: string) => this.createMenuPlate(name));
   }
+
 
 
   /**
