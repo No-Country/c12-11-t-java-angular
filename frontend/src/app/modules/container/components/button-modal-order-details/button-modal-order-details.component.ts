@@ -42,6 +42,8 @@ export class ButtonModalOrderDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.cartFacade.getCart().subscribe(cart => {
+      console.log(cart);
+
       this.shoppingCart = cart
     })
   }

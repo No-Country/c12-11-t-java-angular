@@ -13,7 +13,7 @@ import {CartStatus} from "../../../../store/models/cart-status.model";
 export class OrderSummaryContainerComponent implements OnInit {
   private store = inject(Store);
   private router = inject(Router);
-  public envio: number = 2000;
+  public envio: number = 2;
   public total: number = 0;
   shoppingCart: Cart = {
     id: 0,

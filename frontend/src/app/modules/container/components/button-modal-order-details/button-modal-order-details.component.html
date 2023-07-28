@@ -30,8 +30,10 @@
     </button>
   </div>
 </ng-template>
-
+<div class="div">
 <button (click)="open(content)" class="btn btn-primary">
   <fa-icon [icon]="faCart"/>
+  <span class="counter" *ngIf="shoppingCart.cart.orders.length>0">{{shoppingCart.cart.orders.length}}</span>
 </button>
+
 

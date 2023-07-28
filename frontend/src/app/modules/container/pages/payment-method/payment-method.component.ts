@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 import { ICard } from 'src/app/store/models/card.interface';
 import { AddCard } from 'src/app/store/actions/card.actions';
 import { Pay } from '../../../../shared/interfaces/pay.interface';
+import { selectCart } from 'src/app/store/selectors/cart.selectors';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class PaymentMethodComponent implements OnInit {
   public montoTotal: number = 0;
   public isnewCard: boolean = false;
   public pagoId: number = 0;
+  public pedidoId: number = 0;
   public stripeId: string = '';
   public error: string = '';
   public messageError: string = '';
@@ -69,12 +71,18 @@ export class PaymentMethodComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const envio = 2000;
+    const envio = 2;
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]],
     });
-    this.store.select('cart').subscribe((cart) => {
+    this.store.select(selectCart).subscribe(({cart}) => {
+      console.log(cart);
+      this.pedidoId = cart.id;
+      console.log(this.pedidoId);
+
+
       if (cart.total) {
+
         this.montoTotal = cart.total + envio;
       }
       else {
@@ -101,14 +109,17 @@ export class PaymentMethodComponent implements OnInit {
             last4: card?.last4 as string,
             brand: card?.brand as string,
           };
+
+
           this.store.dispatch(AddCard({ card: cardRegister }));
 
           const paymentIntentDto: PaymentIntentDto = {
             token: result.token.id,
-            amount: 2000,
-            currency: 'cop',
-            description: 'plato 3',
+            amount: this.montoTotal,
+            currency: 'usd',
+            description: `pedido ${this.pedidoId}`,
           };
+          console.log(paymentIntentDto);
 
           this.paymentService.pagar(paymentIntentDto).subscribe((resp: any) => {
 

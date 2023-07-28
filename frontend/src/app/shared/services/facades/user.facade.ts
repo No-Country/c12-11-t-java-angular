@@ -14,7 +14,7 @@ import {HistorialRequest} from "@shared/services/pedido.service";
 export class UserFacade {
 
   constructor(private store: Store) {
-    const userID = 3
+    const userID = 1
 
     this.store.dispatch(UserActions.loadUser({id: userID}))
     /*this.store.dispatch(UserActions.loadCustomer({id: 3}))
