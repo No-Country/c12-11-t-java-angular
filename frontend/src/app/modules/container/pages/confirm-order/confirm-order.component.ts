@@ -73,13 +73,12 @@ export class ConfirmOrderComponent implements OnInit{
   confirm(){
 
     this.pedidoService.crearPedido(this.pedido).subscribe(()=>{
+      this.modal.open(this.contenidoTemplateRef, { centered: true });
+     console.log("compra exitosa");
+     if(this.stripeId){
+      this.paymentService.confirmar(this.stripeId).subscribe(()=>{  })
+     }
 
-      this.paymentService.confirmar(this.stripeId).subscribe(confirm=>{
-
-        this.modal.open(this.contenidoTemplateRef, { centered: true });
-        console.log("compra exitosa");
-
-      })
     })
 
   }

@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CartState } from 'src/app/store/models/cart-state.model';
 import { Cart } from 'src/app/store/models/cart.model';
@@ -12,7 +11,6 @@ import { selectCart } from 'src/app/store/selectors/cart.selectors';
 })
 export class OrderSummaryContainerComponent implements OnInit{
   private store=inject(Store);
-  private router=inject(Router);
   public envio:number=2000;
   public total:number=0;
   shoppingCart: Cart = {
@@ -29,7 +27,7 @@ ngOnInit(): void {
 
 
   this.store.select(selectCart).subscribe(shoppingCart => {
-    console.log(shoppingCart);
+
 
     this.shoppingCart = shoppingCart;
     this.total=shoppingCart.total+this.envio;

@@ -10,15 +10,7 @@ import { AddIdAddress } from 'src/app/store/actions/pedido.actions';
 })
 export class FooterMobileComponent implements OnInit {
 ngOnInit(): void {
-  this.store.select('pedido').subscribe(rep=>{
-    console.log(rep);
-
-  })
 }
 @Input()public text:string="text";
-@Input() path:string="";
-@Input() idAddress:number=0;
-isButtonSuccessDisabled = false;
-private store= inject(Store);
 
 }
